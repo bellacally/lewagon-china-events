@@ -1,0 +1,38 @@
+<view class="row">
+  <view class="city-name">{{city}}</view>
+  <Select class="dropdown" prop-array='{{selectArray}}'></Select>
+</view>
+<view id="cover_pic" style="background-image: linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyahkSIPJy9b1.jpg'); background-size:cover;">
+</view>
+<block wx:for="{{result}}" wx:for-item="res">
+  <view class="container">
+    <view class="background">
+      <image id = "event-image" src='{{res.image}}'></image>
+     <view class="footer">
+      <view class="info">{{res.name}}</view>
+      <view class ="info">{{res.date}}</view>
+
+      <!-- put share icon inside a button -->
+      <view class="share-icon"> 
+        <button id= "share-btn" open-type='share'>
+        <image id="share-img" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyaV0BpuVlvjw.png"></image>
+        </button>
+      </view> 
+     </view>
+   </view>
+  </view>  
+</block>
+  
+
+
+<!-- <ul>
+  <li>{{res.address}}</li>
+  <li>{{res.description}}</li>
+  <!-- <li>{{res.name}}</li> -->
+<!-- 
+</ul> --> 
+
+
+<button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
+
+
