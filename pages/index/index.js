@@ -23,8 +23,6 @@ Page({
     city: ""
   },
 
- 
-
   loadEventData: function (city) {
     const page = this;
     // var city = 'Chengdu'
@@ -67,7 +65,7 @@ Page({
       success: function (data) {
         // app.globalData.city = data[0].regeocodeData.addressComponent.province;
         var city = data[0].regeocodeData.addressComponent.province
-        console.log(cities[city])
+        console.log("111",cities[city])
         var arr = []
         that.data.selectArray.forEach((x) => {
           console.log(cities[city]);

@@ -44,6 +44,11 @@
   right: 50rpx;
   bottom: 80rpx;
 }
+
+#share-btn::after{
+  border:none;
+}
+
 #share-img{
   width: 50rpx;
   height: 50rpx;
