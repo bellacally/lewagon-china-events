@@ -1,1 +1,0 @@
-# lewagon-china-events
