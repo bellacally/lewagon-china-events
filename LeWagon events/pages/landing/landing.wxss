@@ -1,0 +1,34 @@
+#logo{
+width: 300rpx;
+height: 98rpx;
+}
+
+.content{
+display: flex;
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+#cover_pic{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 800rpx;
+  margin-bottom: 50rpx;
+}
+.slogon{
+margin-bottom: 80rpx;
+font-size: 50rpx;
+font-weight: bold;
+}
+
+button{
+  background: #FC1015;
+  width: 155px;
+  height: 40px;
+  color: white;
+  font-size: 28rpx;
+  line-height:80rpx;
+  margin-top: 50rpx;
+
+}
