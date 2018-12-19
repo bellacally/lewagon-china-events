@@ -84,6 +84,7 @@ Page({
         let query = new wx.BaaS.Query();
         query.contains('city', cities[city]);
         EventsTable.setQuery(query).find().then(res => {
+          console.log(res);
           that.setData({
             result: res.data.objects
           });
@@ -104,6 +105,13 @@ Page({
   userInfoHandler(data) {
     wx.BaaS.handleUserInfo(data).then(res => {
     }, res => {
+    })
+  },
+
+  onShareAppMessage: function () {
+    console.log('share');
+    wx.showShareMenu({
+      withShareTicket: true
     })
   },
 
