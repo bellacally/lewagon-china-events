@@ -1,1 +1,36 @@
 /* pages/show/show.wxss */
+.row{
+  display: flex;
+  flex-direction: row;
+}
+.icon{
+  width: 50rpx;
+  height: 50rpx;
+}
+
+#share-btn{
+  /* width: 50rpx; */
+  height: 50rpx;
+  background:transparent;
+  position: absolute;
+  right: 50rpx;
+  bottom: 80rpx;
+}
+
+#share-btn::after{
+  border:none;
+}
+
+#share-img{
+  width: 50rpx;
+  height: 50rpx;
+}
+.share-icon{
+  display: flex;
+  align-items: center
+}
+
+.line{
+  width: 1px;
+  height: 2px;
+}

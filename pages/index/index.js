@@ -83,9 +83,12 @@ Page({
         query.contains('city', cities[city]);
         EventsTable.setQuery(query).find().then(res => {
           console.log(res);
+          res.data.objects.forEach((object) => {
+            object.date = object.date.substr(0, 10);
+          })
           that.setData({
             result: res.data.objects,
-            // id: res.data.objects[].id
+           
           });
         });
       },
@@ -100,13 +103,6 @@ Page({
   //   console.log("Event in index")
   // },
 
-  // get user info
-  userInfoHandler(data) {
-    wx.BaaS.handleUserInfo(data).then(res => {
-    }, res => {
-    })
-  },
-
   onShareAppMessage: function () {
     console.log('share');
     wx.showShareMenu({
@@ -117,12 +113,12 @@ Page({
   // need some revision
   clickToShow: function(e){
     console.log("aaaaaa",e)
-  var eventId = e.currentTarget.data.object[0].id;
-  
+  var eventId = e.currentTarget.id;
+  app.globalData.eventId = eventId;
     wx.navigateTo({
       // url: '../show/show?id=${event.id}&name=${event.name}`',
-      url: 'show/show?id=' +eventId
-    })
+      url: '/pages/show/show'
+  })
   }
 })
 

@@ -6,7 +6,7 @@
 </view>
 <block wx:for="{{result}}" wx:for-item="res">
   <view class="container">
-    <view class="background" bindtap="clickToShow" data-event="{{event}}">
+    <view class="background" id="{{res.id}}" bindtap="clickToShow" data-event="{{event}}">
       <image id = "event-image" src='{{res.image}}'></image>
      <view class="footer">
       <view class="info">{{res.name}}</view>
@@ -34,6 +34,6 @@
 </ul> --> 
 
 
-<button open-type="getUserInfo" bindgetuserinfo="userInfoHandler">用户授权</button>
+
 
 
