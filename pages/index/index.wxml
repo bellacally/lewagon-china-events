@@ -6,7 +6,7 @@
 </view>
 <block wx:for="{{result}}" wx:for-item="res">
   <view class="container">
-    <view class="background">
+    <view class="background" bindtap="clickToShow" data-event="{{event}}">
       <image id = "event-image" src='{{res.image}}'></image>
      <view class="footer">
       <view class="info">{{res.name}}</view>
@@ -16,6 +16,7 @@
       <view class="share-icon"> 
         <button id= "share-btn" open-type='share'>
         <image id="share-img" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyaV0BpuVlvjw.png"></image>
+        
         </button>
       </view> 
      </view>

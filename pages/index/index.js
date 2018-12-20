@@ -84,7 +84,8 @@ Page({
         EventsTable.setQuery(query).find().then(res => {
           console.log(res);
           that.setData({
-            result: res.data.objects
+            result: res.data.objects,
+            // id: res.data.objects[].id
           });
         });
       },
@@ -113,6 +114,16 @@ Page({
     })
   },
 
+  // need some revision
+  clickToShow: function(e){
+    console.log("aaaaaa",e)
+  var eventId = e.currentTarget.data.object[0].id;
+  
+    wx.navigateTo({
+      // url: '../show/show?id=${event.id}&name=${event.name}`',
+      url: 'show/show?id=' +eventId
+    })
+  }
 })
 
 

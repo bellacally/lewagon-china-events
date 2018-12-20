@@ -11,7 +11,25 @@ Page({
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad: function (options) {
+  // loadEventData: function (city) {
+  //   const page = this;
+  //   // var city = 'Chengdu'
+  //   console.log(city)
+  //   const EventsTable = new wx.BaaS.TableObject('events');
+  //   let query = new wx.BaaS.Query();
+  //   query.contains('city', 'city');
+  //   EventsTable.setQuery(query).find().then(res => {
+  //     console.log("hahahah");
+  //     console.log(res);
+  //     page.setData({
+  //       result: res.data.objects,
+  //       date: res.header.date.strftime("%Y-%m-%d")
+  //     })
+  //   },
+  onLoad: function (e) {
+    var eventId = e.id;
+    console.log("555", eventId);
+ 
 
   },
 
