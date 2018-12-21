@@ -8,7 +8,7 @@ App({
       wx.requestPayment)
       wx.BaaS.init('d06840973e93da8277d9');
       wx.BaaS.login(false).then(res => {
-        console.log(res);
+
   }, err => {
     // err
   })

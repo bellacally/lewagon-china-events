@@ -1,55 +1,93 @@
-<!-- pages/feedback/feedback.wxml
-<text>pages/feedback/feedback.wxml</text>
-<ul>
-<text> In general, how was the event?</text>
-<view>content</view>
-<view>speaker</view>
-<block wx:for="{{feedback}}" wx:for-item="res">
-<li>{{res.address}}</li>
-<li>{{res.description}}</li>
-<li>{{res.name}}</li>
-</block>
-</ul> -->
-
-<form bindsubmit="formSubmit" bindreset="formReset">
-  <view class="section section_gap">
-    <!-- <view class="section__title">switch</view> <switch name="switch" /> -->
-  </view>
-  <view class="section section_gap">
-    <view class="section__title">How likely will you recommend our events?</view>
-    <slider name="nps" show-value></slider>
-  </view>
-
-  <view class="section">
-    <view class="section__title">How do you think the event can be improved?</view>
-    <input name="review" placeholder="please input here" />
-  </view>
-  <view class="section section_gap">
-    <view class="section__title">How did you registered for the event</view>
-    <radio-group name="referer">
-      <label><radio value="meetup.com" />meetup.com</label>
-      <label><radio value="eventbrite" />eventbrite</label>
-      <label><radio value="huodongxing" />huodongxing</label>
-      <label><radio value="wework" />wework</label>
-    </radio-group>
-  </view>
-  <view class="section section_gap">
-    <view class="section__title">checkbox</view>
-    <checkbox-group name="learntocode">
-      <label><checkbox value="checkbox1" />checkbox1</label>
-      <label><checkbox value="checkbox2" />checkbox2</label>
-    </checkbox-group>
-  </view>
-  <i-button type="primary" bind:click="handleClick">这是一个按钮</i-button>
-
-  <view class="btn-area">
-    <button bindtap='feedbackSuccess' form-type="submit" data-feedback="{{event_id}}">Submit</button>
-    
-  </view>
-</form>
+<view class="wrapper">
+  <view class="form_container">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="section section_gap">
+      <!-- <view class="section__title">switch</view> <switch name="switch" /> -->
+    </view>
 
 
-<i-cell-group>
+    <view class="section">
+      <view class="section section_gap">
+        <view class="section_title">How did you registered for the event?</view>
+        <radio-group class="details radio"name="referer">
+          <label><radio value="meetup.com" class="label" />meetup.com</label>
+          <label><radio value="eventbrite" class="label" />eventbrite</label>
+          <label><radio value="huodongxing" class="label" />huodongxing</label>
+          <label><radio value="wework" class="label"/>wework</label>
+          <label><radio value="others" class="label"/>others</label>
+          <!-- <view>please specify</view>
+          <textarea></textarea> -->
+        </radio-group>
+      </view>
+
+        <!-- <view class="section section_gap">
+        <view class="section__title">checkbox</view>
+        <checkbox-group name="learntocode">
+          <label><checkbox value="checkbox1" />checkbox1</label>
+          <label><checkbox value="checkbox2" />checkbox2</label>
+        </checkbox-group>
+      </view> -->
+
+    <view class="section section_gap">
+      <view class="section_title">In general, how did you like the event?</view>
+        <view class="details row">
+          <view class="title" name="content_rating" >Content</view>
+          <i-cell class="stars" title="自定义星星大小">
+            <i-rate 
+              bind:change="onChange1" 
+              value="{{starIndex1}}" 
+              size="32">
+            </i-rate>
+          </i-cell>
+        </view>
+        <view class="details row">
+          <view class="title" name="speaker_rating">Speaker</view>
+          <i-cell class="stars"title="自定义星星大小">
+            <i-rate 
+              bind:change="onChange2" 
+              value="{{starIndex2}}" 
+              size="32">
+            </i-rate>
+          </i-cell>
+        </view>
+          <view class="details row">
+          <view class="title" name="location_rating">Location</view>
+          <i-cell class="stars" title="自定义星星大小">
+            <i-rate 
+              bind:change="onChange3" 
+              name="starIndex3"
+              value="{{starIndex3}}" 
+              size="32">
+            </i-rate>
+          </i-cell>
+        </view>
+    </view>
+
+      <view class="section section_gap">
+        <view class="section_title">How likely will you recommend our events?</view>
+        <slider class="details" min="1" max="5" name='recommend' bindchange="sliderchange" show-value/>
+      </view>
+
+    <view class="section section_gap">
+      <view class="section_title">How do you think the event can be improved?</view>
+      <textarea class="details" name="areas_to_improve" > </textarea> 
+    </view>
+      <!-- <i-button type="primary" bind:click="handleClick"></i-button> -->
+
+      <view class="btn-area">
+        <button form-type="submit" data-feedback="{{event_id}}">Submit</button>
+      </view>
+    </view>
+  </form>
+</view>
+</view>
+
+
+
+
+
+<!-- different sorts of stars template -->
+<!-- <i-cell-group>
     <i-cell title="基本用法">
         <i-rate 
             bind:change="onChange1" 
@@ -90,4 +128,4 @@
             {{starIndex4}}星
         </i-rate>
     </i-cell>
-</i-cell-group>
+</i-cell-group> -->

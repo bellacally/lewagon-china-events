@@ -1,1 +1,65 @@
 /* pages/feedback/feedback.wxss */
+
+.wrapper{
+  background-color:#fcf5e8;
+  
+}
+/* .form_container{
+  
+} */
+.details.radio{
+  /* padding: 0rpx 15rpx 0rpx 0rpx; */
+  margin-top: 15rpx;
+  /* padding-left: 15rpx; */
+ 
+}
+
+.label {
+  font-size:30rpx;
+  line-height: 5px;
+  padding-bottom: 15rpx;
+}
+/* .internal-checkbox-margin {
+  margin-left: 130rpx;
+} */
+.section{
+  padding: 20rpx;
+  /* display: flex;
+  flex-direction: column; */
+}
+.section_title{
+ font-weight:600;
+  font-size:35rpx;
+  color:black;
+  padding-bottom: 15rpx;
+}
+.details{
+  padding: 10rpx;
+  font-size: 28rpx;
+}
+.stars{
+  padding-left: 80rpx;
+}
+.details.row {
+  display: flex;
+  flex-direction: row;
+}
+.title{
+  font-size: 28rpx;
+  line-height: 2em;
+}
+textarea{
+  background-color: #fff;
+  margin-top:8px;
+  width: 90%;
+}
+
+button{
+  background: #FC1015;
+  width: 155px;
+  height: 40px;
+  color: white;
+  font-size: 28rpx;
+  line-height:80rpx;
+  margin-top: 20rpx;
+}

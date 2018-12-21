@@ -1,6 +1,7 @@
 {
+  "navigationBarTitleText": "Feedback",
   "usingComponents": {
     "i-rate": "../../dist/rate/index"
   }
-  
+
 }

@@ -1,5 +1,5 @@
 // pages/landing/landing.js
-
+let app = getApp();
 Page({
   onTap: function (event) {
         wx.redirectTo({
@@ -18,14 +18,64 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    // login: function(e) {
-    //   wx.redirectTo({
-    //     url: 'pages/feebacks/feebacks',
-    //   })
+    // get user_id from local storage if it exists
+    // let userInfo = wx.getStorageSync("userInfo")
+    this.getUserData();
+    this.getEventData();
 
-    // }
   },
 
+  getUserData:function(){
+    let page = this;
+    wx.BaaS.login().then(res => {
+      // success
+      let userId = res.id;
+      let page = this;
+      let EventsTable = new wx.BaaS.TableObject('events');
+      let query = new wx.BaaS.Query();
+      query.contains('attend_by', `${userId}`)
+      EventsTable.setQuery(query).find().then(res => {
+        res.data.objects.forEach((event) => {
+          let time = new Date().getTime();
+          let date = new Date(time);
+          let todayDate = date.toString();
+          event.date = new Date(event.date).toString();
+          page.setData({
+            result: res.data.objects,
+            // date: res.header.date.strftime("%Y-%m-%d")
+            todayDate: todayDate,
+          });
+        })
+      })
+      setTimeout(function () {
+        page.data.result.forEach((event) => {
+          if (event.date > page.data.todayDate){
+            app.globalData.eventId = event.id
+            wx.navigateTo({
+              url: '../feedback/feedback',
+            })
+          }
+        })
+      }, 500)
+    }, err => {
+      // err
+    })
+  },
+
+  getEventData: function(){
+    
+  },
+
+  clicktoIndex: function (e) {
+    wx.navigateTo({
+      url: '../index/index',
+    })
+  },
+  clicktoFeedback: function (e) {
+    wx.navigateTo({
+      url: '../feedback/feedback',
+    })
+  },
   
   /**
    * Lifecycle function--Called when page is initially rendered

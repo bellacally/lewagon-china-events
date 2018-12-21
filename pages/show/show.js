@@ -11,7 +11,7 @@ Page({
       let userId = data.detail.userInfo.id;
       let EventsTable = new wx.BaaS.TableObject('events');
       let event = EventsTable.getWithoutData(eventId)
-      event.append('attend_by', `${userId}`)
+      event.set('attend_by', `${userId}`)
       event.update().then(res => {
         // success
         console.log("res", res)
