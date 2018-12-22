@@ -1,10 +1,13 @@
 <!--pages/show/show.wxml-->
-<view class="header">
-  <image id = "event-image" src='{{result.image}}'></image>
-   <view class="share-icon"> 
-      <button id= "share-btn" open-type='share'>
-      <image id="share-img" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyaV0BpuVlvjw.png"/>
-      </button>
+<view class="container">
+  <view class="header">
+  <view id="event_image" style="background-image: linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('{{result.image}}'); background-size:cover;">
+</view>
+    <!-- <image id = "event_image" src='{{result.image}}'></image> -->
+    <view class="share_icon"> 
+        <button id= "share_btn" open-type='share'>
+        <image id="share_img" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyaV0BpuVlvjw.png"/>
+        </button>
    </view>
  </view>
 
@@ -19,17 +22,17 @@
 </view>
  <view class="line"></view>
  
-
  <view class="subtitle">About</view>
- <view class ="info">{{result.description}}</view>
- <view class="more">read more</view>
- <view class="line"></view>
+  <view class ="info">{{result.description}}</view>
+  <view class="{{showExpand? 'more': 'more_longer'}}">read more</view>
 
+ <view class="line"></view>
 
   <view class="subtitle">Location</view>
     <view class="map">map</view>
   <view class="row">
-    <button class="btn" open-type="getUserInfo" bindgetuserinfo="userInfoHandler">Attend</button>
+    <button class="btn attend" open-type="getUserInfo" bindgetuserinfo="userInfoHandler">Attend</button>
     <!-- <button >用户授权</button> -->
     <button class="btn" open-type='share'>Invite</button>
   </view>
+</view>

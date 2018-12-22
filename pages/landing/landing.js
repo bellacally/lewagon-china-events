@@ -58,7 +58,7 @@ Page({
         })
       }, 500)
     }, err => {
-      // err
+      url: '../index/index'
     })
   },
 

@@ -1,4 +1,7 @@
 /* row */
+.container{
+  align-items: center;
+}
 .row{
   margin-top: 30rpx;
   display: flex;
@@ -59,7 +62,7 @@
 }
 #event-image{
   width: 100%;
-  height: 400rpx;
+  height: 300rpx;
   border-radius:3px;
 }
 

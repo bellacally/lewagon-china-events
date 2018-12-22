@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/show/show",
     "pages/index/index",
     "pages/landing/landing",
     "pages/feedback/feedback",
-    "pages/map/map",
-    "pages/show/show"
+    "pages/map/map"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

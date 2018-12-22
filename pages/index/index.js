@@ -25,7 +25,6 @@ Page({
 
   loadEventData: function (city) {
     const page = this;
-    // var city = 'Chengdu'
     console.log(city)
     const EventsTable = new wx.BaaS.TableObject('events');
     let query = new wx.BaaS.Query();
@@ -35,15 +34,12 @@ Page({
       console.log(res);
       page.setData({
         result: res.data.objects,
-        date: res.header.date.strftime("%Y-%m-%d")
       });
     });
-    // console.log(page.data.date);
   },
 
   onLoad(e) {
     this.loadEventData();
-    // getLocation: function () {
       wx.getLocation({
         type: 'wgs84',
         success(res) {

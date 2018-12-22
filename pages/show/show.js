@@ -35,7 +35,7 @@ Page({
    * Page initial data
    */
   data: {
-
+   showExpand: false
   },
 
   /**
@@ -56,9 +56,18 @@ Page({
   //       date: res.header.date.strftime("%Y-%m-%d")
   //     })
   //   },
-
-  // get user info
-
+   expand: function() {
+    console.log(this.data.collapse)
+    if (this.data.collapse) {
+      this.setData({
+        collapse: false
+      })
+    } else {
+      this.setData({
+        collapse: true
+      })
+    }
+  },
 
   onLoad: function (e) {
     let eventId = app.globalData.eventId;
