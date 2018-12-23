@@ -48,7 +48,16 @@ Component({
     setText: function (e) {
       const that = this
       var city = e.currentTarget.dataset.item;
-      // console.log(nowIdx);
+      var c;
+      if (city == 'Hangzhou') {
+        c = 'Shanghai'
+      } else {
+        c = city
+      }
+      console.log(c);
+      wx.reLaunch({
+        url: `../index/index?city=${c}`,
+      })
       var nowData = this.properties.propArray;//当前option的数据是引入组件的页面传过来的，所以这里获取数据只有通过this.properties
       var nowIdx = e.target.dataset.index;//当前点击的索引
       var nowText = nowData[nowIdx].text;//当前点击的内容
@@ -56,9 +65,10 @@ Component({
       this.animation.rotate(0).step();
       const EventsTable = new wx.BaaS.TableObject('events');
       let query = new wx.BaaS.Query();
-      query.contains('city', city);
+      query.contains('city', c);
       EventsTable.setQuery(query).find().then(res => {
         console.log(res.data.objects)
+        app.globalData.results = res.data.objects
         that.setData({
           city: city,
           selectShow: false,

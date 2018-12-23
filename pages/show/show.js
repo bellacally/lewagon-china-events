@@ -1,13 +1,13 @@
 // pages/show/show.js
 // var util = require('../../utils/util.js');
-
 const app = getApp();
 Page({
-
   userInfoHandler(data) {
+    const page = this;
+    console.log(data)
     wx.BaaS.handleUserInfo(data).then(res => {
-      const page = this;
-      let eventId = app.globalData.eventId;
+      let eventId = page.data.result.id;
+      console.log(eventId)
       let userId = data.detail.userInfo.id;
       let EventsTable = new wx.BaaS.TableObject('events');
       let event = EventsTable.getWithoutData(eventId)
@@ -17,6 +17,7 @@ Page({
         console.log("res", res)
       }, err => {
         // err
+        console.log(err)
       })
     }, res => {
       
@@ -72,23 +73,22 @@ Page({
   onLoad: function (e) {
     let eventId = app.globalData.eventId;
     // let date = util.formatTime(comms[c].ctime)
-    console.log("555", eventId);
-    const page = this;
-    let EventsTable = new wx.BaaS.TableObject('events');
-    EventsTable.get(eventId).then(res => {
-      console.log(res);
-      res.data.date = res.data.date.substr(0, 10);
-      page.setData({
-        result: res.data,
-        // date: res.data.date.strftime("%Y-%m-%d")
-      })
+    let id = Number(e.id)
+    console.log(app.globalData.results[id])
+    this.setData({
+      result: app.globalData.results[id]
     })
-
+    // const page = this;
+    // let EventsTable = new wx.BaaS.TableObject('events');
+    // EventsTable.get(eventId).then(res => {
+    //   console.log(res);
+    //   res.data.date = res.data.date.substr(0, 10);
+    //   page.setData({
+    //     result: res.data,
+    //   })
+    // })
   },
 
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
   onReady: function () {
 
   },
