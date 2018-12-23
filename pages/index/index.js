@@ -29,7 +29,7 @@ Page({
     console.log(city)
     const EventsTable = new wx.BaaS.TableObject('events');
     let query = new wx.BaaS.Query();
-    query.contains('city', 'city');
+    query.contains('city', 'shanghai');
     EventsTable.setQuery(query).find().then(res => {
       console.log("hahahah");
       console.log(res);
@@ -98,10 +98,7 @@ Page({
       }
     })
   },
-  
-  // myEventListener: function (e) {
-  //   console.log("Event in index")
-  // },
+
 
   onShareAppMessage: function () {
     console.log('share');
@@ -109,7 +106,6 @@ Page({
       withShareTicket: true
     })
   },
-
   // need some revision
   clickToShow: function(e){
     console.log("aaaaaa",e)

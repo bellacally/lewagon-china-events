@@ -8,6 +8,7 @@
   <view class="container">
     <view class="background" id="{{res.id}}" bindtap="clickToShow" data-index="{{index}}">
       <image id = "event-image" src='{{res.image}}'></image>
+      <!-- <image id = "avatar" src='{{res.attend_by}}'></image> -->
      <view class="footer">
       <view class="info">{{res.name}}</view>
       <view class ="info">{{res.date}}</view>

@@ -1,5 +1,6 @@
-// pages/show/show.js
+
 // var util = require('../../utils/util.js');
+var amapFile = require('../../libs/amap-wx.js');
 const app = getApp();
 Page({
   userInfoHandler(data) {
@@ -36,7 +37,9 @@ Page({
    * Page initial data
    */
   data: {
-   showExpand: false
+  //  showExpand: false
+    expand: true, 
+    src: ''
   },
 
   /**
@@ -57,18 +60,16 @@ Page({
   //       date: res.header.date.strftime("%Y-%m-%d")
   //     })
   //   },
-   expand: function() {
-    console.log(this.data.collapse)
-    if (this.data.collapse) {
-      this.setData({
-        collapse: false
-      })
-    } else {
-      this.setData({
-        collapse: true
-      })
-    }
+ 
+  
+
+  expand: function () {
+    var value = !this.data.expand;
+    this.setData({
+      expand: value
+    })
   },
+ 
 
   onLoad: function (e) {
     let eventId = app.globalData.eventId;
@@ -76,7 +77,7 @@ Page({
     let id = Number(e.id)
     console.log(app.globalData.results[id])
     this.setData({
-      result: app.globalData.results[id]
+      result: app.globalData.results[id] 
     })
     // const page = this;
     // let EventsTable = new wx.BaaS.TableObject('events');
@@ -88,7 +89,6 @@ Page({
     //   })
     // })
   },
-
   onReady: function () {
 
   },
