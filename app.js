@@ -8,14 +8,13 @@ App({
       wx.requestPayment)
       wx.BaaS.init('d06840973e93da8277d9');
       wx.BaaS.login(false).then(res => {
-
-  }, err => {
-    // err
-  })
-
+        console.log(res)
+      }, err => {
+        console.log(err.code)
+    })
   },
   globalData: {
-    city: "",
+    city: "Shanghai"
   }
   
 })

@@ -1,10 +1,7 @@
-
 const app = getApp();
 var time = require('../../utils/util.js');
 // map
 var amapFile = require('../../libs/amap-wx.js');
-
-
 Page({
   data: {
     selectArray: [{
@@ -16,11 +13,15 @@ Page({
       "text": "Chengdu"
     },
     {
-        "id": "30",
-        "text": "Shenzhen"
+      "id": "30",
+      "text": "Shenzhen"
+      },
+      {
+        "id": "40",
+        "text": "Hangzhou"
       }
     ],
-    city: ""
+    city: "Shanghai"
   },
 
   loadEventData: function (city) {
@@ -37,34 +38,32 @@ Page({
       });
     });
   },
-
-  onLoad(e) {
-    this.loadEventData();
-      wx.getLocation({
-        type: 'wgs84',
-        success(res) {
-          const latitude = res.latitude
-          const longitude = res.longitude
-          const speed = res.speed
-          const accuracy = res.accuracy
-        }
-      })
-   
+  onLoad(options) {
+    console.log(options)
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        const speed = res.speed
+        const accuracy = res.accuracy
+      }
+    })
     var that = this;
     var myAmapFun = new amapFile.AMapWX({ key: 'e9ae38eabebabeffed311424ddbbf395' });
     var cities = {
       "成都市": "Chengdu",
       "上海市": "Shanghai",
-      "深圳市": "Shenzhen"
+      "深圳市": "Shenzhen",
+      "杭州市": "Shanghai"
     }
     myAmapFun.getRegeo({
       success: function (data) {
-        // app.globalData.city = data[0].regeocodeData.addressComponent.province;
-        var city = data[0].regeocodeData.addressComponent.province
-        console.log("111",cities[city])
+        var city = data[0].regeocodeData.addressComponent.city
+        app.globalData.city = cities[city];
+        console.log("111",city)
         var arr = []
         that.data.selectArray.forEach((x) => {
-          console.log(cities[city]);
           if (x.text != cities[city]) {
             arr.push(x)
           }
@@ -73,23 +72,28 @@ Page({
           city: cities[city],
           selectArray: arr
         })
-        //成功回调
         const EventsTable = new wx.BaaS.TableObject('events');
         let query = new wx.BaaS.Query();
-        query.contains('city', cities[city]);
-        EventsTable.setQuery(query).find().then(res => {
-          console.log("yesssssss",res);
-          res.data.objects.forEach((object) => {
-            object.date = object.date.substr(0, 10);
-          })
+        if (options.city) {
           that.setData({
-            result: res.data.objects,
-           
+            result: app.globalData.results
           });
-        });
+        } else {
+          query.contains('city', 'Shanghai');
+          EventsTable.setQuery(query).find().then(res => {
+            console.log(res);
+            res.data.objects.forEach((object) => {
+              object.date = object.date.substr(0, 10);
+            })
+            app.globalData.results = res.data.objects
+            that.setData({
+              result: res.data.objects
+            });
+            console.log(app.globalData.results)
+          });
+        }
       },
       fail: function (info) {
-        //失败回调
         console.log(info)
       }
     })
@@ -102,15 +106,14 @@ Page({
       withShareTicket: true
     })
   },
-
   // need some revision
   clickToShow: function(e){
     console.log("aaaaaa",e)
-  var eventId = e.currentTarget.id;
-  app.globalData.eventId = eventId;
+  var id = e.currentTarget.dataset.index;
+  // app.globalData.eventId = eventId;
     wx.navigateTo({
-      url: '/pages/show/show'
-  })
+      url: `/pages/show/show?id=${id}`
+    })
   }
 })
 
