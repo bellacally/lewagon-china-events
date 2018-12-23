@@ -28,7 +28,7 @@ Page({
     console.log(city)
     const EventsTable = new wx.BaaS.TableObject('events');
     let query = new wx.BaaS.Query();
-    query.contains('city', 'city');
+    query.contains('city', 'shanghai');
     EventsTable.setQuery(query).find().then(res => {
       console.log("hahahah");
       console.log(res);
@@ -78,7 +78,7 @@ Page({
         let query = new wx.BaaS.Query();
         query.contains('city', cities[city]);
         EventsTable.setQuery(query).find().then(res => {
-          console.log(res);
+          console.log("yesssssss",res);
           res.data.objects.forEach((object) => {
             object.date = object.date.substr(0, 10);
           })
@@ -94,10 +94,7 @@ Page({
       }
     })
   },
-  
-  // myEventListener: function (e) {
-  //   console.log("Event in index")
-  // },
+
 
   onShareAppMessage: function () {
     console.log('share');
@@ -112,7 +109,6 @@ Page({
   var eventId = e.currentTarget.id;
   app.globalData.eventId = eventId;
     wx.navigateTo({
-      // url: '../show/show?id=${event.id}&name=${event.name}`',
       url: '/pages/show/show'
   })
   }

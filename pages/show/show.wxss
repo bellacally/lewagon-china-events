@@ -1,7 +1,7 @@
 /* pages/show/show.wxss */
 .container{
   width: 100%;
-  height: 100vh;
+
 }
 #event_image{
 width: 100%;
@@ -12,24 +12,23 @@ height: 400rpx;
   flex-direction: row;
   /* justify-items: flex-start; */
   padding-left: 20rpx;
+  height: 50rpx;
+}
+
+.row_container{
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
 }
 image.icon{
-  width: 50rpx;
-  height: 50rpx;
+  width: 35rpx;
+  height: 35rpx;
   padding-right:20rpx;
 }
-.info{
-  padding-left: 20rpx;
-}
+
 .more{
   padding-left: 20rpx;
   color: #62ddf5;
   height: 300rpx;
-  overflow: hidden;
-}
-.more_longer{
-  color: #62ddf5;
-  height: auto;
   overflow: hidden;
 }
 .subtitle{
@@ -38,12 +37,14 @@ image.icon{
   font-size: 30rpx;
 }
 
+
 #share_btn{
   height: 50rpx;
   background:transparent;
   position: absolute;
-  right: 50rpx;
-  bottom: 80rpx;
+  right:50rpx;
+  top:370rpx;
+
 }
 
 #share_btn::after{
@@ -56,13 +57,9 @@ image.icon{
 }
 .share_icon{
   display: flex;
-  align-items: center
+  
 }
 
-.line{
-  width: 1px;
-  height: 2px;
-}
 .btn{
   background: #FC1015;
   width: 155px;
@@ -75,4 +72,49 @@ image.icon{
 }
 .btn.attend{
   background:#0e0000;
+}
+
+.info{
+padding-left: 20rpx;
+ 
+}
+.info.long{
+ margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #888;
+  display: -webkit-box;
+  -webkit-box-orient:vertical;
+  text-overflow: ellipsis;
+  overflow:hidden; 
+}
+.expand{
+  -webkit-line-clamp:3; 
+  opacity: 0.75;
+  height: auto;
+}
+.unfold{
+  -webkit-line-clamp:0; 
+  opacity: 1;
+  height: 200rpx;
+}
+
+.img-status{
+  width: 40rpx;
+  height: 40rpx;
+  padding-left:20rpx;
+  padding-top:40rpx;
+
+}
+.img_box{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.img_box image{
+  width: 100%;
+  height: 100%;
 }

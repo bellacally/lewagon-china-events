@@ -10,29 +10,38 @@
         </button>
    </view>
  </view>
-
- <view class="row">
-   <image class="icon" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyabLlxUXtBUn.png"/>
+ 
+ <view class="row_container">
+   <view class="row">
+    <image class="icon" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyabLlxUXtBUn.png"/>
    <view class ="info">{{result.date}}</view>
- </view>
+  </view>
 
- <view class="row">
+  <view class="row">
    <image class="icon" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gZ6CjPj5mLjjf41.png"/>
    <view class ="info">{{result.address}}</view>
-</view>
- <view class="line"></view>
+ </view>
+ </view>
+
+
  
  <view class="subtitle">About</view>
-  <view class ="info">{{result.description}}</view>
-  <view class="{{showExpand? 'more': 'more_longer'}}">read more</view>
-
- <view class="line"></view>
+  <!-- <view class='bg-white marginTop10 vertical'> -->
+    <text class="info long {{expand?'expand':'unfold'}}" >{{result.description}}</text>
+    <view  bindtap='expand'>
+      <image class='img-status' src="{{expand?'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gay15Qe9g8W1tP4.png':'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gay15G7vmoDi0YJ.png'}}"></image>
+    </view>
+   <view class="line"></view>
 
   <view class="subtitle">Location</view>
-    <view class="map">map</view>
+    <view class="img_box">
+      <img src="{{src}}"/>
+    </view>
+
   <view class="row">
     <button class="btn attend" open-type="getUserInfo" bindgetuserinfo="userInfoHandler">Attend</button>
     <!-- <button >用户授权</button> -->
     <button class="btn" open-type='share'>Invite</button>
   </view>
 </view>
+
