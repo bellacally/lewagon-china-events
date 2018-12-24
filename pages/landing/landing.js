@@ -18,8 +18,6 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    // get user_id from local storage if it exists
-    // let userInfo = wx.getStorageSync("userInfo")
     this.getUserData();
     this.getEventData();
 
@@ -42,14 +40,13 @@ Page({
           event.date = new Date(event.date).toString();
           page.setData({
             result: res.data.objects,
-            // date: res.header.date.strftime("%Y-%m-%d")
             todayDate: todayDate,
           });
         })
       })
       setTimeout(function () {
         page.data.result.forEach((event) => {
-          if (event.date > page.data.todayDate){
+          if (event.date < page.data.todayDate){
             app.globalData.eventId = event.id
             wx.navigateTo({
               url: '../feedback/feedback',

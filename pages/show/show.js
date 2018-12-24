@@ -15,6 +15,19 @@ Page({
       event.set('attend_by', `${userId}`)
       event.update().then(res => {
         // success
+        wx.showToast({
+          title: 'Booked successfully',
+          icon: 'success',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '/pages/index/index',
+              })
+            }, 1000);
+          }
+
+        })
         console.log("res", res)
       }, err => {
         // err
@@ -25,13 +38,6 @@ Page({
     })
   },
 
-  // attendTap: function (e) {
-
-  //   let eventId = app.globalData.eventId;
-  //   console.log("aaaaaa", eventId)
-  //   this.userInfoHandler();
-
-  // },
 
   /**
    * Page initial data
@@ -63,13 +69,13 @@ Page({
  
   
 
-  expand: function () {
+  expand: function (e) {
+    console.log(1111, e)
     var value = !this.data.expand;
     this.setData({
       expand: value
     })
   },
- 
 
   onLoad: function (e) {
     let eventId = app.globalData.eventId;
@@ -79,15 +85,7 @@ Page({
     this.setData({
       result: app.globalData.results[id] 
     })
-    // const page = this;
-    // let EventsTable = new wx.BaaS.TableObject('events');
-    // EventsTable.get(eventId).then(res => {
-    //   console.log(res);
-    //   res.data.date = res.data.date.substr(0, 10);
-    //   page.setData({
-    //     result: res.data,
-    //   })
-    // })
+
   },
   onReady: function () {
 

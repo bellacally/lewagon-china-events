@@ -28,7 +28,7 @@ font-weight: bold;
 
 button{
   background: #FC1015;
-  width: 155px;
+  width: 160px;
   height: 40px;
   color: white;
   font-size: 28rpx;

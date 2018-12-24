@@ -55,7 +55,7 @@ Page({
       "成都市": "Chengdu",
       "上海市": "Shanghai",
       "深圳市": "Shenzhen",
-      "杭州市": "Shanghai"
+      "杭州市": "Hangzhou"
     }
     myAmapFun.getRegeo({
       success: function (data) {

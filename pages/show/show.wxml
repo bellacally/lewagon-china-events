@@ -1,14 +1,15 @@
 <!--pages/show/show.wxml-->
 <view class="container">
   <view class="header">
-  <view id="event_image" style="background-image: linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('{{result.image}}'); background-size:cover;">
-</view>
-    <!-- <image id = "event_image" src='{{result.image}}'></image> -->
-    <view class="share_icon"> 
-        <button id= "share_btn" open-type='share'>
-        <image id="share_img" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyaV0BpuVlvjw.png"/>
-        </button>
+    <view id="event_image" style="background-image: linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('{{result.image}}'); background-size:cover;">
    </view>
+  </view>
+
+
+<view class="share_icon"> 
+  <button id= "share_btn" open-type='share'>
+    <image id="share_img" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gbGF6Ul9YF5oYiX.png"/>
+  </button>
  </view>
  
  <view class="row_container">
@@ -27,16 +28,17 @@
  
  <view class="subtitle">About</view>
   <!-- <view class='bg-white marginTop10 vertical'> -->
-    <text class="info long {{expand?'expand':'unfold'}}" >{{result.description}}</text>
-    <view  bindtap='expand'>
-      <image class='img-status' src="{{expand?'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gay15Qe9g8W1tP4.png':'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gay15G7vmoDi0YJ.png'}}"></image>
+    <text class="info long {{expand? 'expand':'unfold'}}" >
+    {{result.description}}
+    </text>
+    <view bindtap='expand'>
+    <image class='img-status' src="{{expand?'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gay15Qe9g8W1tP4.png':'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gay15G7vmoDi0YJ.png'}}"></image>
     </view>
-   <view class="line"></view>
-
-  <view class="subtitle">Location</view>
-    <view class="img_box">
+  
+<view class="subtitle">Location</view>
+    <!-- <view class="img_box">
       <img src="{{src}}"/>
-    </view>
+    </view> -->
 
   <view class="row">
     <button class="btn attend" open-type="getUserInfo" bindgetuserinfo="userInfoHandler">Attend</button>

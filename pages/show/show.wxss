@@ -37,14 +37,12 @@ image.icon{
   font-size: 30rpx;
 }
 
-
 #share_btn{
-  height: 50rpx;
+  height: 60rpx;
   background:transparent;
   position: absolute;
-  right:50rpx;
+  right:20rpx;
   top:370rpx;
-
 }
 
 #share_btn::after{
@@ -52,12 +50,13 @@ image.icon{
 }
 
 #share_img{
-  width: 50rpx;
-  height: 50rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
+
 .share_icon{
-  display: flex;
-  
+  display: flex; 
+  height: 20rpx;
 }
 
 .btn{
@@ -68,16 +67,16 @@ image.icon{
   font-size: 28rpx;
   line-height:80rpx;
   margin-top: 50rpx;
-
 }
+
 .btn.attend{
   background:#0e0000;
 }
 
 .info{
 padding-left: 20rpx;
- 
 }
+
 .info.long{
  margin-left: 5%;
   margin-right: 5%;
@@ -105,7 +104,6 @@ padding-left: 20rpx;
   height: 40rpx;
   padding-left:20rpx;
   padding-top:40rpx;
-
 }
 .img_box{
   position: absolute;

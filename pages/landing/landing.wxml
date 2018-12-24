@@ -13,8 +13,7 @@
     <view class="line">Learn to code</view>
     <view class="line">Change your life</view>
     <!-- <button bindtap='onTap'>start your journey</button> -->
-    <button bindtap="clicktoIndex" >
-    start your journey</button>
+    <button bindtap="clicktoIndex" >Start your journey</button>
   </view>
 </block>
   
