@@ -45,7 +45,6 @@ Page({
   data: {
   //  showExpand: false
     expand: true, 
-    src: ''
   },
 
   /**
@@ -70,7 +69,6 @@ Page({
   
 
   expand: function (e) {
-    console.log(1111, e)
     var value = !this.data.expand;
     this.setData({
       expand: value
@@ -84,6 +82,30 @@ Page({
     console.log(app.globalData.results[id])
     this.setData({
       result: app.globalData.results[id] 
+    })
+    var that = this;
+    var myAmapFun = new amapFile.AMapWX({ key: 'e9ae38eabebabeffed311424ddbbf395' });
+    myAmapFun.getRegeo({
+      success: function (data) {
+        var mks = []
+          mks.push({ // 获取返回结果，放到mks数组中
+            latitude: data[0].latitude,
+            longitude: data[0].longitude,
+            iconPath: 'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gZ6CjPj5mLjjf41.png',
+            width: 20,
+            height: 20
+          })
+        that.setData({
+          latitude: data[0].latitude,
+          longitude: data[0].longitude,
+          markers: mks
+        })
+        //成功回调
+      },
+      fail: function (info) {
+        //失败回调
+        console.log(info)
+      }
     })
 
   },

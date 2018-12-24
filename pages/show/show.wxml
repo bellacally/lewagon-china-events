@@ -36,9 +36,10 @@
     </view>
   
 <view class="subtitle">Location</view>
-    <!-- <view class="img_box">
-      <img src="{{src}}"/>
-    </view> -->
+  <view class="map_container">
+    <!--定义页面结构，可以使用地图组件也能使用其他组件 -->
+     <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="16" markers="{{markers}}"></map>  
+</view>
 
   <view class="row">
     <button class="btn attend" open-type="getUserInfo" bindgetuserinfo="userInfoHandler">Attend</button>

@@ -12,10 +12,10 @@
   <view class="container">
     <view class="background" id="{{res.id}}" bindtap="clickToShow" data-index="{{index}}">
 
-
-    <view id="event_image" style= "background-image: url('{{res.image}}'); background-size:cover;">
-    </view>
-      <!-- <image id = "avatar" src='{{res.attend_by}}'></image> -->
+  <view id="event_image" style= "background-image: url('{{res.image}}'); background-size:cover;">
+  <!-- <image id="avatar" src='{{res.attend_by}}'></image> -->
+  </view>
+    
    <view class="footer">
      <view class="info">{{res.name}}</view>
      <view class ="info">{{res.date}}</view>

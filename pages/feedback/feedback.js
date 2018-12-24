@@ -50,24 +50,23 @@ Page({
       'areas_to_improve': that.data.areas_to_improve,
       'event_id': `${app.globalData.eventId}`
     }).save().then(res => {
-      // success
-      console.log("res", res)
+      wx.showToast({
+          title: 'Booked successfully',
+          icon: 'success',
+          duration: 1000,
+          success: function () {
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '/pages/index/index',
+              })
+            }, 1000);
+          }
+
+        })
     }, err => {
-      //err 为 HError 对象
+      "opps, the submission did go through. please resubmit"
     })
   },
-
-feedbackSuccess: function(){
-  wx.showModal({
-    title: "Your feedback has successfully submitted!",
-    content: "Thank for helping us providing a better learning experience for you and your peers!See you in our next event!"
-  })
-  // const page = this
-  // wx.navigateTo({
-  //   url: 'pages/index/index',
-  // })
-},
-
 
 
   /**
@@ -84,19 +83,7 @@ feedbackSuccess: function(){
   }, err => {
     // err
   })
-    // wx.getUserInfo({
-    //   success(res) {
-    //     console.log("res", res)
-        
-    //     // const userInfo = res.userInfo
-    //     // const nickName = userInfo.nickName
-    //     // const avatarUrl = userInfo.avatarUrl
-    //     // const gender = userInfo.gender // 性别 0：未知、1：男、2：女
-    //     // const province = userInfo.province
-    //     // const city = userInfo.city
-    //     // const country = userInfo.country
-    //   }
-    // })
+
   },
 
   /**

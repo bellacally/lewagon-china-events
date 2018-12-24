@@ -29,9 +29,8 @@ Page({
     console.log(city)
     const EventsTable = new wx.BaaS.TableObject('events');
     let query = new wx.BaaS.Query();
-    query.contains('city', 'shanghai');
+    query.contains('events', '${{attend_by}}');
     EventsTable.setQuery(query).find().then(res => {
-      console.log("hahahah");
       console.log(res);
       page.setData({
         result: res.data.objects,
@@ -61,7 +60,6 @@ Page({
       success: function (data) {
         var city = data[0].regeocodeData.addressComponent.city
         app.globalData.city = cities[city];
-        console.log("111",city)
         var arr = []
         that.data.selectArray.forEach((x) => {
           if (x.text != cities[city]) {
