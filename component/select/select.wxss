@@ -1,5 +1,5 @@
 .com-selectBox{
-    width:90vw;
+    width:70vw;
    margin:0 auto;
    box-shadow: 2px 2px 5px #888888;
 

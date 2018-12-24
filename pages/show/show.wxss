@@ -19,6 +19,13 @@ height: 400rpx;
   padding-top: 30rpx;
   padding-bottom: 30rpx;
 }
+.avatar_sec{
+position:absolute;
+top:-10rpx;
+right:10rpx;
+
+}
+
 image.icon{
   width: 35rpx;
   height: 35rpx;
@@ -123,4 +130,8 @@ padding-left: 20rpx;
   left: 0;
   right: 0;
   height: 200rpx;
+}
+
+.map{
+  width: 100%;
 }

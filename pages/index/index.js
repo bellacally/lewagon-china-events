@@ -24,19 +24,6 @@ Page({
     city: "Shanghai"
   },
 
-  loadEventData: function (city) {
-    const page = this;
-    console.log(city)
-    const EventsTable = new wx.BaaS.TableObject('events');
-    let query = new wx.BaaS.Query();
-    query.contains('events', '${{attend_by}}');
-    EventsTable.setQuery(query).find().then(res => {
-      console.log(res);
-      page.setData({
-        result: res.data.objects,
-      });
-    });
-  },
   onLoad(options) {
     console.log(options)
     wx.getLocation({
@@ -60,6 +47,9 @@ Page({
       success: function (data) {
         var city = data[0].regeocodeData.addressComponent.city
         app.globalData.city = cities[city];
+        that.setData({
+          avatar: app.globalData.avatar,
+        })
         var arr = []
         that.data.selectArray.forEach((x) => {
           if (x.text != cities[city]) {
@@ -80,6 +70,7 @@ Page({
           query.contains('city', 'Shanghai');
           EventsTable.setQuery(query).find().then(res => {
             console.log(res);
+
             res.data.objects.forEach((object) => {
               object.date = object.date.substr(0, 10);
             })

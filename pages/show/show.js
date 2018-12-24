@@ -5,16 +5,16 @@ const app = getApp();
 Page({
   userInfoHandler(data) {
     const page = this;
-    console.log(data)
     wx.BaaS.handleUserInfo(data).then(res => {
       let eventId = page.data.result.id;
-      console.log(eventId)
+      app.globalData.avatar = res.avatarUrl;      
       let userId = data.detail.userInfo.id;
       let EventsTable = new wx.BaaS.TableObject('events');
       let event = EventsTable.getWithoutData(eventId)
       event.set('attend_by', `${userId}`)
       event.update().then(res => {
         // success
+        console.log("res2", res)
         wx.showToast({
           title: 'Booked successfully',
           icon: 'success',

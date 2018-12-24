@@ -5,7 +5,6 @@
    </view>
   </view>
 
-
 <view class="share_icon"> 
   <button id= "share_btn" open-type='share'>
     <image id="share_img" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gbGF6Ul9YF5oYiX.png"/>
@@ -23,8 +22,6 @@
    <view class ="info">{{result.address}}</view>
  </view>
  </view>
-
-
  
  <view class="subtitle">About</view>
   <!-- <view class='bg-white marginTop10 vertical'> -->
