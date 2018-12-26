@@ -1,24 +1,19 @@
 <view class="section" style="background-image: linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyahkSIPJy9b1.jpg'); background-size:cover;">
-
   <view class="row">
     <image class="icon" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gZ6CjPj5mLjjf41.png"/>
     <view class="city-name">{{city}}</view>
-   </view>
+  </view>
    <Select class="dropdown" prop-array='{{selectArray}}'></Select>
  </view>
 
-
-
-
-<block wx:for="{{result}}" wx:for-item="res" wx:key="key" wx:index="index" class="container">
-  <view class="container">
-    <view class="background" id="{{res.id}}" bindtap="clickToShow" data-index="{{index}}">
-
-  <view id="event_image" style= "background-image: url('{{res.image}}'); background-size:cover;">
-    <view class="avatar_sec" style= "position:absolute; top:-10rpx; right:10rpx;" >
-      <image id="avatar" src='{{avatar}}' style="width: 80rpx; height: 80rpx; border-radius:50%;"></image></view>
-  </view>
-    
+<view class="container">
+  <block wx:for="{{result}}" wx:for-item="res" wx:key="key" wx:index="index" >
+    <view class="background" id= "{{res.id}}" bindtap="clickToShow" data-index="{{index}}">
+      <view id="event_image" style= "background-image: url('{{res.image}}'); background-size:cover;">
+        <image id="avatar" src='{{avatar}}'></image>
+      </view>
+   
+  
   <view class="footer">
     <view class="info">{{res.name}}</view>
     <view class ="info">{{res.date}}</view>
@@ -30,8 +25,8 @@
     </view> 
    </view>
   </view>  
- </view>
  </block>
+ </view>
   
 
 

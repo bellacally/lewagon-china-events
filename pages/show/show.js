@@ -7,7 +7,7 @@ Page({
     const page = this;
     wx.BaaS.handleUserInfo(data).then(res => {
       let eventId = page.data.result.id;
-      app.globalData.avatar = res.avatarUrl;      
+      // app.globalData.avatar = res.avatarUrl;      
       let userId = data.detail.userInfo.id;
       let EventsTable = new wx.BaaS.TableObject('events');
       let event = EventsTable.getWithoutData(eventId)
@@ -16,7 +16,7 @@ Page({
         // success
         console.log("res2", res)
         wx.showToast({
-          title: 'Booked successfully',
+          title: 'Booked',
           icon: 'success',
           duration: 2000,
           success: function () {
@@ -44,9 +44,17 @@ Page({
    */
   data: {
   //  showExpand: false
-    expand: true, 
+    expand: false,
+    scrollTop: 0 
   },
-
+  onChange(event) {
+    console.log(event.detail, 'click right menu callback data')
+  },
+  onPageScroll(event) {
+    this.setData({
+      scrollTop: event.scrollTop
+    })
+  },
   /**
    * Lifecycle function--Called when page load
    */
@@ -108,6 +116,11 @@ Page({
       }
     })
 
+  },
+
+  onPullDownRefresh: function () {
+    wx.startPullDownRefresh()
+    this.onLoad();
   },
   onReady: function () {
 

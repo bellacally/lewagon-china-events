@@ -28,8 +28,8 @@
     <text class="info long {{expand? 'expand':'unfold'}}" >
     {{result.description}}
     </text>
-    <view bindtap='expand'>
-    <image class='img-status' src="{{expand?'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gay15Qe9g8W1tP4.png':'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gay15G7vmoDi0YJ.png'}}"></image>
+    <view bindtap='expand' id="icon">
+      <image class='img_status' src="{{expand?'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gay15G7vmoDi0YJ.png':'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gay15Qe9g8W1tP4.png'}}"></image>
     </view>
   
 <view class="subtitle">Location</view>
@@ -37,11 +37,26 @@
     <!--定义页面结构，可以使用地图组件也能使用其他组件 -->
      <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="16" markers="{{markers}}"></map>  
 </view>
-
-  <view class="row">
-    <button class="btn attend" open-type="getUserInfo" bindgetuserinfo="userInfoHandler">Attend</button>
-    <!-- <button >用户授权</button> -->
-    <button class="btn" open-type='share'>Invite</button>
+  <view class="cta">
+      <button class="btn attend" open-type="getUserInfo" bindgetuserinfo="userInfoHandler">Attend</button> 
+       <button class="btn" open-type='share'>Invite</button>
   </view>
+
+<!-- 
+<view class="i-sticky-demo">
+    <i-sticky scrollTop="{{scrollTop}}">
+        <i-sticky-item i-class="i-sticky-demo-title">
+          <view slot="content">
+            <view class="i-sticky-demo-item">  -->
+      
+            <!-- </view>
+        
+        </i-sticky-item>
+    </i-sticky>
+</view>
+
+  <!-- <i-load-more />
+<i-load-more tip="the end" loading="{{ false }}" />
+<i-load-more loading="{{ false }}" /> -->
 </view>
 

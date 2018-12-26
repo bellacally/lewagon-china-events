@@ -4,8 +4,42 @@ Page({
     starIndex1: 0,
     starIndex2: 0,
     starIndex3: 0,
+
+    array: ['Meetup.com', 'Huodongxing', 'EventBrite', 'WeChat', 'WeWork', 'Others'],
+    objectArray: [
+      {
+        id: 0,
+        name: 'meetup.com'
+      },
+      {
+        id: 1,
+        name: 'huodongxing'
+      },
+      {
+        id: 2,
+        name: 'EventBrite'
+      },
+      {
+        id: 3,
+        name: 'WeChat'
+      },
+       {
+        id: 4,
+        name: 'WeWork'
+      },
+       {
+        id: 5,
+        name: 'Others'
+      }
+    ],
   },
 
+  bindPickerChange: function (e) {
+    console.log(e);
+    this.setData({
+      channel_index: e.detail.value
+    });
+  },
   onChange1(e) {
     const index = e.detail.index;
     this.setData({

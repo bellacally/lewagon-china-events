@@ -1,7 +1,4 @@
-/* row */
-/* .section{
 
-} */
 .container{
   align-items: center;
 }
@@ -13,10 +10,10 @@
   padding-left: 20rpx;
 }
 .row{
-  margin-top: 30rpx;
-  margin-left:20rpx;
-  display: flex;
-  flex-direction: row;
+ margin-left:20rpx;
+ display:flex;
+ flex-direction:row;
+ padding-top:25rpx;
 }
 
 .city_name{
@@ -33,7 +30,8 @@
 }
 .background{
   width: 95%;
-  border-radius:3px
+  border-radius:3px;
+  position: relative;
 }
 
 .footer{
@@ -46,11 +44,8 @@
 }
 
 #share_btn{
-  height: 100rpx;
+  height: 150rpx;
   background:transparent;
-  position: absolute;
-  right:20rpx;
-  bottom:10rpx;
 }
 
 #share_btn::after{
@@ -58,21 +53,33 @@
 }
 
 #share_img{
-  width: 60rpx;
-  height: 60rpx;
+width:80rpx;
+height:80rpx;
 }
 .share_icon{
   display: flex;
   align-items: center;
-
 }
 #event_image{
-  width: 100%;
-  height: 300rpx;
-  border-radius:3px;
+width:100%;
+height:300rpx;
+border-radius:3px;
+margin-top:20px;
+
 }
 
 .info{
   font-size: 28rpx;
   margin-top: 20rpx;
+  padding-left: 20rpx;
+  font-weight: bold;
+}
+
+#avatar{
+width:80rpx;
+height:80rpx;
+border-radius:50%;
+position:absolute;
+top:20rpx;
+right:-6rpx;
 }

@@ -11,7 +11,6 @@ Page({
    * Page initial data
    */
   data: {
-
   },
 
   /**
@@ -20,7 +19,21 @@ Page({
   onLoad: function (options) {
     this.getUserData();
     this.getEventData();
+    // setTimeout(function () {
+    //    }, 4000)
+  },
 
+  onChangeShowState_show: function () {
+    var that = this;
+    that.setData({
+      showView: that.showView = true
+    })
+  },
+  onChangeShowState_hidden: function () {
+    var that = this;
+    that.setData({
+      showView: that.showView = false
+    })
   },
 
   getUserData:function(){
@@ -46,8 +59,13 @@ Page({
       })
       setTimeout(function () {
         page.data.result.forEach((event) => {
-          if (event.date < page.data.todayDate){
+          if (page.data.result[0].attend_by && event.date < page.data.todayDate){
             app.globalData.eventId = event.id
+            page.setData({
+              hidden: true,
+              show: false,
+            })
+           
             wx.navigateTo({
               url: '../feedback/feedback',
             })
