@@ -6,7 +6,7 @@ Page({
   data: {
     selectArray: [{
       "id": "10",
-      "text": "Shanghai"
+      "text": "Shanghai",
     }, 
     {
       "id": "20",
@@ -43,13 +43,31 @@ Page({
       "深圳市": "Shenzhen",
       "杭州市": "Hangzhou"
     }
+
+    var cities_location = {
+      "Shanghai": {
+        longtitude: 121.47,
+        latitude: 31.23
+      },
+      "Shenzhen":{
+        longtitude: 114.06667, 
+        latitude: 22.62
+    },
+       "Chengdu": {
+         longtitude: 104.06667,
+         latitude:  30.67
+      }
+    }
+
     myAmapFun.getRegeo({
       success: function (data) {
         var city = data[0].regeocodeData.addressComponent.city
         app.globalData.city = cities[city];
-        that.setData({
+     {  that.setData({
           avatar: app.globalData.avatar,
-        })
+         })
+        }
+        
         var arr = []
         that.data.selectArray.forEach((x) => {
           if (x.text != cities[city]) {

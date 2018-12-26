@@ -1,11 +1,11 @@
 // pages/landing/landing.js
 let app = getApp();
 Page({
-  onTap: function (event) {
-        wx.redirectTo({
-            url:"../index/index"
-        })
-  },
+  // // onTap: function (event) {
+  // //       wx.redirectTo({
+  // //           url:"../index/index"
+  // //       })
+  // },
 
   /**
    * Page initial data
@@ -23,7 +23,24 @@ Page({
   
   },
 
- 
+  // startAnswer: function () {
+  //   {
+  //     page.data.result.forEach((event) => {
+  //       if (page.data.result[0].attend_by && event.date < page.data.todayDate) {
+  //         app.globalData.eventId = event.id
+  //         page.setData({
+  //           hidden: true,
+  //           show: false,
+  //         })
+
+  //         wx.navigateTo({
+  //           url: '../feedback/feedback',
+  //         })
+  //       }
+  //     })
+  //   }
+  // },
+
 
   getUserData:function(){
     let page = this;
@@ -50,11 +67,11 @@ Page({
         page.data.result.forEach((event) => {
           if (page.data.result[0].attend_by && event.date < page.data.todayDate){
             app.globalData.eventId = event.id
+            // id = wx.getStorageSync(id)
             page.setData({
               hidden: true,
               show: false,
-            })
-           
+            });
             wx.navigateTo({
               url: '../feedback/feedback',
             })

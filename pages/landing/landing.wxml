@@ -1,6 +1,6 @@
 
 <view class="container">
-<view id="cover_pic" style="background-image: linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyahkSIPJy9b1.jpg'); background-size:cover;">
+  <view id="cover_pic" style="background-image: linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyahkSIPJy9b1.jpg'); background-size:cover;">
   <view class="content">
     <image id="logo" src='https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyaMzGf64SuU7.png'></image>
   </view>
@@ -27,4 +27,6 @@
     </view>
   </block> 
 </view>
+
+
 

@@ -21,7 +21,7 @@ text-align: center;
   margin-bottom: 50rpx;
 }
 .slogon{
-margin-bottom: 80rpx;
+margin-bottom: 200rpx;
 font-size: 50rpx;
 font-weight: bold;
 }
