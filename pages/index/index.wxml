@@ -13,7 +13,6 @@
         <image id="avatar" src='{{avatar}}'></image>
       </view>
    
-  
   <view class="footer">
     <view class="info">{{res.name}}</view>
     <view class ="info">{{res.date}}</view>

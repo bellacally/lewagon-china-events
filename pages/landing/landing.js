@@ -11,6 +11,8 @@ Page({
    * Page initial data
    */
   data: {
+   hidden: false,
+   show: true,
   },
 
   /**
@@ -18,23 +20,10 @@ Page({
    */
   onLoad: function (options) {
     this.getUserData();
-    this.getEventData();
-    // setTimeout(function () {
-    //    }, 4000)
+  
   },
 
-  onChangeShowState_show: function () {
-    var that = this;
-    that.setData({
-      showView: that.showView = true
-    })
-  },
-  onChangeShowState_hidden: function () {
-    var that = this;
-    that.setData({
-      showView: that.showView = false
-    })
-  },
+ 
 
   getUserData:function(){
     let page = this;
@@ -77,9 +66,6 @@ Page({
     })
   },
 
-  getEventData: function(){
-    
-  },
 
   clicktoIndex: function (e) {
     wx.navigateTo({

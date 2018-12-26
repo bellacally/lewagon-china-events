@@ -7,7 +7,7 @@ Page({
     const page = this;
     wx.BaaS.handleUserInfo(data).then(res => {
       let eventId = page.data.result.id;
-      // app.globalData.avatar = res.avatarUrl;      
+      app.globalData.avatar = res.avatarUrl;      
       let userId = data.detail.userInfo.id;
       let EventsTable = new wx.BaaS.TableObject('events');
       let event = EventsTable.getWithoutData(eventId)
