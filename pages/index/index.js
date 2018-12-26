@@ -6,7 +6,7 @@ Page({
   data: {
     selectArray: [{
       "id": "10",
-      "text": "Shanghai"
+      "text": "Shanghai",
     }, 
     {
       "id": "20",
@@ -24,20 +24,6 @@ Page({
     city: "Shanghai"
   },
 
-  loadEventData: function (city) {
-    const page = this;
-    console.log(city)
-    const EventsTable = new wx.BaaS.TableObject('events');
-    let query = new wx.BaaS.Query();
-    query.contains('city', 'shanghai');
-    EventsTable.setQuery(query).find().then(res => {
-      console.log("hahahah");
-      console.log(res);
-      page.setData({
-        result: res.data.objects,
-      });
-    });
-  },
   onLoad(options) {
     console.log(options)
     wx.getLocation({
@@ -55,13 +41,33 @@ Page({
       "成都市": "Chengdu",
       "上海市": "Shanghai",
       "深圳市": "Shenzhen",
-      "杭州市": "Shanghai"
+      "杭州市": "Hangzhou"
     }
+
+    var cities_location = {
+      "Shanghai": {
+        longtitude: 121.47,
+        latitude: 31.23
+      },
+      "Shenzhen":{
+        longtitude: 114.06667, 
+        latitude: 22.62
+    },
+       "Chengdu": {
+         longtitude: 104.06667,
+         latitude:  30.67
+      }
+    }
+
     myAmapFun.getRegeo({
       success: function (data) {
         var city = data[0].regeocodeData.addressComponent.city
         app.globalData.city = cities[city];
-        console.log("111",city)
+     {  that.setData({
+          avatar: app.globalData.avatar,
+         })
+        }
+        
         var arr = []
         that.data.selectArray.forEach((x) => {
           if (x.text != cities[city]) {
@@ -82,6 +88,7 @@ Page({
           query.contains('city', 'Shanghai');
           EventsTable.setQuery(query).find().then(res => {
             console.log(res);
+
             res.data.objects.forEach((object) => {
               object.date = object.date.substr(0, 10);
             })

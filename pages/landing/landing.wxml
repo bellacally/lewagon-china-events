@@ -1,6 +1,6 @@
 
 <view class="container">
-<view id="cover_pic" style="background-image: linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyahkSIPJy9b1.jpg'); background-size:cover;">
+  <view id="cover_pic" style="background-image: linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyahkSIPJy9b1.jpg'); background-size:cover;">
   <view class="content">
     <image id="logo" src='https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyaMzGf64SuU7.png'></image>
   </view>
@@ -8,25 +8,25 @@
 
 <!-- <image src='../images/landing.jpg'></image> -->
 
-<block wx:if="!{{userId}} || {{result}} === []">
-  <view class="slogon">
-    <view class="line">Learn to code</view>
-    <view class="line">Change your life</view>
-    <!-- <button bindtap='onTap'>start your journey</button> -->
-    <button bindtap="clicktoIndex" >
-    start your journey</button>
-  </view>
-</block>
-  
-    <view wx:if="{{result[0].id}}"></view>
-     <view wx:if="{{eventId.date < Date.now}}"></view>
-      <view class="slogon">
-        <view class="line">Thank you for attending</view>
-        <!-- <view class="line">{{events.name}}</view> -->
-        <view classs="row">
-          <button bindtap="clicktoFeedback">Give us feedback</button>
-          <button bindtap="clicktoIndex">Skip</button>
-        </view>
+  <block wx:if="{{show}}">
+    <view class="slogon">
+      <view class="line">Learn to code</view>
+      <view class="line">Change your life</view>
+      <!-- <button bindtap='onTap'>start your journey</button> -->
+      <button bindtap="clicktoIndex" >Start your journey</button>
     </view>
+  </block>
+  
+  <block wx:elsif="{{hidden}}" >
+    <view class="slogon">
+      <view class="line">Thank you for attending</view>
+      <view classs="row">
+        <button bindtap="clicktoFeedback">Give us feedback</button>
+        <button bindtap="clicktoIndex">Skip</button>
+      </view>
+    </view>
+  </block> 
 </view>
+
+
 

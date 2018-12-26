@@ -5,16 +5,29 @@ const app = getApp();
 Page({
   userInfoHandler(data) {
     const page = this;
-    console.log(data)
     wx.BaaS.handleUserInfo(data).then(res => {
       let eventId = page.data.result.id;
-      console.log(eventId)
+      app.globalData.avatar = res.avatarUrl;      
       let userId = data.detail.userInfo.id;
       let EventsTable = new wx.BaaS.TableObject('events');
       let event = EventsTable.getWithoutData(eventId)
       event.set('attend_by', `${userId}`)
       event.update().then(res => {
         // success
+        console.log("res2", res)
+        wx.showToast({
+          title: 'Booked',
+          icon: 'success',
+          duration: 2000,
+          success: function () {
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '/pages/index/index',
+              })
+            }, 1000);
+          }
+
+        })
         console.log("res", res)
       }, err => {
         // err
@@ -25,23 +38,23 @@ Page({
     })
   },
 
-  // attendTap: function (e) {
-
-  //   let eventId = app.globalData.eventId;
-  //   console.log("aaaaaa", eventId)
-  //   this.userInfoHandler();
-
-  // },
 
   /**
    * Page initial data
    */
   data: {
   //  showExpand: false
-    expand: true, 
-    src: ''
+    expand: false,
+    scrollTop: 0 
   },
-
+  onChange(event) {
+    console.log(event.detail, 'click right menu callback data')
+  },
+  onPageScroll(event) {
+    this.setData({
+      scrollTop: event.scrollTop
+    })
+  },
   /**
    * Lifecycle function--Called when page load
    */
@@ -63,13 +76,12 @@ Page({
  
   
 
-  expand: function () {
+  expand: function (e) {
     var value = !this.data.expand;
     this.setData({
       expand: value
     })
   },
- 
 
   onLoad: function (e) {
     let eventId = app.globalData.eventId;
@@ -79,15 +91,36 @@ Page({
     this.setData({
       result: app.globalData.results[id] 
     })
-    // const page = this;
-    // let EventsTable = new wx.BaaS.TableObject('events');
-    // EventsTable.get(eventId).then(res => {
-    //   console.log(res);
-    //   res.data.date = res.data.date.substr(0, 10);
-    //   page.setData({
-    //     result: res.data,
-    //   })
-    // })
+    var that = this;
+    var myAmapFun = new amapFile.AMapWX({ key: 'e9ae38eabebabeffed311424ddbbf395' });
+    myAmapFun.getRegeo({
+      success: function (data) {
+        var mks = []
+          mks.push({ // 获取返回结果，放到mks数组中
+            latitude: data[0].latitude,
+            longitude: data[0].longitude,
+            iconPath: 'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gZ6CjPj5mLjjf41.png',
+            width: 20,
+            height: 20
+          })
+        that.setData({
+          latitude: data[0].latitude,
+          longitude: data[0].longitude,
+          markers: mks
+        })
+        //成功回调
+      },
+      fail: function (info) {
+        //失败回调
+        console.log(info)
+      }
+    })
+
+  },
+
+  onPullDownRefresh: function () {
+    wx.startPullDownRefresh()
+    this.onLoad();
   },
   onReady: function () {
 

@@ -1,29 +1,46 @@
 // pages/landing/landing.js
 let app = getApp();
 Page({
-  onTap: function (event) {
-        wx.redirectTo({
-            url:"../index/index"
-        })
-  },
+  // // onTap: function (event) {
+  // //       wx.redirectTo({
+  // //           url:"../index/index"
+  // //       })
+  // },
 
   /**
    * Page initial data
    */
   data: {
-
+   hidden: false,
+   show: true,
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    // get user_id from local storage if it exists
-    // let userInfo = wx.getStorageSync("userInfo")
     this.getUserData();
-    this.getEventData();
-
+  
   },
+
+  // startAnswer: function () {
+  //   {
+  //     page.data.result.forEach((event) => {
+  //       if (page.data.result[0].attend_by && event.date < page.data.todayDate) {
+  //         app.globalData.eventId = event.id
+  //         page.setData({
+  //           hidden: true,
+  //           show: false,
+  //         })
+
+  //         wx.navigateTo({
+  //           url: '../feedback/feedback',
+  //         })
+  //       }
+  //     })
+  //   }
+  // },
+
 
   getUserData:function(){
     let page = this;
@@ -42,15 +59,19 @@ Page({
           event.date = new Date(event.date).toString();
           page.setData({
             result: res.data.objects,
-            // date: res.header.date.strftime("%Y-%m-%d")
             todayDate: todayDate,
           });
         })
       })
       setTimeout(function () {
         page.data.result.forEach((event) => {
-          if (event.date > page.data.todayDate){
+          if (page.data.result[0].attend_by && event.date < page.data.todayDate){
             app.globalData.eventId = event.id
+            // id = wx.getStorageSync(id)
+            page.setData({
+              hidden: true,
+              show: false,
+            });
             wx.navigateTo({
               url: '../feedback/feedback',
             })
@@ -62,9 +83,6 @@ Page({
     })
   },
 
-  getEventData: function(){
-    
-  },
 
   clicktoIndex: function (e) {
     wx.navigateTo({

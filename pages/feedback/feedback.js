@@ -4,8 +4,42 @@ Page({
     starIndex1: 0,
     starIndex2: 0,
     starIndex3: 0,
+
+    array: ['Meetup.com', 'Huodongxing', 'EventBrite', 'WeChat', 'WeWork', 'Others'],
+    objectArray: [
+      {
+        id: 0,
+        name: 'meetup.com'
+      },
+      {
+        id: 1,
+        name: 'huodongxing'
+      },
+      {
+        id: 2,
+        name: 'EventBrite'
+      },
+      {
+        id: 3,
+        name: 'WeChat'
+      },
+       {
+        id: 4,
+        name: 'WeWork'
+      },
+       {
+        id: 5,
+        name: 'Others'
+      }
+    ],
   },
 
+  bindPickerChange: function (e) {
+    console.log(e);
+    this.setData({
+      channel_index: e.detail.value
+    });
+  },
   onChange1(e) {
     const index = e.detail.index;
     this.setData({
@@ -50,24 +84,23 @@ Page({
       'areas_to_improve': that.data.areas_to_improve,
       'event_id': `${app.globalData.eventId}`
     }).save().then(res => {
-      // success
-      console.log("res", res)
+      wx.showToast({
+          title: 'Booked successfully',
+          icon: 'success',
+          duration: 1000,
+          success: function () {
+            setTimeout(function () {
+              wx.navigateTo({
+                url: '/pages/index/index',
+              })
+            }, 1000);
+          }
+
+        })
     }, err => {
-      //err 为 HError 对象
+      "opps, the submission did go through. please resubmit"
     })
   },
-
-feedbackSuccess: function(){
-  wx.showModal({
-    title: "Your feedback has successfully submitted!",
-    content: "Thank for helping us providing a better learning experience for you and your peers!See you in our next event!"
-  })
-  // const page = this
-  // wx.navigateTo({
-  //   url: 'pages/index/index',
-  // })
-},
-
 
 
   /**
@@ -84,19 +117,7 @@ feedbackSuccess: function(){
   }, err => {
     // err
   })
-    // wx.getUserInfo({
-    //   success(res) {
-    //     console.log("res", res)
-        
-    //     // const userInfo = res.userInfo
-    //     // const nickName = userInfo.nickName
-    //     // const avatarUrl = userInfo.avatarUrl
-    //     // const gender = userInfo.gender // 性别 0：未知、1：男、2：女
-    //     // const province = userInfo.province
-    //     // const city = userInfo.city
-    //     // const country = userInfo.country
-    //   }
-    // })
+
   },
 
   /**

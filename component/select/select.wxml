@@ -1,7 +1,7 @@
 <view class='com-selectBox'>
     <view class='com-sContent' bindtap='selectToggle'>
         <view class='com-sTxt'>{{nowText}}</view>
-        <image src='../../public/img/local/down.png'  class='com-sImg'  animation="{{animationData}}"></image>
+        <image src='https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gbHQPe9R1zJCimA.png'  class='com-sImg'  animation="{{animationData}}"></image>
     </view>
     <view class='com-sList' wx:if="{{selectShow}}">
         <view wx:for="{{propArray}}" data-index="{{index}}" wx:key='' class='com-sItem' data-item="{{item.text}}" bindtap='setText'>{{item.text}}</view>

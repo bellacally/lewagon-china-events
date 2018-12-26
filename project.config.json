@@ -37,10 +37,10 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "landing",
 					"pathName": "pages/landing/landing",
 					"query": ""
@@ -55,7 +55,7 @@
 					"id": 2,
 					"name": "show",
 					"pathName": "pages/show/show",
-					"query": ""
+					"query": "id=5c19cb58d88c160e1bf263"
 				},
 				{
 					"id": -1,

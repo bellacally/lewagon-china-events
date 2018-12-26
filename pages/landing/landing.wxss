@@ -21,14 +21,14 @@ text-align: center;
   margin-bottom: 50rpx;
 }
 .slogon{
-margin-bottom: 80rpx;
+margin-bottom: 200rpx;
 font-size: 50rpx;
 font-weight: bold;
 }
 
 button{
   background: #FC1015;
-  width: 155px;
+  width: 160px;
   height: 40px;
   color: white;
   font-size: 28rpx;

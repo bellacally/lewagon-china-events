@@ -1,8 +1,8 @@
 /* pages/show/show.wxss */
-.container{
+/* .container{
   width: 100%;
 
-}
+} */
 #event_image{
 width: 100%;
 height: 400rpx;
@@ -10,7 +10,6 @@ height: 400rpx;
 .row{
   display: flex;
   flex-direction: row;
-  /* justify-items: flex-start; */
   padding-left: 20rpx;
   height: 50rpx;
 }
@@ -19,6 +18,13 @@ height: 400rpx;
   padding-top: 30rpx;
   padding-bottom: 30rpx;
 }
+.avatar_sec{
+position:absolute;
+top:-10rpx;
+right:10rpx;
+
+}
+
 image.icon{
   width: 35rpx;
   height: 35rpx;
@@ -36,15 +42,17 @@ image.icon{
   font-weight: bold;
   font-size: 30rpx;
 }
-
+#icon{
+  display: flex;
+  justify-content: center;
+}
 
 #share_btn{
-  height: 50rpx;
+  height: 150rpx;
   background:transparent;
   position: absolute;
-  right:50rpx;
+  right:20rpx;
   top:370rpx;
-
 }
 
 #share_btn::after{
@@ -52,12 +60,21 @@ image.icon{
 }
 
 #share_img{
-  width: 50rpx;
-  height: 50rpx;
+  width: 80rpx;
+  height: 80rpx;
 }
+
 .share_icon{
+  display: flex; 
+  height: 20rpx;
+}
+
+.cta{
+  /* bottom: 0; */
   display: flex;
-  
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 40rpx;
 }
 
 .btn{
@@ -66,28 +83,24 @@ image.icon{
   height: 40px;
   color: white;
   font-size: 28rpx;
-  line-height:80rpx;
-  margin-top: 50rpx;
-
+  line-height:80rpx; 
 }
+
 .btn.attend{
   background:#0e0000;
 }
 
 .info{
 padding-left: 20rpx;
- 
+overflow:hidden;
 }
+
 .info.long{
  margin-left: 5%;
   margin-right: 5%;
-  margin-top: 10px;
   font-size: 13px;
   color: #888;
-  display: -webkit-box;
   -webkit-box-orient:vertical;
-  text-overflow: ellipsis;
-  overflow:hidden; 
 }
 .expand{
   -webkit-line-clamp:3; 
@@ -100,12 +113,11 @@ padding-left: 20rpx;
   height: 200rpx;
 }
 
-.img-status{
+.img_status{
   width: 40rpx;
   height: 40rpx;
   padding-left:20rpx;
   padding-top:40rpx;
-
 }
 .img_box{
   position: absolute;
@@ -117,4 +129,19 @@ padding-left: 20rpx;
 .img_box image{
   width: 100%;
   height: 100%;
+}
+
+.map_container{
+  padding-top: 20rpx;
+  height: 200rpx;
+  margin-bottom: 140rpx;
+}
+
+.map{
+  width: 100%;
+  height: 300rpx;
+}
+.row.button{
+position:absolute;
+bottom:10rpx;
 }
