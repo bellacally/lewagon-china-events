@@ -4,14 +4,17 @@ var amapFile = require('../../libs/amap-wx.js');
 const app = getApp();
 Page({
   userInfoHandler(data) {
+    // console.log(data)
     const page = this;
     wx.BaaS.handleUserInfo(data).then(res => {
       let eventId = page.data.result.id;
-      app.globalData.avatar = res.avatarUrl;      
+      app.globalData.avatar = data.detail.userInfo.avatarUrl;
+      wx.setStorageSync('avatar', res.avatarUrl);      
       let userId = data.detail.userInfo.id;
       let EventsTable = new wx.BaaS.TableObject('events');
       let event = EventsTable.getWithoutData(eventId)
-      event.set('attend_by', `${userId}`)
+      // event.set('attend_by', `${userId}`)
+      event.uAppend('attendees', userId)
       event.update().then(res => {
         // success
         console.log("res2", res)
@@ -21,8 +24,8 @@ Page({
           duration: 2000,
           success: function () {
             setTimeout(function () {
-              wx.navigateTo({
-                url: '/pages/index/index',
+              wx.reLaunch({
+                url: `/pages/index/index?city=${res.data.city}`,
               })
             }, 1000);
           }
