@@ -27,39 +27,25 @@ Page({
     var userId = wx.getStorageSync('userId')
     const EventsTable = new wx.BaaS.TableObject('events');
     let query = new wx.BaaS.Query();
-    if (options.city) {
-      console.log('has city')
-      var results = app.globalData.results
-      results.forEach((item) => {
-        if (item.attendees.includes(userId)) {
-          console.log('in array')
-          item.attend = true
+    let city = options.city || 'Shanghai'
+    console.log(city);
+    query.contains('city', city);
+    EventsTable.setQuery(query).find().then(res => {
+      let results = res.data.objects
+      results.forEach((object) => {
+        object.date = object.date.substr(0, 10);
+        if (object.attendees.includes(userId)) {
+          object.attend = true
         }
       })
+      app.globalData.results = results
       console.log(results)
       that.setData({
         result: results,
-        avatar: wx.getStorageSync('avatar')
+        avatar: wx.getStorageSync('avatar'),
+        userId: wx.getStorageSync('userId')
       });
-    } else {
-      query.contains('city', 'Shanghai');
-      EventsTable.setQuery(query).find().then(res => {
-        console.log(res.data.objects);
-        res.data.objects.forEach((object) => {
-          object.date = object.date.substr(0, 10); 
-          if (object.attendees.includes(userId)) {
-            console.log('in array shanghai')
-            object.attend = true
-          }
-        })
-        app.globalData.results = res.data.objects
-        that.setData({
-          result: res.data.objects,
-          avatar: wx.getStorageSync('avatar')
-        });
-        console.log(app.globalData.results)
-      });
-    }
+    });
     // wx.getLocation({
     //   type: 'wgs84',
     //   success(res) {
