@@ -53,28 +53,15 @@ Component({
       var nowText = nowData[nowIdx].text;//当前点击的内容
       //再次执行动画，注意这里一定，一定，一定是this.animation来使用动画
       this.animation.rotate(0).step();
-      const EventsTable = new wx.BaaS.TableObject('events');
-      let query = new wx.BaaS.Query();
-      query.contains('city', city);
-      wx.showToast({
-        title: 'loading...',
-        icon: 'loading',
-        duration: 1000
+      that.setData({
+        city: city,
+        selectShow: false,
+        nowText: nowText,
+        animationData: this.animation.export()
       });
-      EventsTable.setQuery(query).find().then(res => {
-        console.log(res.data.objects)
-        app.globalData.results = res.data.objects
-        wx.reLaunch({
-          url: `../index/index?city=${city}`,
-        })
-        that.setData({
-          city: city,
-          selectShow: false,
-          result: res.data.objects,
-          nowText: nowText,
-          animationData: this.animation.export()
-        });
-      });
+      wx.redirectTo({
+        url: `../index/index?city=${city}`,
+      })
     }
   }
 })
