@@ -7,7 +7,7 @@ Page({
     selectArray: [{
       "id": "10",
       "text": "Shanghai",
-    }, 
+    },
     {
       "id": "20",
       "text": "Chengdu"
@@ -15,7 +15,7 @@ Page({
     {
       "id": "30",
       "text": "Shenzhen"
-      }
+    }
     ],
     city: "",
     avatar: wx.getStorageSync('avatar')
@@ -30,32 +30,40 @@ Page({
     let city = options.city || 'Shanghai'
     console.log(city);
     query.contains('city', city);
-    EventsTable.setQuery(query).find().then(res => {
+    EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
       let results = res.data.objects
       results.forEach((object) => {
-        object.date = object.date.substr(0, 10);
-        if (object.attendees.includes(userId)) {
-          object.attend = true
-        }
+        // object.date = object.date.substr(0, 10);
+        let todaymillisecs = new Date().getTime();
+        // let date = new Date(time);
+        // let todayDate = date.toString();
+        // let eventDate = new Date(object.date).toString();
+        let eventmillisecs = new Date(object.date).getTime();
+        let upcomingEvents = [];
+        if (eventmillisecs > todaymillisecs) {
+          upcomingEvents.push(object);
+          that.setData({
+            upcomingEvents: upcomingEvents,
+          });
+        };
+        upcomingEvents.forEach((upcomingEvent) => {
+          upcomingEvent.date = new Date(upcomingEvent.date).toString().substr(0, 16);
+        })
+        app.globalData.upcomingEvents = upcomingEvents
+        that.setData({
+          upcomingEvents: upcomingEvents,
+        });
+        // object.date = new Date(object.date).toString().substr(0, 10);
       })
-      app.globalData.results = results
-      console.log(results)
+      // console.log(results)
       that.setData({
-        result: results,
-        avatar: wx.getStorageSync('avatar'),
+        // result: results,
+        // avatar: app.globalData.avatar,
         userId: wx.getStorageSync('userId')
       });
     });
-    // wx.getLocation({
-    //   type: 'wgs84',
-    //   success(res) {
-    //     const latitude = res.latitude
-    //     const longitude = res.longitude
-    //     const speed = res.speed
-    //     const accuracy = res.accuracy
-    //   }
-    // })
-    
+
+
     var myAmapFun = new amapFile.AMapWX({ key: 'e9ae38eabebabeffed311424ddbbf395' });
     var cities = {
       "成都市": "Chengdu",
@@ -63,43 +71,6 @@ Page({
       "深圳市": "Shenzhen",
       "杭州市": "Hangzhou"
     }
-    var cities_location = {
-      "Shanghai": {
-        longtitude: 121.47,
-        latitude: 31.23
-      },
-      "Shenzhen":{
-        longtitude: 114.06667, 
-        latitude: 22.62
-    },
-       "Chengdu": {
-         longtitude: 104.06667,
-         latitude:  30.67
-      }
-    }
-    // myAmapFun.getRegeo({
-    //   success: function (data) {
-    //     var city = data[0].regeocodeData.addressComponent.city
-    //     app.globalData.city = cities[city];
-    //     that.setData({
-    //       avatar: app.globalData.avatar,
-    //      })
-    //     var arr = []
-    //     that.data.selectArray.forEach((x) => {
-    //       if (x.text != cities[city]) {
-    //         arr.push(x)
-    //       }
-    //     })
-    //     that.setData({
-    //       city: cities[city],
-    //       selectArray: arr
-    //     })
-        
-    //   },
-    //   fail: function (info) {
-    //     console.log(info)
-    //   }
-    // })
   },
   onShareAppMessage: function () {
     console.log('share');
@@ -108,16 +79,12 @@ Page({
     })
   },
   // need some revision
-  clickToShow: function(e){
+  clickToShow: function (e) {
     // console.log("aaaaaa",e)
-  var id = e.currentTarget.dataset.index;
-  // app.globalData.eventId = eventId;
+    var id = e.currentTarget.dataset.index;
+    // app.globalData.eventId = eventId;
     wx.navigateTo({
       url: `/pages/show/show?id=${id}`
     })
   }
 })
-
-
-
-

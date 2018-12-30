@@ -9,12 +9,11 @@ Page({
     wx.BaaS.handleUserInfo(data).then(res => {
       let eventId = page.data.result.id;
       app.globalData.avatar = data.detail.userInfo.avatarUrl;
-      wx.setStorageSync('avatar', res.avatarUrl);      
       let userId = data.detail.userInfo.id;
       let EventsTable = new wx.BaaS.TableObject('events');
       let event = EventsTable.getWithoutData(eventId)
-      // event.set('attend_by', `${userId}`)
-      event.uAppend('attendees', userId)
+      event.set('attend_by', `${userId}`)
+      event.set('avatar', `${res.avatarUrl}`)
       event.update().then(res => {
         // success
         console.log("res2", res)
@@ -36,6 +35,7 @@ Page({
         // err
         console.log(err)
       })
+      
     }, res => {
       
     })
@@ -90,9 +90,9 @@ Page({
     let eventId = app.globalData.eventId;
     // let date = util.formatTime(comms[c].ctime)
     let id = Number(e.id)
-    console.log(app.globalData.results[id])
+    // console.log(app.globalData.upcoming[id])
     this.setData({
-      result: app.globalData.results[id] 
+      result: app.globalData.upcomingEvents[id] 
     })
     var that = this;
     var myAmapFun = new amapFile.AMapWX({ key: 'e9ae38eabebabeffed311424ddbbf395' });

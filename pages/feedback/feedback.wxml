@@ -2,7 +2,7 @@
   <view class="form_container">
     <form bindsubmit="formSubmit" bindreset="formReset">
       <view class="section section_gap">
-         <view class="section_title">How did you registered for the event?</view>
+         <view class="section_title">* How did you registered for the event?</view>
           <picker bindchange="bindPickerChange" value="-1" range="{{array}}">
             <!-- <view class="picker">当前选择：{{array[index]}}</view> -->
             <view class="picker">
@@ -56,7 +56,7 @@
       </view> -->
 
     <view class="section section_gap">
-      <view class="section_title">In general, how did you like the event?</view>
+      <view class="section_title">* In general, how did you like the event?</view>
         <view class="details row">
           <view class="title" name="content_rating" >Content</view>
           <i-cell class="stars" title="自定义星星大小">
@@ -91,7 +91,7 @@
     </view>
 
     <view class="section section_gap">
-      <view class="section_title">How likely will you recommend our events?</view>
+      <view class="section_title">* How likely will you recommend our events?</view>
       <slider class="details" min="1" max="5" name='recommend' bindchange="sliderchange" show-value/>
     </view>
 

@@ -85,12 +85,12 @@ Page({
 
 
   clicktoIndex: function (e) {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../index/index',
     })
   },
   clicktoFeedback: function (e) {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../feedback/feedback',
     })
   },
