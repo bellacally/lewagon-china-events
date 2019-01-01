@@ -3,58 +3,19 @@
     <form bindsubmit="formSubmit" bindreset="formReset">
       <view class="section section_gap">
          <view class="section_title">* How did you registered for the event?</view>
-          <picker bindchange="bindPickerChange" value="-1" range="{{array}}">
-            <!-- <view class="picker">当前选择：{{array[index]}}</view> -->
-            <view class="picker">
-             <view class="channel">
-             
-              <text wx:if="{{!channel_index}}" style="opacity: 0.5;">please select</text> 
-               <text wx:if="{{channel_index}}">{{array[channel_index]}}</text>
-              <text  wx:if="{{channel_index}}" style="arrow" >▾</text>
-              <text wx:if="{{!channel_index}}"style="arrow" style="opacity: 0.5;" 
-              >▾</text>
+          <picker bindchange="bindPickerChange" value="{{[channel_index]}}" range="{{array}}" name="channels">
+            <view class="picker"> 
+              <view class="channel">
+                <text wx:if="{{!channel_index}}" style="opacity: 0.5;">please select</text> 
+                <text wx:if="{{channel_index}}">{{array[channel_index]}}</text>
+                <text  wx:if="{{channel_index}}" style="arrow" >▾</text>
+                <text wx:if="{{!channel_index}}"style="arrow" style="opacity: 0.5;" 
+                >▾</text>
               </view>
             </view>
           </picker>
         </view>
     
-
-        <!-- <picker bindchange="bindPickerChange" name="channels" value="{{index}}" range="{{array}}"> -->
-    <!-- <view class="picker">
-      <view class="channel"> -->
-      
-      <!-- </view>
-    </view>
-  </picker> -->
-    <!-- <view class="section">
-      <view class="section section_gap">
-        <view class="section_title">How did you registered for the event?</view>
-          <radio-group class="details radio"name="referer">
-          <i-grid>
-            <i-grid-item> <label><radio value="meetup.com" class="label" />meetup.com</label></i-grid-item>
-            <i-grid-item><label><radio value="eventbrite" class="label" />eventbrite</label></i-grid-item>
-            <i-grid-item><label><radio value="wework" class="label" />wework</label></i-grid-item>
-           </i-grid>
-          </radio-group>
-        <radio-group class="details radio"name="referer">
-          <i-grid>
-            <i-grid-item> <label><radio value="huodongxing" class="label"/>huodongxing</label></i-grid-item>
-             <i-grid-item> <label><radio value="WeChat" class="label"/>WeChat</label></i-grid-item>
-    <i-grid-item><label><radio value="others" class="label"/>others</label>
-    </i-grid-item>
-   
-           </i-grid>
-          </radio-group>
-    </view> -->
-
-        <!-- <view class="section section_gap">
-        <view class="section__title">checkbox</view>
-        <checkbox-group name="learntocode">
-          <label><checkbox value="checkbox1" />checkbox1</label>
-          <label><checkbox value="checkbox2" />checkbox2</label>
-        </checkbox-group>
-      </view> -->
-
     <view class="section section_gap">
       <view class="section_title">* In general, how did you like the event?</view>
         <view class="details row">

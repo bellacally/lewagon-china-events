@@ -19,30 +19,11 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    this.getUserData();
+    this.getUserInfo();
   
   },
 
-  // startAnswer: function () {
-  //   {
-  //     page.data.result.forEach((event) => {
-  //       if (page.data.result[0].attend_by && event.date < page.data.todayDate) {
-  //         app.globalData.eventId = event.id
-  //         page.setData({
-  //           hidden: true,
-  //           show: false,
-  //         })
-
-  //         wx.navigateTo({
-  //           url: '../feedback/feedback',
-  //         })
-  //       }
-  //     })
-  //   }
-  // },
-
-
-  getUserData:function(){
+  getUserInfo:function(){
     let page = this;
     wx.BaaS.login().then(res => {
       // success
@@ -90,6 +71,7 @@ Page({
     })
   },
   clicktoFeedback: function (e) {
+
     wx.redirectTo({
       url: '../feedback/feedback',
     })

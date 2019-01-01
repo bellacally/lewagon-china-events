@@ -35,7 +35,7 @@
 }
 
 .footer{
-  height: 80rpx;
+  height: 100rpx;
   border: solid 1px #eaeaea;
   margin-top: 0;
   display: flex;

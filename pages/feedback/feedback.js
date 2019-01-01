@@ -1,3 +1,4 @@
+const WeValidator = require('../../utils/we-validator');
 const app = getApp();
 Page({
   data: {
@@ -35,9 +36,11 @@ Page({
   },
 
   bindPickerChange: function (e) {
-    console.log(e);
+    let page = this
+    console.log(page.data.array[e.detail.value])
     this.setData({
-      channel_index: e.detail.value
+      channel_index: e.detail.value,
+      // channel_index: a
     });
   },
   onChange1(e) {
@@ -64,18 +67,26 @@ Page({
     recommend: e.detail.value
   },
 
+  showModal() {
+    wx.showModal({
+      content: "please fill out all the * fields",
+      showCancel: false,
+      showConfirm:confirm
+    })
+  },
   formSubmit: function(e){
     console.log(e)
+    if (this.oValidator) return
     let that = this;
     that.setData({
-      referer: e.detail.value.referer,
+      channels: e.detail.value.channels,
       recommend: e.detail.value.recommend,
       areas_to_improve: e.detail.value.areas_to_improve
     })
     let Feedback = new wx.BaaS.TableObject('feedbacks');
     let feedback = Feedback.create()
     feedback.set({
-      'referer': that.data.referer,
+      'channels': that.data.array[that.data.channel_index],
       'recommend': that.data.recommend,
       'created_by': that.data.userId,
       'speaker_rating': that.data.starIndex1,
@@ -85,12 +96,12 @@ Page({
       'event_id': `${app.globalData.eventId}`
     }).save().then(res => {
       wx.showToast({
-          title: 'Booked successfully',
+          title: 'Submitted',
           icon: 'success',
           duration: 1000,
           success: function () {
             setTimeout(function () {
-              wx.navigateTo({
+              wx.redirectTo({
                 url: '/pages/index/index',
               })
             }, 1000);
@@ -98,9 +109,44 @@ Page({
 
         })
     }, err => {
-      "opps, the submission did go through. please resubmit"
+      that.showModal()
+      return false
     })
   },
+  initValidator() {
+    // 实例化
+    this.oValidator = new WeValidator({
+      rules: {
+        channels: {
+          required: true,
+        },
+        content_rating: {
+          required: true,
+        },
+        speaker_rating: {
+          required: true,
+        },
+        location_rating: {
+          required: true,
+        }
+      },
+      messages: {
+        channels: {
+          required: 'Please choose where did you registered for the event',
+        },
+        content_rating: {
+          intGreater: 'Please give the content a rating'
+        },
+        speaker_rating: {
+          intGreater: 'Please give the content a rating'
+        },
+        location_rating: {
+          intGreater: 'Please give the content a rating'
+        }
+      },
+    })
+  },
+
 
 
   /**
@@ -119,7 +165,7 @@ Page({
   })
 
   },
-
+ 
   /**
    * Lifecycle function--Called when page is initially rendered
    */
@@ -167,5 +213,6 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
 })
