@@ -16,6 +16,12 @@
  padding-top:25rpx;
 }
 
+.nowText {
+  position:absolute;
+  top:150rpx;
+  left:130rpx;
+}
+
 .city_name{
   margin-left: 30rpx;
   font-weight: bold;

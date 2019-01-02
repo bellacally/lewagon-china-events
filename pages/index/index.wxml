@@ -1,9 +1,8 @@
-<view class="section" style="background-image: linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyahkSIPJy9b1.jpg'); background-size:cover;">
+<view class="section" style="background-image: linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyahkSIPJy9b1.jpg'); background-size:cover; height:320rpx;">
   <view class="row icon">
-    <!-- <image class="icon" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gZ6CjPj5mLjjf41.png"/>
-    <view class="city-name">{{city}}</view> -->
   </view>
-   <Select class="dropdown" prop-array='{{selectArray}}'></Select>
+   <Select class="dropdown" prop-array='{{selectArray}}'><view>{{nowText}}</view></Select>
+   <view class='nowText'>{{nowText}}</view>
  </view>
 
 <view class="container">

@@ -39,15 +39,15 @@
     overflow: auto;
 }
 .com-sItem{
-    height: 30px;
-    line-height: 30px;
+    height: 40px;
+    line-height: 36px;
     border-top: 1px solid #e2e2e2;
     padding: 0 6px;
     text-align: left;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 13px;
 }
 .com-sItem:first-child{
     border-top: none;

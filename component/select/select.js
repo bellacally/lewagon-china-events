@@ -11,7 +11,6 @@ Component({
    */
   data: {
     selectShow: false,//初始option不显示
-    // nowText: app.globalData.city,//初始内容
     animationData: {}//右边箭头的动画
   },
   

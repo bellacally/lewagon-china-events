@@ -53,12 +53,9 @@ Page({
               hidden: true,
               show: false,
             });
-            wx.navigateTo({
-              url: '../feedback/feedback',
-            })
           }
         })
-      }, 500)
+      }, 200)
     }, err => {
       url: '../index/index'
     })

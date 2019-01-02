@@ -93,7 +93,7 @@ Page({
       'location_rating': that.data.starIndex2,
       'content_rating': that.data.starIndex3,
       'areas_to_improve': that.data.areas_to_improve,
-      'event_id': `${app.globalData.eventId}`
+      'event_id': `${that.data.event_id}`
     }).save().then(res => {
       wx.showToast({
           title: 'Submitted',
@@ -153,6 +153,11 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    if (options.event_id) {
+      this.setData({
+        event_id: options.event_id
+      })
+    }
     wx.BaaS = requirePlugin('sdkPlugin')
     //让插件帮助完成登录、支付等功能
     wx.BaaS.wxExtend(wx.login);

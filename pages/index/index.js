@@ -32,6 +32,7 @@ Page({
     query.contains('city', city);
     EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
       let results = res.data.objects
+      let upcomingEvents = [];
       results.forEach((object) => {
         // object.date = object.date.substr(0, 10);
         let todaymillisecs = new Date().getTime();
@@ -39,12 +40,8 @@ Page({
         // let todayDate = date.toString();
         // let eventDate = new Date(object.date).toString();
         let eventmillisecs = new Date(object.date).getTime();
-        let upcomingEvents = [];
         if (eventmillisecs > todaymillisecs) {
           upcomingEvents.push(object);
-          that.setData({
-            upcomingEvents: upcomingEvents,
-          });
         };
         upcomingEvents.forEach((upcomingEvent) => {
           upcomingEvent.date = new Date(upcomingEvent.date).toString().substr(0, 16);
@@ -59,7 +56,8 @@ Page({
       that.setData({
         // result: results,
         // avatar: app.globalData.avatar,
-        userId: wx.getStorageSync('userId')
+        userId: wx.getStorageSync('userId'),
+        nowText: city,
       });
     });
 
@@ -78,9 +76,8 @@ Page({
       withShareTicket: true
     })
   },
-  // need some revision
+  
   clickToShow: function (e) {
-    // console.log("aaaaaa",e)
     var id = e.currentTarget.dataset.index;
     // app.globalData.eventId = eventId;
     wx.navigateTo({
