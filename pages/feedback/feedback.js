@@ -74,8 +74,7 @@ Page({
       showConfirm:confirm
     })
   },
-  formSubmit: function(e){
-    console.log(e)
+  formSubmit: function(e){ 
     if (this.oValidator) return
     let that = this;
     that.setData({
@@ -100,6 +99,11 @@ Page({
           icon: 'success',
           duration: 1000,
           success: function () {
+
+              delete that.data.attendedEvents[i];
+            
+            app.globalData.deletedattendedEvents = that.data.attendedEvents
+            console.log(app.globalData.deletedattendedEvents)
             setTimeout(function () {
               wx.redirectTo({
                 url: '/pages/index/index',
@@ -153,6 +157,9 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    this.setData({
+      attendedEvents: app.globalData.attendedEvents
+    })
     if (options.event_id) {
       this.setData({
         event_id: options.event_id

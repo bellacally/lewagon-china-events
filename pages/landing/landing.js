@@ -1,18 +1,12 @@
 // pages/landing/landing.js
 let app = getApp();
 Page({
-  // // onTap: function (event) {
-  // //       wx.redirectTo({
-  // //           url:"../index/index"
-  // //       })
-  // },
 
   /**
    * Page initial data
    */
   data: {
-   hidden: false,
-   show: true,
+
   },
 
   /**
@@ -20,45 +14,48 @@ Page({
    */
   onLoad: function (options) {
     this.getUserInfo();
-  
+    if (app.globalData.deletedattendedEvents) {
+      this.setData({
+        deletedattendedEvents: app.globalData.deletedattendedEvents
+      })
+    }
   },
 
   getUserInfo:function(){
     let page = this;
-    wx.BaaS.login().then(res => {
-      // success
-      let userId = res.id;
-      let page = this;
-      let EventsTable = new wx.BaaS.TableObject('events');
-      let query = new wx.BaaS.Query();
-      query.contains('attend_by', `${userId}`)
-      EventsTable.setQuery(query).find().then(res => {
-        res.data.objects.forEach((event) => {
-          let time = new Date().getTime();
-          let date = new Date(time);
-          let todayDate = date.toString();
-          event.date = new Date(event.date).toString();
-          page.setData({
-            result: res.data.objects,
-            todayDate: todayDate,
-          });
-        })
+    if (page.data.deletedattendedEvents) {
+      page.setData({
+        attendedEvents: page.data.deletedattendedEvents
       })
-      setTimeout(function () {
-        page.data.result.forEach((event) => {
-          if (page.data.result[0].attend_by && event.date < page.data.todayDate){
-            app.globalData.eventId = event.id
-            // id = wx.getStorageSync(id)
-            page.setData({
-              hidden: true,
-              show: false,
-            });
-          }
+    } else {
+      wx.BaaS.login().then(res => {
+        // success
+        let userId = res.id;
+        let page = this;
+        let EventsTable = new wx.BaaS.TableObject('events');
+        let query = new wx.BaaS.Query();
+        query.contains('attend_by', `${userId}`)
+        EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
+          app.globalData.attendedEvents = res.data.objects
+          page.setData({
+            attendedEvents: res.data.objects
+          })
         })
-      }, 200)
-    }, err => {
-      url: '../index/index'
-    })
+      }, err => {
+        url: '../index/index'
+      })
+    }
+    if (page.data.attendedEvents.length === 0) {
+      page.setData({
+        show: true,
+        hidden: false
+      })
+    } else {
+      page.setData({
+        show: false,
+        hidden: true
+      })
+    }
   },
 
 
@@ -68,10 +65,19 @@ Page({
     })
   },
   clicktoFeedback: function (e) {
-
     wx.redirectTo({
-      url: '../feedback/feedback',
+      url: `../feedback/feedback?event_id=${this.data.attendedEvents[0].id}`,
     })
+    // this.data.attendedEvents.forEach((event) => {
+    //   console.log(1111, event)
+    //   wx.redirectTo({
+    //     url: `../feedback/feedback?event_id=${event.id}`,
+    //   })
+    //   delete(event)
+    // })
+    // wx.redirectTo({
+    //   url: `../feedback/feedback?event_id=${}`,
+    // })
   },
   
   /**

@@ -16,7 +16,7 @@
     </view>
   </block>
   
-  <block wx:elsif="{{hidden}}" >
+  <block wx:if="{{hidden}}" >
     <view class="slogon">
       <view class="line">Thank you for attending</view>
       <view classs="row">
