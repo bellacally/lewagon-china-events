@@ -9,7 +9,7 @@ App({
       wx.requestPayment)
       wx.BaaS.init('d06840973e93da8277d9');
       wx.BaaS.login(false).then(res => {
-        console.log(res)
+        // console.log(res)
         wx.setStorageSync('userId', res.id)
       }, err => {
         console.log(err.code)

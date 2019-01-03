@@ -98,12 +98,7 @@ Page({
           title: 'Submitted',
           icon: 'success',
           duration: 1000,
-          success: function () {
-
-              delete that.data.attendedEvents[i];
-            
-            app.globalData.deletedattendedEvents = that.data.attendedEvents
-            console.log(app.globalData.deletedattendedEvents)
+          success: function () { 
             setTimeout(function () {
               wx.redirectTo({
                 url: '/pages/index/index',
@@ -132,20 +127,6 @@ Page({
         },
         location_rating: {
           required: true,
-        }
-      },
-      messages: {
-        channels: {
-          required: 'Please choose where did you registered for the event',
-        },
-        content_rating: {
-          intGreater: 'Please give the content a rating'
-        },
-        speaker_rating: {
-          intGreater: 'Please give the content a rating'
-        },
-        location_rating: {
-          intGreater: 'Please give the content a rating'
         }
       },
     })

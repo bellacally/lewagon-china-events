@@ -23,12 +23,12 @@ Page({
 
   onLoad(options) {
     var that = this;
-    console.log(options)
+    // console.log(options)
     var userId = wx.getStorageSync('userId')
     const EventsTable = new wx.BaaS.TableObject('events');
     let query = new wx.BaaS.Query();
     let city = options.city || 'Shanghai'
-    console.log(city);
+    // console.log(city);
     query.contains('city', city);
     EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
       let results = res.data.objects
@@ -47,17 +47,19 @@ Page({
           upcomingEvent.date = new Date(upcomingEvent.date).toString().substr(0, 16);
         })
         app.globalData.upcomingEvents = upcomingEvents
-        that.setData({
-          upcomingEvents: upcomingEvents,
-        });
+        // console.log(3333333, upcomingEvents)
+        // that.setData({
+        //   upcomingEvents: upcomingEvents,
+        // }); 
         // object.date = new Date(object.date).toString().substr(0, 10);
+        // console.log(444444, upcomingEvents)
       })
-      // console.log(results)
+   
       that.setData({
-        // result: results,
         // avatar: app.globalData.avatar,
         userId: wx.getStorageSync('userId'),
         nowText: city,
+        upcomingEvents: upcomingEvents,
       });
     });
 
@@ -71,7 +73,7 @@ Page({
     }
   },
   onShareAppMessage: function () {
-    console.log('share');
+    // console.log('share');
     wx.showShareMenu({
       withShareTicket: true
     })

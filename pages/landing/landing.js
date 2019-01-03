@@ -14,20 +14,11 @@ Page({
    */
   onLoad: function (options) {
     this.getUserInfo();
-    if (app.globalData.deletedattendedEvents) {
-      this.setData({
-        deletedattendedEvents: app.globalData.deletedattendedEvents
-      })
-    }
   },
 
   getUserInfo:function(){
     let page = this;
-    if (page.data.deletedattendedEvents) {
-      page.setData({
-        attendedEvents: page.data.deletedattendedEvents
-      })
-    } else {
+    if (!page.data.attendedEvents) {
       wx.BaaS.login().then(res => {
         // success
         let userId = res.id;
@@ -36,26 +27,23 @@ Page({
         let query = new wx.BaaS.Query();
         query.contains('attend_by', `${userId}`)
         EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
-          app.globalData.attendedEvents = res.data.objects
-          page.setData({
-            attendedEvents: res.data.objects
-          })
+          if (res.data.objects.length === 0) {
+            page.setData({
+              show: true,
+              hidden: false
+            })
+          } else {
+            page.setData({
+              show: false,
+              hidden: true,
+              attendedEvents: res.data.objects
+            })
+          }
         })
       }, err => {
         url: '../index/index'
       })
-    }
-    if (page.data.attendedEvents.length === 0) {
-      page.setData({
-        show: true,
-        hidden: false
-      })
-    } else {
-      page.setData({
-        show: false,
-        hidden: true
-      })
-    }
+    }  
   },
 
 
@@ -65,18 +53,39 @@ Page({
     })
   },
   clicktoFeedback: function (e) {
-    wx.redirectTo({
-      url: `../feedback/feedback?event_id=${this.data.attendedEvents[0].id}`,
+    let page = this;
+    page.data.attendedEvents.forEach((event) => {
+      let event_index = page.data.attendedEvents.indexOf(event); 
+      for (let i = 0; i < page.data.attendedEvents.length; i++) {
+        if (event_index == i) {
+          page.setData({
+            event_id: page.data.attendedEvents[i].id
+          })
+          delete page.data.attendedEvents[i]
+          page.setData({
+            attendedEvents: page.data.attendedEvents
+          })
+          console.log(1111, page.data.attendedEvents);
+          if (page.data.attendedEvents.length === 0) {
+            page.setData({
+              show: true,
+              hidden: false
+            })
+          } else {
+            page.setData({
+              show: false,
+              hidden: true,
+            })
+          }
+          // wx.redirectTo({
+          //   url: `../feedback/feedback?event_id=${page.data.event_id}`,
+          // })
+          break;
+        }
+      }
     })
-    // this.data.attendedEvents.forEach((event) => {
-    //   console.log(1111, event)
-    //   wx.redirectTo({
-    //     url: `../feedback/feedback?event_id=${event.id}`,
-    //   })
-    //   delete(event)
-    // })
     // wx.redirectTo({
-    //   url: `../feedback/feedback?event_id=${}`,
+    //   url: `../feedback/feedback?event_id=${page.data.attendedEvents[0].id}`,
     // })
   },
   
