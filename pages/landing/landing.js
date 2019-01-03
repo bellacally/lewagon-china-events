@@ -1,18 +1,12 @@
 // pages/landing/landing.js
 let app = getApp();
 Page({
-  // // onTap: function (event) {
-  // //       wx.redirectTo({
-  // //           url:"../index/index"
-  // //       })
-  // },
 
   /**
    * Page initial data
    */
   data: {
-   hidden: false,
-   show: true,
+
   },
 
   /**
@@ -20,45 +14,36 @@ Page({
    */
   onLoad: function (options) {
     this.getUserInfo();
-  
   },
 
   getUserInfo:function(){
     let page = this;
-    wx.BaaS.login().then(res => {
-      // success
-      let userId = res.id;
-      let page = this;
-      let EventsTable = new wx.BaaS.TableObject('events');
-      let query = new wx.BaaS.Query();
-      query.contains('attend_by', `${userId}`)
-      EventsTable.setQuery(query).find().then(res => {
-        res.data.objects.forEach((event) => {
-          let time = new Date().getTime();
-          let date = new Date(time);
-          let todayDate = date.toString();
-          event.date = new Date(event.date).toString();
-          page.setData({
-            result: res.data.objects,
-            todayDate: todayDate,
-          });
-        })
-      })
-      setTimeout(function () {
-        page.data.result.forEach((event) => {
-          if (page.data.result[0].attend_by && event.date < page.data.todayDate){
-            app.globalData.eventId = event.id
-            // id = wx.getStorageSync(id)
+    if (!page.data.attendedEvents) {
+      wx.BaaS.login().then(res => {
+        // success
+        let userId = res.id;
+        let page = this;
+        let EventsTable = new wx.BaaS.TableObject('events');
+        let query = new wx.BaaS.Query();
+        query.contains('attend_by', `${userId}`)
+        EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
+          if (res.data.objects.length === 0) {
             page.setData({
-              hidden: true,
+              show: true,
+              hidden: false
+            })
+          } else {
+            page.setData({
               show: false,
-            });
+              hidden: true,
+              attendedEvents: res.data.objects
+            })
           }
         })
-      }, 200)
-    }, err => {
-      url: '../index/index'
-    })
+      }, err => {
+        url: '../index/index'
+      })
+    }  
   },
 
 
@@ -68,10 +53,40 @@ Page({
     })
   },
   clicktoFeedback: function (e) {
-
-    wx.redirectTo({
-      url: '../feedback/feedback',
+    let page = this;
+    page.data.attendedEvents.forEach((event) => {
+      let event_index = page.data.attendedEvents.indexOf(event); 
+      for (let i = 0; i < page.data.attendedEvents.length; i++) {
+        if (event_index == i) {
+          page.setData({
+            event_id: page.data.attendedEvents[i].id
+          })
+          delete page.data.attendedEvents[i]
+          page.setData({
+            attendedEvents: page.data.attendedEvents
+          })
+          console.log(1111, page.data.attendedEvents);
+          if (page.data.attendedEvents.length === 0) {
+            page.setData({
+              show: true,
+              hidden: false
+            })
+          } else {
+            page.setData({
+              show: false,
+              hidden: true,
+            })
+          }
+          // wx.redirectTo({
+          //   url: `../feedback/feedback?event_id=${page.data.event_id}`,
+          // })
+          break;
+        }
+      }
     })
+    // wx.redirectTo({
+    //   url: `../feedback/feedback?event_id=${page.data.attendedEvents[0].id}`,
+    // })
   },
   
   /**

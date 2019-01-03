@@ -1,6 +1,8 @@
 <view class="wrapper">
   <view class="form_container">
     <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="section section_gap">
+     <view class="section_title">Thank you for attending {{attendedEvents[0]}}, please give us feedback</view>
       <view class="section section_gap">
          <view class="section_title">* How did you registered for the event?</view>
           <picker bindchange="bindPickerChange" value="{{[channel_index]}}" range="{{array}}" name="channels">
@@ -13,8 +15,9 @@
                 >▾</text>
               </view>
             </view>
-          </picker>
-        </view>
+        </picker>
+      </view>
+    </view>
     
     <view class="section section_gap">
       <view class="section_title">* In general, how did you like the event?</view>

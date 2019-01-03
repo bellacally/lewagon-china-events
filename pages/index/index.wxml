@@ -9,7 +9,7 @@
   <block wx:for="{{upcomingEvents}}" wx:for-item="res" wx:key="key" wx:index="index">
   <view class="background" id= "{{res.id}}" bindtap="clickToShow" data-index="{{index}}">
     <view id="event_image" style= "background-image: url('{{res.image}}'); background-size:cover;">
-      <block wx:if="{{res.attend_by}}">
+      <block wx:if="{{res.attend_by == userId}}">
         <image id="avatar" src='{{res.avatar}}'></image>
       </block>
     </view>

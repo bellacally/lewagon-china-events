@@ -74,8 +74,7 @@ Page({
       showConfirm:confirm
     })
   },
-  formSubmit: function(e){
-    console.log(e)
+  formSubmit: function(e){ 
     if (this.oValidator) return
     let that = this;
     that.setData({
@@ -99,7 +98,7 @@ Page({
           title: 'Submitted',
           icon: 'success',
           duration: 1000,
-          success: function () {
+          success: function () { 
             setTimeout(function () {
               wx.redirectTo({
                 url: '/pages/index/index',
@@ -130,20 +129,6 @@ Page({
           required: true,
         }
       },
-      messages: {
-        channels: {
-          required: 'Please choose where did you registered for the event',
-        },
-        content_rating: {
-          intGreater: 'Please give the content a rating'
-        },
-        speaker_rating: {
-          intGreater: 'Please give the content a rating'
-        },
-        location_rating: {
-          intGreater: 'Please give the content a rating'
-        }
-      },
     })
   },
 
@@ -153,6 +138,9 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    this.setData({
+      attendedEvents: app.globalData.attendedEvents
+    })
     if (options.event_id) {
       this.setData({
         event_id: options.event_id
