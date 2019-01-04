@@ -24,7 +24,7 @@ Page({
   onLoad(options) {
     var that = this;
     // console.log(options)
-    var userId = wx.getStorageSync('userId')
+    // var userId = wx.getStorageSync('userId')
     const EventsTable = new wx.BaaS.TableObject('events');
     let query = new wx.BaaS.Query();
     let city = options.city || 'Shanghai'
@@ -89,5 +89,21 @@ Page({
     wx.navigateTo({
       url: `/pages/show/show?id=${id}`
     })
-  }
+  },
+
+    /**
+   * Lifecycle function--Called when page hide
+   */
+  onHide: function () {
+   
+  },
+
+  /**
+   * Lifecycle function--Called when page unload
+   */
+  onUnload: function () {
+    // wx.reLaunch({
+    //   url: '../landing/landing'
+    // })
+  },
 })
