@@ -1,6 +1,7 @@
 
 .container{
   align-items: center;
+  background-color: #fcf5e8
 }
 .icon{
   width: 50rpx;
@@ -17,9 +18,10 @@
 }
 
 .nowText {
-  position:absolute;
-  top:150rpx;
-  left:130rpx;
+position:absolute;
+ top:148rpx;
+ left:130rpx;
+ font-size:28rpx;
 }
 
 .city_name{
@@ -35,9 +37,10 @@
   margin-bottom: 50rpx;
 }
 .background{
-  width: 95%;
-  border-radius:3px;
-  position: relative;
+ width: 90vw;
+ border-radius:8px;
+ position: relative;
+ box-shadow: 0 25rpx 40rpx rgba(126,87,88,.1)
 }
 
 .footer{
@@ -47,6 +50,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  background-color: white;
 }
 
 #share_btn{
@@ -71,14 +75,27 @@ width:100%;
 height:300rpx;
 border-radius:3px;
 margin-top:20px;
-
 }
 
 .info{
   font-size: 28rpx;
   margin-top: 20rpx;
-  padding-left: 20rpx;
   font-weight: bold;
+}
+.info.date{
+ width: 20rpx;
+ text-align: center;
+ justify-content: center;
+ padding-left: 20rpx;
+ color: #fd1015;
+}
+
+.info.name{
+  width: 400rpx;
+ padding-left: 30rpx;
+ /* text-align: center;
+ justify-content: center; */
+
 }
 
 #avatar{

@@ -100,8 +100,8 @@ Page({
           duration: 1000,
           success: function () { 
             setTimeout(function () {
-              wx.redirectTo({
-                url: '/pages/index/index',
+              wx.navigateTo({
+                url: '/pages/landing/landing',
               })
             }, 1000);
           }
@@ -138,9 +138,6 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    this.setData({
-      attendedEvents: app.globalData.attendedEvents
-    })
     if (options.event_id) {
       this.setData({
         event_id: options.event_id
