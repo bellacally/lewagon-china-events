@@ -46,8 +46,8 @@ Page({
    * Page initial data
    */
   data: {
-  //  showExpand: false
-    expand: false,
+    isFold:true,
+    // expand: false,
     scrollTop: 0 
   },
   onChange(event) {
@@ -79,10 +79,15 @@ Page({
  
   
 
-  expand: function (e) {
-    var value = !this.data.expand;
+  // expand: function (e) {
+  //   var value = !this.data.expand;
+  //   this.setData({
+  //     expand: value
+  //   })
+  // },
+  showAll: function (e) {
     this.setData({
-      expand: value
+      isFold: !this.data.isFold,
     })
   },
 

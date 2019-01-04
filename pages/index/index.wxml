@@ -15,8 +15,9 @@
     </view>
    
   <view class="footer">
-    <view class="info">{{res.name}}</view>
-    <view class ="info">{{res.date}}</view>
+    <view class ="info date">{{res.date}}</view>
+    <view class="info name">{{res.name}}</view>
+    <!-- <view class ="info">{{res.month}}</view> -->
       <!-- put share icon inside a button -->
      <view class="share_icon"> 
       <button id= "share_btn" open-type='share'>
@@ -27,6 +28,8 @@
   </view>  
  </block>
  </view>
+
+ <!-- <web-view src="https://www.lewagon.com/events"></web-view> -->
 
  
   

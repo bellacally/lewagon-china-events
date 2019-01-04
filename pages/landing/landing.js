@@ -18,32 +18,30 @@ Page({
 
   getUserInfo:function(){
     let page = this;
-    if (!page.data.attendedEvents) {
-      wx.BaaS.login().then(res => {
-        // success
-        let userId = res.id;
-        let page = this;
-        let EventsTable = new wx.BaaS.TableObject('events');
-        let query = new wx.BaaS.Query();
-        query.contains('attend_by', `${userId}`)
-        EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
-          if (res.data.objects.length === 0) {
-            page.setData({
-              show: true,
-              hidden: false
-            })
-          } else {
-            page.setData({
-              show: false,
-              hidden: true,
-              attendedEvents: res.data.objects
-            })
-          }
-        })
-      }, err => {
-        url: '../index/index'
+    wx.BaaS.login().then(res => {
+      // success
+      let userId = res.id;
+      let page = this;
+      let EventsTable = new wx.BaaS.TableObject('events');
+      let query = new wx.BaaS.Query();
+      query.contains('attend_by', `${userId}`)
+      EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
+        if (res.data.objects.length === 0) {
+          page.setData({
+            show: true,
+            hidden: false
+          })
+        } else {
+          page.setData({
+            show: false,
+            hidden: true,
+            attendedEvents: res.data.objects
+          })
+        }
       })
-    }  
+    }, err => {
+      url: '../index/index'
+    })
   },
 
 
@@ -61,7 +59,7 @@ Page({
           page.setData({
             event_id: page.data.attendedEvents[i].id
           })
-          delete page.data.attendedEvents[i]
+          page.data.attendedEvents.splice(page.data.attendedEvents[i], 1);
           page.setData({
             attendedEvents: page.data.attendedEvents
           })
@@ -77,9 +75,9 @@ Page({
               hidden: true,
             })
           }
-          // wx.redirectTo({
-          //   url: `../feedback/feedback?event_id=${page.data.event_id}`,
-          // })
+          wx.redirectTo({
+            url: `../feedback/feedback?event_id=${page.data.event_id}`,
+          })
           break;
         }
       }

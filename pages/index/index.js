@@ -44,7 +44,11 @@ Page({
           upcomingEvents.push(object);
         };
         upcomingEvents.forEach((upcomingEvent) => {
-          upcomingEvent.date = new Date(upcomingEvent.date).toString().substr(0, 16);
+          upcomingEvent.date = new Date(upcomingEvent.date).toString().toUpperCase().substr(3,8);
+          // that.setData({
+          //   date: new Date(upcomingEvent.date).toString().substr(3, 4),
+          //   month: new Date(upcomingEvent.date).toString().substr(7, 4),
+          // });
         })
         app.globalData.upcomingEvents = upcomingEvents
         // console.log(3333333, upcomingEvents)
