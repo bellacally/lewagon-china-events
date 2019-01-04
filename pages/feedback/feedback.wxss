@@ -1,8 +1,9 @@
 /* pages/feedback/feedback.wxss */
-
+page {
+  background-color:#fcf5e8;  
+}
 .wrapper{
-  background-color:#fcf5e8;
-  
+   margin-bottom: 20rpx;
 }
 /* .form_container{
   justify-content: center;
@@ -25,7 +26,7 @@
 }
 .section_title{
  font-weight:600;
-  font-size:35rpx;
+  font-size:30rpx;
   color:black;
   padding-top: 15rpx;
   padding-bottom: 15rpx;
@@ -33,6 +34,17 @@
 .details{
   padding: 10rpx;
   font-size: 28rpx;
+  
+}
+.all{
+  padding: 0 25rpx;
+  background: white;
+  color: black;
+  box-shadow: 1px 4px 7px #c1c1c1;
+  margin: 25rpx 0;
+  justify-content: space-between;
+  align-items: center;
+  border-radius:5px;
 }
 
 .details.row {
@@ -51,6 +63,11 @@ textarea{
   margin-top:8px;
   width: 90%;
   margin-left: 4%;
+  box-shadow: 1px 4px 7px #c1c1c1;
+  height: 300rpx;
+}
+.message{
+  padding:20rpx;
 }
 
 button{
@@ -66,7 +83,7 @@ button{
 .channel {
   height: 80rpx;
   padding: 0 25rpx;
-  background: rgba(250,250,250,0.9);
+  background: white;
   color: black;
   box-shadow: 1px 4px 7px #c1c1c1;
   margin: 25rpx 0;
@@ -87,3 +104,6 @@ text{
  display: block;
 
 }
+
+/* .stars{
+  color:#FFE37F;} */

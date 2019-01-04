@@ -12,13 +12,13 @@
       <view class="line">Learn to code</view>
       <view class="line">Change your life</view>
       <!-- <button bindtap='onTap'>start your journey</button> -->
-      <button bindtap="clicktoIndex" open-type="getUserInfo" bindgetuserinfo="getUserInfo" >Start your journey</button>
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" >Start your journey</button>
     </view>
   </block>
   
   <block wx:if="{{hidden}}" >
     <view class="slogon">
-      <view class="line">Thank you for attending</view>
+      <view class="line">Thank you for attending {{event_name}}</view>
       <view classs="row">
         <button bindtap="clicktoFeedback">Give us feedback</button>
         <button bindtap="clicktoIndex">Skip</button>

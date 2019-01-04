@@ -4,7 +4,6 @@ var amapFile = require('../../libs/amap-wx.js');
 const app = getApp();
 Page({
   userInfoHandler(data) {
-    // console.log(data)
     const page = this;
     wx.BaaS.handleUserInfo(data).then(res => {
       let eventId = page.data.result.id;
@@ -13,10 +12,10 @@ Page({
       let EventsTable = new wx.BaaS.TableObject('events');
       let event = EventsTable.getWithoutData(eventId)
       event.set('attend_by', `${userId}`)
+      event.set('attend_status', 'true')
       event.set('avatar', `${res.avatarUrl}`)
       event.update().then(res => {
         // success
-        console.log("res2", res)
         wx.showToast({
           title: 'Booked',
           icon: 'success',
@@ -33,7 +32,7 @@ Page({
         console.log("res", res)
       }, err => {
         // err
-        console.log(err)
+        console.log("already attend")
       })
       
     }, res => {
@@ -138,7 +137,6 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-    
 
   },
 
@@ -153,7 +151,9 @@ Page({
    * Lifecycle function--Called when page unload
    */
   onUnload: function () {
-
+    // wx.reLaunch({
+    //   url: '../landing/landing'
+    // })
   },
 
   /**

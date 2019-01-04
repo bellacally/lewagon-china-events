@@ -83,6 +83,21 @@ Page({
       areas_to_improve: e.detail.value.areas_to_improve
     })
     let Feedback = new wx.BaaS.TableObject('feedbacks');
+    let eventId = that.data.event_id;
+    // let userId = data.detail.userInfo.id;
+    let userId = wx.getStorageSync('userId')
+    let EventsTable = new wx.BaaS.TableObject('events');
+    let event = EventsTable.getWithoutData(eventId)
+    event.set('attend_status', 'false')
+    event.update().then(res => {
+      // success
+      // console.log("res2", res)
+      
+    }, err => {
+      // err
+      console.log(err)
+    })
+    
     let feedback = Feedback.create()
     feedback.set({
       'channels': that.data.array[that.data.channel_index],
@@ -132,15 +147,15 @@ Page({
     })
   },
 
-
-
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    let page = this
     if (options.event_id) {
       this.setData({
-        event_id: options.event_id
+        event_id: options.event_id,
+        event_name: app.globalData.event_name
       })
     }
     wx.BaaS = requirePlugin('sdkPlugin')
@@ -153,14 +168,12 @@ Page({
   }, err => {
     // err
   })
-
-  },
+},
  
   /**
    * Lifecycle function--Called when page is initially rendered
    */
   onReady: function () {
-
   },
 
   /**
@@ -181,7 +194,9 @@ Page({
    * Lifecycle function--Called when page unload
    */
   onUnload: function () {
-
+    // wx.reLaunch({
+    //   url: '../landing/landing'
+    // })
   },
 
   /**

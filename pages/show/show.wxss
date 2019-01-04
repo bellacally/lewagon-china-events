@@ -94,6 +94,8 @@ image.icon{
   flex-direction: row;
   justify-content: space-around;
   margin-bottom: 40rpx;
+  margin-top:40rpx;
+
 }
 
 .btn{
