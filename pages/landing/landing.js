@@ -67,8 +67,12 @@ Page({
       url: '../index/index',
     })
   },
-
-  clicktoFeedback: function (e) {
+ clickToIndex:function(){
+   wx.redirectTo({
+     url: '../index/index',
+   })
+ },
+  clickToFeedback: function (e) {
     let page = this;
     wx.getStorage({
       key: 'attendedEvents',

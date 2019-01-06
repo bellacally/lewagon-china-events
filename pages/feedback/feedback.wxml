@@ -1,8 +1,8 @@
 <view class="wrapper">
   <view class="form_container">
     <form bindsubmit="formSubmit" bindreset="formReset">
-    <view class="section section_gap">
-     <view class="section_title">Thank you for attending {{event_name}}, please give us feedback</view>
+     <view class="header">{{event_name}}</view>
+
       <view class="section section_gap">
          <view class="section_title">* How did you registered for the event?</view>
           <picker bindchange="bindPickerChange" value="{{[channel_index]}}" range="{{array}}" name="channels">
@@ -17,56 +17,54 @@
             </view>
         </picker>
       </view>
-    </view>
-    
-    <view class="section section_gap">
-      <view class="section_title">* In general, how did you like the event?</view>
-      <view class="all">
-           <view class="details row">
-          <view class="title" name="content_rating" >Content</view>
-          <i-cell class="stars" title="自定义星星大小">
-            <i-rate 
-              bind:change="onChange1" 
-              value="{{starIndex1}}" 
+  
+      <view class="section section_gap">
+        <view class="section_title">* In general, how did you like the event?</view>
+        <view class="all">
+            <view class="details row">
+            <view class="title" name="content_rating" >Content</view>
+            <i-cell class="stars" title="自定义星星大小">
+              <i-rate 
+                bind:change="onChange1" 
+                value="{{starIndex1}}" 
+                size="32">
+              </i-rate>
+            </i-cell>
+          </view>
+          <view class="details row">
+            <view class="title" name="speaker_rating">Speaker</view>
+            <i-cell class="stars"title="自定义星星大小">
+              <i-rate 
+                bind:change="onChange2" 
+                value="{{starIndex2}}" 
+                size="32">
+              </i-rate>
+            </i-cell>
+          </view>
+          <view class="details row">
+            <view class="title" name="location_rating">Location</view>
+            <i-cell class="stars" title="自定义星星大小">
+              <i-rate 
+              bind:change="onChange3" 
+              name="starIndex3"
+              value="{{starIndex3}}" 
               size="32">
-            </i-rate>
-          </i-cell>
+              </i-rate>
+            </i-cell>
+          </view>
         </view>
-        <view class="details row">
-          <view class="title" name="speaker_rating">Speaker</view>
-          <i-cell class="stars"title="自定义星星大小">
-            <i-rate 
-              bind:change="onChange2" 
-              value="{{starIndex2}}" 
-              size="32">
-            </i-rate>
-          </i-cell>
-        </view>
-        <view class="details row">
-          <view class="title" name="location_rating">Location</view>
-          <i-cell class="stars" title="自定义星星大小">
-            <i-rate 
-            bind:change="onChange3" 
-            name="starIndex3"
-            value="{{starIndex3}}" 
-            size="32">
-            </i-rate>
-          </i-cell>
-        </view>
-       </view>
       </view>
 
-    <view class="section section_gap">
-      <view class="section_title">* How likely will you recommend our events?</view>
-      <slider class="details" min="1" max="5" name='recommend' bindchange="sliderchange" show-value/>
-    </view>
+      <view class="section section_gap">
+        <view class="section_title">* How likely will you recommend our events?</view>
+        <slider class="details" min="1" max="5" name='recommend' bindchange="sliderchange" show-value/>
+      </view>
 
-    <view class="section section_gap">
-      <view class="section_title">How do you think the event can be improved?</view>
-        <textarea class="message" placeholder='eg. I would love to hear more about ... ' name="areas_to_improve" > </textarea> 
-    </view>
+      <view class="section section_gap">
+        <view class="section_title">How do you think the event can be improved?</view>
+          <textarea class="message" placeholder='eg. I would love to hear more about ... ' name="areas_to_improve" > </textarea> 
+      </view>
       <!-- <i-button type="primary" bind:click="handleClick"></i-button> -->
-
       <view class="btn-area">
         <button form-type="submit" data-feedback="{{event_id}}">Submit</button>
       </view>

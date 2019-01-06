@@ -20,8 +20,8 @@
     <view class="slogon">
       <view class="line">Thank you for attending {{event_name}}</view>
       <view classs="row">
-        <button bindtap="clicktoFeedback">Give us feedback</button>
-        <button bindtap="clicktoIndex">Skip</button>
+        <button bindtap="clickToFeedback">Give us feedback</button>
+        <button bindtap="clickToIndex">Skip</button>
       </view>
     </view>
   </block> 
