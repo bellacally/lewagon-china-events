@@ -7,17 +7,19 @@ page {
 .wrapper{
    margin-bottom: 20rpx;
 }
-.header{
-  justify-content: center;
-  display: flex;
-  font-size:32rpx;
-  font-family: Circular Std Book;
-  background-color:#0e0000;
-  padding:30rpx 10rpx;
-  width:100%;
-  color: white;
-}
 
+.header{
+   color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.name{
+  font-size: 40rpx;
+  font-weight: bold;
+  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+}
 .details.radio{
   margin-top: 15rpx; 
 }
