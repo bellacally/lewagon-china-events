@@ -23,9 +23,9 @@ page {
 
 .nowText {
 position:absolute;
-top:148rpx;
+top:154rpx;
 left:130rpx;
-font-size:28rpx;
+font-size:26rpx;
 font-family: Circular Std Book;
 }
 

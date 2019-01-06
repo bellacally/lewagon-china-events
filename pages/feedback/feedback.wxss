@@ -1,14 +1,22 @@
 /* pages/feedback/feedback.wxss */
 page {
-  background-color:#fcf5e8;  
+  /* background-color:#fcf5e8;   */
+  font-family: Circular Std Book;
+  background:#fcf5e8;
 }
 .wrapper{
    margin-bottom: 20rpx;
 }
-/* .form_container{
+.header{
   justify-content: center;
   display: flex;
-} */
+  font-size:32rpx;
+  font-family: Circular Std Book;
+  background-color:#0e0000;
+  padding:30rpx 10rpx;
+  width:100%;
+  color: white;
+}
 
 .details.radio{
   margin-top: 15rpx; 
@@ -25,11 +33,12 @@ page {
 
 }
 .section_title{
- font-weight:600;
   font-size:30rpx;
-  color:black;
   padding-top: 15rpx;
   padding-bottom: 15rpx;
+  font-family: SF Pro Text;
+  font-weight: bold;
+
 }
 .details{
   padding: 10rpx;
@@ -41,10 +50,11 @@ page {
   background: white;
   color: black;
   box-shadow: 1px 4px 7px #c1c1c1;
-  margin: 25rpx 0;
+  margin:0 auto;
   justify-content: space-between;
   align-items: center;
   border-radius:5px;
+  width:90%;
 }
 
 .details.row {
@@ -56,18 +66,22 @@ page {
   line-height: 2em;
   width:20%;
   padding-left: 20rpx;
+  font-family: Circular Std Book;
 
 }
 textarea{
   background-color: #fff;
   margin-top:8px;
   width: 90%;
-  margin-left: 4%;
   box-shadow: 1px 4px 7px #c1c1c1;
   height: 300rpx;
+  margin:0 auto;
+  font-family: SF Pro Text;
 }
 .message{
   padding:20rpx;
+  font-family: Circular Std Book;
+  font-size: 25rpx;
 }
 
 button{
@@ -91,6 +105,7 @@ button{
   justify-content: space-between;
   align-items: center;
   border-radius:5px;
+  /* background:#eaeaea; */
 }
 
 text{
@@ -104,6 +119,3 @@ text{
  display: block;
 
 }
-
-/* .stars{
-  color:#FFE37F;} */

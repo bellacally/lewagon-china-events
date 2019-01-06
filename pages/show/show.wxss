@@ -27,7 +27,7 @@ height: 460rpx;
 padding-bottom:30rpx;
 width:90vw;
 border-radius:8px;
-box-shadow:0 25rpx 40rpx rgba(126,87,88,.1);
+box-shadow: 0 10px 6px -6px #777;
 background-color:white;
 margin:0 auto;
 position:absolute;
@@ -114,10 +114,12 @@ image.icon{
 .info{
 padding-left: 20rpx;
 overflow:hidden;
+font-family:Circular Std Book;
+font-size:26rpx;
 }
 .info.long{
   margin-right: 5%;
-  font-size: 13px;
+  font-size: 28rpx;
   color: #888;
   -webkit-box-orient:vertical;
 
@@ -158,12 +160,7 @@ overflow:hidden;
 .long{
  height: 800rpx;
 }
-/* .img_status{
-  width: 40rpx;
-  height: 40rpx;
-  padding-left:20rpx;
-  padding-top:40rpx;
-} */
+
 .img_box{
   position: absolute;
   top: 0;
@@ -176,15 +173,12 @@ overflow:hidden;
   height: 100%;
 }
 
-
-
 .map{
   width: 90vw;
   height: 400rpx;
   margin-bottom: 140rpx;
   margin:0 auto;
-  padding-top: 20rpx;
- 
+  padding-top: 20rpx; 
 }
 .row.button{
 position:absolute;
@@ -194,14 +188,14 @@ bottom:40rpx;
 .long_dec{
    padding:20rpx;
     display: -webkit-box;
-    font-size:28rpx;
-    color:#cfcfd0;
     line-height: 40rpx;
     word-break: break-all;
     -webkit-box-orient: vertical;
     -webkit-line-clamp:6;
     overflow: hidden;
     text-overflow:ellipsis;
+    font-family: Circular Std Book;
+    font-size: 26rpx;
 }
 .hide{
   display: -webkit-box;

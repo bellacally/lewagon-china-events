@@ -7,4 +7,5 @@
   justify-content: space-between;
   box-sizing: border-box;
   font-size: 26rpx;
+  font-family: Circular Std Book;
 } 
