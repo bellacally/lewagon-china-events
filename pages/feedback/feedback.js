@@ -155,7 +155,8 @@ Page({
     if (options.event_id) {
       this.setData({
         event_id: options.event_id,
-        event_name: app.globalData.event_name
+        event_name: app.globalData.event_name,
+        event_image: app.globalData.event_image
       })
     }
     wx.BaaS = requirePlugin('sdkPlugin')

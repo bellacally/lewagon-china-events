@@ -77,12 +77,13 @@ Page({
     wx.getStorage({
       key: 'attendedEvents',
       success(res) {
-        // console.log("res", res)
+        console.log("res", res)
         res.data.forEach((event) => {
           let event_index = res.data.indexOf(event);
           // console.log("event_index", event_index)
           for (let i = 0; i < res.data.length; i++) {
             app.globalData.event_name = res.data[i].name
+            app.globalData.event_image = res.data[i].image
             if (event_index == i) {
               // console.log("i", i)
               page.setData({
