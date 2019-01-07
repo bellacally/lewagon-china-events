@@ -1,5 +1,4 @@
-
-
+@import '../../libs/font.wxss';
 .container{
   align-items: center;
 }
@@ -37,4 +36,9 @@ button{
   font-size: 28rpx;
   line-height:80rpx;
   margin-top: 50rpx;
+}
+
+
+.skip{
+  background:#0e0000;
 }

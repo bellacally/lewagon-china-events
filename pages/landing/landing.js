@@ -55,10 +55,23 @@ Page({
     query.contains('attend_status', 'true')
     // 判断做过feedback的event不用再从EventsTable中取出
     EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
+      console.log("res", res)
+      let results = res.data.objects
+      let attendedEvents = [];
+      results.forEach((object) => {
+        let todaymillisecs = new Date().getTime();
+        let eventmillisecs = new Date(object.date).getTime();
+        if (eventmillisecs < todaymillisecs) {
+          attendedEvents.push(object);
+        };
+    })
+      app.globalData.attendedEvents = attendedEvents
+
       wx.setStorage({
         key: 'attendedEvents',
-        data: res.data.objects
+        data: attendedEvents
       })
+      console.log('aaaaaaa', attendedEvents)
       // page.setData({
       //   attendedEvents: res.data.objects
       // })
