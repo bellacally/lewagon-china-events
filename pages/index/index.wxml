@@ -11,7 +11,7 @@
      <view id= "{{res.id}}" bindtap="clickToShow" data-index="{{res.id}}">
       <view id="event_image" style= "background-image: url('{{res.image}}'); background-size:cover;">
       <!-- CHECK IF THE EVENT ID IS INCLUDED IN THE PARTICIPATED EVENTS ARRAY -->
-        <block wx:if="{{}}">
+        <block wx:if="{{participatedEvents.include('5c2dc11494b1f87b9ee0aced')}}">
           <image id="avatar" src='{{res.avatar}}'></image>
         </block>
       </view>

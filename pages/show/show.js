@@ -26,11 +26,12 @@ Page({
   },
 
   onLoad: function (e) {
+    console.log(111111, e)
     let page = this
 
     page.setData({
       event_id: e.event_id,
-      userId: wx.getStorageSync('userId'),
+      userId: wx.getStorageSync('userId')
     })
 
     let tableID = 60055
@@ -101,7 +102,8 @@ Page({
       console.log(rsvp)
       rsvp.set({
         'event_id': eventId,
-        'user_id': `${userId}`
+        'user_id': `${userId}`,
+        //  'avatar': `${res.avatarUrl}`
       }).save().then(res => {
         // success
         console.log(res)
