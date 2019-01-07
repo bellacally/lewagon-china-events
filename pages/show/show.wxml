@@ -1,47 +1,45 @@
 <view class="wrapper">
-  <view class="container">
+<view class="container">
     <view class="header">
-      <view id="event_image" style="background-image:url('{{result.image}}'); background-size:cover;">
-    </view>
+      <view id="event_image" style="background-image:url('{{event_image}}'); background-size:cover;"></view>
     </view>
 
-  <view class="share_icon"> 
-    <button id= "share_btn" open-type='share'>
-      <image id="share_img" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gbGF6Ul9YF5oYiX.png"/>
-    </button>
-  </view>
-  
+    <view class="share_icon"> 
+      <button id= "share_btn" open-type='share'>
+        <image id="share_img" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gbGF6Ul9YF5oYiX.png"/>
+      </button>
+    </view>
   <view class="row_container">
     <view class="row">
       <image class="icon" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyabLlxUXtBUn.png"/>
-    <view class ="info">{{result.date}}</view>
+      <view class ="info">{{event_date}}</view>
     </view>
 
     <view class="row">
       <image class="icon" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gZ6CjPj5mLjjf41.png"/>
-      <view class ="info">{{result.address}}</view>
+      <view class ="info">{{event_address}}</view>
     </view>
-   </view>
+  </view>
 
   <view class="about_sec">
     <view class="subtitle">About</view>
-      <view class="text_area {{isFold?'short':'long'}} ">
-       <view class="long_dec {{isFold?'hide':'show'}}">{{result.description}}</view>
-         <view bindtap='showAll' id="icon">
-            <image class='arrow' src="{{isFold?'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gay15Qe9g8W1tP4.png':'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gay15G7vmoDi0YJ.png'}}"></image>
-          </view>
-        </view>
-
-    <view class="subtitle">Location</view>
-      <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="16" markers="{{markers}}"></map>  
-    </view>
-
-      <view class="cta">
-        <button class="btn attend" open-type="getUserInfo" bindgetuserinfo="userInfoHandler">Attend</button> 
-        <button class="btn" open-type='share'>Invite</button>
-      </view>
-   </view>
+    <view class="long_dec">{{event_description}}</view>
   </view>
+
+    <!-- <view class="subtitle">Location</view>
+      <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="16" markers="{{markers}}"></map> -->
+
+  <view class="cta">
+
+    <block wx:if="{{result.attend_by != userId}}">
+        <button class="btn attend" bindtap="signup">Attend</button> 
+    </block>
+      
+    <button class="btn" open-type='share'>Invite</button>
+  </view>
+
+</view>
+</view>
 
  
     

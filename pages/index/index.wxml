@@ -1,16 +1,17 @@
 <view class="section" style="background-image: url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyahkSIPJy9b1.jpg'); background-size:cover; height:410rpx">
   <view class="row icon">
   </view>
-   <Select class="dropdown" prop-array='{{selectArray}}'><view>{{nowText}}</view></Select>
-   <view class='nowText'>{{nowText}}</view>
+   <Select class="dropdown" prop-array='{{selectArray}}'></Select>
+   <view class='nowText'>{{SelectedCity}}</view>
  </view>
 
 <view class="container">
   <block wx:for="{{upcomingEvents}}" wx:for-item="res" wx:key="key" wx:index="index">
     <view class="background">
-     <view id= "{{res.id}}" bindtap="clickToShow" data-index="{{index}}">
+     <view id= "{{res.id}}" bindtap="clickToShow" data-index="{{res.id}}">
       <view id="event_image" style= "background-image: url('{{res.image}}'); background-size:cover;">
-        <block wx:if="{{res.attend_by == userId}}">
+      <!-- CHECK IF THE EVENT ID IS INCLUDED IN THE PARTICIPATED EVENTS ARRAY -->
+        <block wx:if="{{}}">
           <image id="avatar" src='{{res.avatar}}'></image>
         </block>
       </view>

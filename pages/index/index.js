@@ -1,6 +1,5 @@
 const app = getApp();
 var time = require('../../utils/util.js');
-// map
 var amapFile = require('../../libs/amap-wx.js');
 Page({
   data: {
@@ -22,65 +21,81 @@ Page({
   },
 
   onLoad(options) {
+
+    // LOADING UPCOMING EVENTS INTO THE PAGE
     var that = this;
-    // console.log(options)
-    // var userId = wx.getStorageSync('userId')
     const EventsTable = new wx.BaaS.TableObject('events');
     let query = new wx.BaaS.Query();
     let city = options.city || 'Shanghai'
-    // console.log(city);
     query.contains('city', city);
+
     EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
+
       let results = res.data.objects
       let upcomingEvents = [];
+
       results.forEach((object) => {
-        // object.date = object.date.substr(0, 10);
         let todaymillisecs = new Date().getTime();
-        // let date = new Date(time);
-        // let todayDate = date.toString();
-        // let eventDate = new Date(object.date).toString();
         let eventmillisecs = new Date(object.date).getTime();
         if (eventmillisecs > todaymillisecs) {
           upcomingEvents.push(object);
         };
-        // that.setData({
-        //   upcomingEvents: upcomingEvents,
-        // }); 
-        // app.globalData.upcomingEvents.date = upcomingEvents.date
+        
         upcomingEvents.forEach((upcomingEvent) => {
           upcomingEvent.date = new Date(upcomingEvent.date).toString().toUpperCase().substr(3,8);
-          // that.setData({
-          //   date: new Date(upcomingEvent.date).toString().substr(3, 4),
-          //   month: new Date(upcomingEvent.date).toString().substr(7, 4),
-          // });
+          
         })
         app.globalData.upcomingEvents = upcomingEvents
        
-        // console.log(3333333, upcomingEvents)
-        
-        // object.date = new Date(object.date).toString().substr(0, 10);
-        // console.log(444444, upcomingEvents)
       })
-   
+
+
+      // SETTING EVENTS AND DATA IN LOCAL STORAGE
       that.setData({
-        // avatar: app.globalData.avatar,
         userId: wx.getStorageSync('userId'),
-        nowText: city,
+        SelectedCity: city,
         upcomingEvents: upcomingEvents,
       });
+
+      // LOADING ALL SIGNUPS OF THE CURRENT USER
+      const SignupsTable = new wx.BaaS.TableObject('signups');
+      let query = new wx.BaaS.Query();
+
+      console.log(that.data.userId)
+
+      query.compare('created_by', '=', that.data.userId)
+
+      SignupsTable.setQuery(query).find().then(res => {
+        // success
+        console.log(res.data.objects)
+
+        let participatedEvents = [];
+        
+        res.data.objects.forEach((e) => {
+          console.log(e);
+          let event_id = e.event_id.id
+          participatedEvents.push(event_id);
+        });
+
+        that.setData({
+            participatedEvents: participatedEvents
+        });
+        
+      }, err => {
+        // err
+      })      
+
     });
 
-
-    var myAmapFun = new amapFile.AMapWX({ key: 'e9ae38eabebabeffed311424ddbbf395' });
-    var cities = {
-      "成都市": "Chengdu",
-      "上海市": "Shanghai",
-      "深圳市": "Shenzhen",
-      "杭州市": "Hangzhou"
-    }
   },
+
   onShareAppMessage: function () {
-    // console.log('share');
+    // SET UP THE SHARING BOX
+    return {
+      title: 'Le Wagon: Start your journey in tech!',
+      path: 'pages/index/index',
+      imageUrl: 'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyahkSIPJy9b1.jpg'
+    }
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -90,7 +105,7 @@ Page({
     var id = e.currentTarget.dataset.index;
     // app.globalData.eventId = eventId;
     wx.navigateTo({
-      url: `/pages/show/show?id=${id}`
+      url: `/pages/show/show?event_id=${id}`
     })
   },
 

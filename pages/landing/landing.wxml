@@ -16,7 +16,7 @@
     </view>
   </block>
   
-  <block wx:if="{{hidden}}" >
+  <block wx:if="{{hidden}}">
     <view class="slogon">
       <view class="line">Thank you for attending {{event_name}}</view>
       <view classs="row">
