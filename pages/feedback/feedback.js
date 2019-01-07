@@ -5,7 +5,6 @@ Page({
     starIndex1: 0,
     starIndex2: 0,
     starIndex3: 0,
-
     array: ['Meetup.com', 'Huodongxing', 'EventBrite', 'WeChat', 'WeWork', 'Others'],
     objectArray: [
       {
@@ -84,19 +83,6 @@ Page({
     })
     let Feedback = new wx.BaaS.TableObject('feedbacks');
     let eventId = that.data.event_id;
-    // let userId = data.detail.userInfo.id;
-    let userId = wx.getStorageSync('userId')
-    let EventsTable = new wx.BaaS.TableObject('events');
-    let event = EventsTable.getWithoutData(eventId)
-    event.set('attend_status', 'false')
-    event.update().then(res => {
-      // success
-      // console.log("res2", res)
-      
-    }, err => {
-      // err
-      console.log(err)
-    })
     
     let feedback = Feedback.create()
     feedback.set({
@@ -108,7 +94,7 @@ Page({
       'content_rating': that.data.starIndex3,
       'areas_to_improve': that.data.areas_to_improve,
       'event_id': `${that.data.event_id}`
-    }).save().then(res => {
+      }).save().then(res => {
       wx.showToast({
           title: 'Submitted',
           icon: 'success',
@@ -151,50 +137,62 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    let page = this
-    if (options.event_id) {
+
+    wx.BaaS = requirePlugin('sdkPlugin')
+    wx.BaaS.wxExtend(wx.login);
+    wx.BaaS.login(false).then(res => {
       this.setData({
-        event_id: options.event_id,
-        event_name: app.globalData.event_name,
-        event_image: app.globalData.event_image
+        userId: res.id
       })
-      const EventsTable = new wx.BaaS.TableObject('events');
-      // let recordID = '5c285b4a372449589f62d'
+    }, err => {
+      // err
+    })
+
+    let page = this
+
+    console.log(options.event_id)
+
+    if (options.event_id) {
+      
+      page.setData({
+        event_id: options.event_id,
+      })
+
+      let tableID = 60055
       let recordID = page.data.event_id
-      console.log("yessss", recordID)
-      EventsTable.get(recordID).then(res => {
+      let query = new wx.BaaS.Query()      
+      let EventsTable = new wx.BaaS.TableObject(tableID);
+      query.compare('id', '=', recordID)
+
+      EventsTable.setQuery(query).find().then(res => {
         // success
-        console.log("rescccccc", res)
+        console.log("res", res.data.objects[0])
+        let event = res.data.objects[0]
+
+        page.setData({
+          event_image: event.image,
+          event_name: event.name
+        })
+
       }, err => {
         // err
       })
 
-    }
+      // EventsTable.get(recordID).then(res => {
+      //   console.log("res", res)
+      // }, err => {
+      //   // err
+      //   console.log("no results")
+      // })
 
-    wx.BaaS = requirePlugin('sdkPlugin')
-    //让插件帮助完成登录、支付等功能
-    wx.BaaS.wxExtend(wx.login);
-      wx.BaaS.login(false).then(res => {
-       this.setData({
-         userId: res.id
-       })
-  }, err => {
-    // err
-  })
+      page.setData({
+        userId: wx.getStorageSync('userId'),
+      })
+
+    }
 },
 
-// queryEventData: function(){
-//   const EventsTable = new wx.BaaS.TableObject('events');
-//   let eventId = page.event_id
-//   console.log("rescccccc", eventId)
-//   // let recordID = '5c2c35d9aa991d60ce2'
-//   EventsTable.get(eventId).then(res => {
-//     // success
-//     console.log("rescccccc", res)
-//   }, err => {
-//     // err
-//   })
-// },
+
 
  
   /**

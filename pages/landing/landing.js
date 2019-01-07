@@ -15,6 +15,7 @@ Page({
    */
   onLoad: function (options) {
     let page = this;
+    
     wx.getStorage({
       key: 'attendedEvents',
       success(res) {
@@ -24,7 +25,6 @@ Page({
             show: true,
             hidden: false
           })
-          // wx.clearStorage();
         } else {
           page.setData({
             show: false,
@@ -38,12 +38,12 @@ Page({
 
   getUserInfo(data) {
     wx.BaaS.handleUserInfo(data).then(res => {
-      // res 包含用户完整信息，详见下方描述
       let page = this;
-      page.setData({
-        userId: res.id
-      })
+      // page.setData({
+      //   userId: res.id
+      // })
       page.getevents();
+
     }, res => {
     })
   },
@@ -53,7 +53,6 @@ Page({
     let EventsTable = new wx.BaaS.TableObject('events');
     let query = new wx.BaaS.Query();
     query.contains('attend_status', 'true')
-    // 判断做过feedback的event不用再从EventsTable中取出
     EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
       console.log("res", res)
       let results = res.data.objects
@@ -76,9 +75,9 @@ Page({
       //   attendedEvents: res.data.objects
       // })
     })
-    wx.redirectTo({
-      url: '../index/index',
-    })
+    // wx.redirectTo({
+    //   url: '../index/index',
+    // })
   },
  clickToIndex:function(){
    wx.redirectTo({
