@@ -1,4 +1,3 @@
-// pages/landing/landing.js
 let app = getApp();
 Page({
 
@@ -6,8 +5,6 @@ Page({
    * Page initial data
    */
   data: {
-    show: true,
-    hidden: false
   },
 
   /**
@@ -15,21 +12,15 @@ Page({
    */
   onLoad: function (options) {
     let page = this;
-    
+
     wx.getStorage({
       key: 'attendedEvents',
       success(res) {
         console.log("res", res)
         if (!res.data || res.data.length === 0) {
-          page.setData({
-            show: true,
-            hidden: false
-          })
+         
         } else {
-          page.setData({
-            show: false,
-            hidden: true,
-          })
+          
         }
       }
     })
@@ -48,7 +39,7 @@ Page({
     })
   },
 
-  getevents: function() {
+  getevents: function () {
     let page = this;
     let EventsTable = new wx.BaaS.TableObject('events');
     let query = new wx.BaaS.Query();
@@ -63,7 +54,7 @@ Page({
         if (eventmillisecs < todaymillisecs) {
           attendedEvents.push(object);
         };
-    })
+      })
       app.globalData.attendedEvents = attendedEvents
 
       wx.setStorage({
@@ -71,19 +62,13 @@ Page({
         data: attendedEvents
       })
       console.log('aaaaaaa', attendedEvents)
-      // page.setData({
-      //   attendedEvents: res.data.objects
-      // })
+  
     })
     // wx.redirectTo({
     //   url: '../index/index',
     // })
   },
- clickToIndex:function(){
-   wx.redirectTo({
-     url: '../index/index',
-   })
- },
+
   clickToFeedback: function (e) {
     let page = this;
     wx.getStorage({
@@ -107,7 +92,7 @@ Page({
               wx.setStorage({
                 key: 'attendedEvents',
                 data: res.data
-                
+
               })
               wx.redirectTo({
                 url: `../feedback/feedback?event_id=${page.data.event_id}`,
@@ -124,7 +109,7 @@ Page({
     //   url: `../feedback/feedback?event_id=${page.data.attendedEvents[0].id}`,
     // })
   },
-  
+
   /**
    * Lifecycle function--Called when page is initially rendered
    */

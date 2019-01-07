@@ -80,6 +80,7 @@ Page({
         that.setData({
             participatedEvents: participatedEvents
         });
+        console.log(participatedEvents)
         
       }, err => {
         // err
