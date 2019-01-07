@@ -5,7 +5,6 @@
         <view class ='name' >{{event_name}}</view>
     </view>
 
-
       <view class="section section_gap">
          <view class="section_title">* How did you registered for the event?</view>
           <picker bindchange="bindPickerChange" value="{{[channel_index]}}" range="{{array}}" name="channels">

@@ -1,4 +1,3 @@
-<!--pages/show/show.wxml-->
 <view class="wrapper">
   <view class="container">
     <view class="header">

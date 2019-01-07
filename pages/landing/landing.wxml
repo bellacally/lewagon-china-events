@@ -21,7 +21,7 @@
       <view class="line">Thank you for attending {{event_name}}</view>
       <view classs="row">
         <button bindtap="clickToFeedback">Give us feedback</button>
-        <button bindtap="clickToIndex">Skip</button>
+        <button class= "skip" bindtap="clickToIndex">Skip</button>
       </view>
     </view>
   </block> 

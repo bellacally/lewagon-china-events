@@ -34,19 +34,14 @@ Page({
         // err
         console.log("already attend")
       })
-      
-    }, res => {
-      
+    }, res => {  
     })
   },
-
-
   /**
    * Page initial data
    */
   data: {
     isFold:true,
-    // expand: false,
     scrollTop: 0 
   },
   onChange(event) {
@@ -77,13 +72,6 @@ Page({
   //   },
  
   
-
-  // expand: function (e) {
-  //   var value = !this.data.expand;
-  //   this.setData({
-  //     expand: value
-  //   })
-  // },
   showAll: function (e) {
     this.setData({
       isFold: !this.data.isFold,
@@ -96,7 +84,8 @@ Page({
     let id = Number(e.id)
     // console.log(app.globalData.upcoming[id])
     this.setData({
-      result: app.globalData.upcomingEvents[id] 
+      result: app.globalData.upcomingEvents[id],
+      date: app.globalData.upcomingEvents.date
     })
     var that = this;
     var myAmapFun = new amapFile.AMapWX({ key: 'e9ae38eabebabeffed311424ddbbf395' });

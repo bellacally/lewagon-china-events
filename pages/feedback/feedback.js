@@ -116,7 +116,7 @@ Page({
           success: function () { 
             setTimeout(function () {
               wx.navigateTo({
-                url: '/pages/landing/landing',
+                url: '/pages/index/index',
               })
             }, 1000);
           }
@@ -158,7 +158,19 @@ Page({
         event_name: app.globalData.event_name,
         event_image: app.globalData.event_image
       })
+      const EventsTable = new wx.BaaS.TableObject('events');
+      // let recordID = '5c285b4a372449589f62d'
+      let recordID = page.data.event_id
+      console.log("yessss", recordID)
+      EventsTable.get(recordID).then(res => {
+        // success
+        console.log("rescccccc", res)
+      }, err => {
+        // err
+      })
+
     }
+
     wx.BaaS = requirePlugin('sdkPlugin')
     //让插件帮助完成登录、支付等功能
     wx.BaaS.wxExtend(wx.login);
@@ -170,6 +182,20 @@ Page({
     // err
   })
 },
+
+// queryEventData: function(){
+//   const EventsTable = new wx.BaaS.TableObject('events');
+//   let eventId = page.event_id
+//   console.log("rescccccc", eventId)
+//   // let recordID = '5c2c35d9aa991d60ce2'
+//   EventsTable.get(eventId).then(res => {
+//     // success
+//     console.log("rescccccc", res)
+//   }, err => {
+//     // err
+//   })
+// },
+
  
   /**
    * Lifecycle function--Called when page is initially rendered

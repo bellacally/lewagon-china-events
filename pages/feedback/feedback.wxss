@@ -1,7 +1,6 @@
-/* pages/feedback/feedback.wxss */
+@import '../../libs/font.wxss';
 page {
   /* background-color:#fcf5e8;   */
-  font-family: Circular Std Book;
   background:#fcf5e8;
 }
 .wrapper{
@@ -9,11 +8,12 @@ page {
 }
 
 .header{
-   color: white;
+  color: white;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: Circular Std Book;
 }
 .name{
   font-size: 40rpx;
@@ -32,7 +32,6 @@ page {
 
 .section{
   padding: 20rpx;
-
 }
 .section_title{
   font-size:30rpx;
@@ -40,12 +39,12 @@ page {
   padding-bottom: 15rpx;
   font-family: SF Pro Text;
   font-weight: bold;
-
+  margin-bottom:25rpx
 }
+
 .details{
   padding: 10rpx;
-  font-size: 28rpx;
-  
+  font-size: 28rpx; 
 }
 .all{
   padding: 0 25rpx;
@@ -69,8 +68,9 @@ page {
   width:20%;
   padding-left: 20rpx;
   font-family: Circular Std Book;
-
+  padding-right:60rpx;
 }
+
 textarea{
   background-color: #fff;
   margin-top:8px;
@@ -80,6 +80,7 @@ textarea{
   margin:0 auto;
   font-family: SF Pro Text;
 }
+
 .message{
   padding:20rpx;
   font-family: Circular Std Book;
@@ -119,5 +120,4 @@ text{
 }
 .show{ 
  display: block;
-
 }

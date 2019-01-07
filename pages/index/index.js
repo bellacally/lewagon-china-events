@@ -43,6 +43,10 @@ Page({
         if (eventmillisecs > todaymillisecs) {
           upcomingEvents.push(object);
         };
+        // that.setData({
+        //   upcomingEvents: upcomingEvents,
+        // }); 
+        // app.globalData.upcomingEvents.date = upcomingEvents.date
         upcomingEvents.forEach((upcomingEvent) => {
           upcomingEvent.date = new Date(upcomingEvent.date).toString().toUpperCase().substr(3,8);
           // that.setData({
@@ -51,10 +55,9 @@ Page({
           // });
         })
         app.globalData.upcomingEvents = upcomingEvents
+       
         // console.log(3333333, upcomingEvents)
-        // that.setData({
-        //   upcomingEvents: upcomingEvents,
-        // }); 
+        
         // object.date = new Date(object.date).toString().substr(0, 10);
         // console.log(444444, upcomingEvents)
       })
