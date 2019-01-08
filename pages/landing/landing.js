@@ -13,7 +13,7 @@ Page({
   onLoad: function (options) {
     let page = this;
 
-    // Getting UserID to begin with
+    // 1. Getting UserID to begin with
     wx.getStorage({
       key: 'userId',
       success(res) {
@@ -24,14 +24,17 @@ Page({
 
         } else {
 
+          let userId = res.data
+
           page.setData({
-            userId: res.data
+            userId: userId
           })
 
-          // Check if this user has signed up before
+          // 2. Check if this user has signed up before
           
           try {
-            var signUps = wx.getStorageSync('signUps')
+            let signUps = wx.getStorageSync('signUps')
+            
             if (signUps.length === 0) {
               console.log("user has no sign ups")
               // no need to go to feedbacks
@@ -42,13 +45,47 @@ Page({
 
               // Verify if this user has signed up to any event of the past week
               try {
-                var recentPastEvents = wx.getStorageSync('recentPastEvents')
+                let recentPastEventsId = wx.getStorageSync('recentPastEventsId')
+                
+                signUps.forEach((signUp) => {
+
+                  console.log("signed up to:", signUp)
+
+                  let verify = recentPastEventsId.includes(signUp) 
+
+                  if (verify) {
+
+                    // if verify is true, then the user joined an event this past week
+
+                    console.log("user joined an event this past week")
+
+                    // For past events, check if there are no feedbacks
+
+                    let noFeedback = page.checkFeedbacks(signUp, userId);
+
+                      if (noFeedback) {
+                        // redirect visitor to the feedback form
+                      }
+                      else {
+                        // do nothing
+                      }
+
+
+                  } else {
+                    // verify is wrong, the user didn't join any past event
+
+                    console.log("the user didn't join any past event")
+
+                  }
+                  
+                
+                })
+
+              
 
               } catch (e) {
 
               }
-
-              // For past events, check if there are no feedbacks
               
               // no sign ups
             }
@@ -79,8 +116,16 @@ Page({
     })
 
   },
+  checkFeedbacks(signUp, userId) {
 
+    console.log(signUp);
+    console.log(userId);
 
+    // CALL TO THE DATABASE TO CHECK IF THIS USER HAS SENT A FEEDBACK YET
+
+    // RETURN TRUE OR FALSE
+
+  },
   getUserInfo(data) {
     let page = this;
     wx.BaaS.handleUserInfo(data).then(res => {
