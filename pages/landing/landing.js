@@ -13,60 +13,91 @@ Page({
   onLoad: function (options) {
     let page = this;
 
+    // Getting UserID to begin with
     wx.getStorage({
-      key: 'attendedEvents',
+      key: 'userId',
       success(res) {
         console.log("res", res)
         if (!res.data || res.data.length === 0) {
          
+         console.log("alert we have no user ID!");
+
         } else {
+
+          page.setData({
+            userId: res.data
+          })
+
+          // Check if this user has signed up before
+          
+          try {
+            var signUps = wx.getStorageSync('signUps')
+            if (signUps.length === 0) {
+              console.log("user has no sign ups")
+              // no need to go to feedbacks
+              }
+            else {
+              console.log("user signed up to:", signUps)
+              // User signed up, move on
+
+              // Verify if this user has signed up to any event of the past week
+              try {
+                var recentPastEvents = wx.getStorageSync('recentPastEvents')
+
+              } catch (e) {
+
+              }
+
+              // For past events, check if there are no feedbacks
+              
+              // no sign ups
+            }
+          } catch (e) {
+            // Do something when catch error
+          }
+
+          // wx.getStorage({
+          //   key: 'signUps',
+          //   success(signUps) {
+          //     if (signUps.length === 0) {
+          //       // no sign ups
+          //       console.log("user has no sign ups")
+          //     }
+          //     else {
+          //       console.log("user signed up to:", signUps)
+          //       // user signed up, move on
+          //       // Check if Sign Ups are past or future
+          //       // For past events, check if there are no feedbacks
+          //       // For past events, has to be within a week
+
+          //     }
+          //   }
+          // })
           
         }
       }
     })
+
   },
 
 
   getUserInfo(data) {
+    let page = this;
     wx.BaaS.handleUserInfo(data).then(res => {
-      let page = this;
-      // page.setData({
-      //   userId: res.id
-      // })
-      page.getevents();
+      console.log(res)
+      wx.setStorageSync('userName', res.nickName)
+      wx.setStorageSync('userCity', res.province)
+      wx.setStorageSync('userAvatar', res.avatarUrl)
+      page.goToEvents();
 
     }, res => {
     })
   },
 
-  getevents: function () {
-    let page = this;
-    let EventsTable = new wx.BaaS.TableObject('events');
-    let query = new wx.BaaS.Query();
-    query.contains('attend_status', 'true')
-    EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
-      console.log("res", res)
-      let results = res.data.objects
-      let attendedEvents = [];
-      results.forEach((object) => {
-        let todaymillisecs = new Date().getTime();
-        let eventmillisecs = new Date(object.date).getTime();
-        if (eventmillisecs < todaymillisecs) {
-          attendedEvents.push(object);
-        };
-      })
-      app.globalData.attendedEvents = attendedEvents
-
-      wx.setStorage({
-        key: 'attendedEvents',
-        data: attendedEvents
-      })
-      console.log('aaaaaaa', attendedEvents)
-  
+  goToEvents: function () {
+    wx.redirectTo({
+      url: '../index/index',
     })
-    // wx.redirectTo({
-    //   url: '../index/index',
-    // })
   },
 
   clickToFeedback: function (e) {

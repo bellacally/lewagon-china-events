@@ -81,6 +81,8 @@ Page({
             participatedEvents: participatedEvents
         });
         console.log(participatedEvents)
+
+        app.globalData.participatedEvents = participatedEvents
         
       }, err => {
         // err

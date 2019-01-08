@@ -10,12 +10,12 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#FD1015",
-    "navigationBarTitleText": "LeWagon",
+    "navigationBarTitleText": "Le Wagon",
     "navigationBarTextStyle": "white"
   },
   "plugins": {
     "sdkPlugin": {
-      "version": "1.12.0",
+      "version": "1.14.0",
       "provider": "wxc6b86e382a1e3294"
     }
   }
