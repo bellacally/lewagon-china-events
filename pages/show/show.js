@@ -103,10 +103,10 @@ Page({
       rsvp.set({
         'event_id': eventId,
         'user_id': `${userId}`,
-        //  'avatar': `${res.avatarUrl}`
       }).save().then(res => {
         // success
         console.log(res)
+        app.getSignUps(userId)
         wx.showToast({
           title: 'Booked!',
           icon: 'success',
