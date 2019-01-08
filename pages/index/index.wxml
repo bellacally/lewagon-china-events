@@ -1,8 +1,7 @@
 <view class="section" style="background-image: url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyahkSIPJy9b1.jpg'); background-size:cover; height:410rpx">
   <view class="row icon">
   </view>
-   <Select class="dropdown" prop-array='{{selectArray}}'></Select>
-   <view class='nowText'>{{SelectedCity}}</view>
+   <Select class="dropdown" prop-array='{{selectArray}}' city="{{SelectedCity}}"></Select>
  </view>
 
 <view class="container">

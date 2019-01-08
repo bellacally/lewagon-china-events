@@ -67,7 +67,7 @@ App({
 
   },
   globalData: {
-    city: ""
+    
   }
   
 })

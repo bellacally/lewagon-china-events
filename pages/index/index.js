@@ -16,7 +16,6 @@ Page({
       "text": "Shenzhen"
     }
     ],
-    city: "",
     avatar: wx.getStorageSync('avatar')
   },
 
@@ -55,38 +54,7 @@ Page({
         userId: wx.getStorageSync('userId'),
         SelectedCity: city,
         upcomingEvents: upcomingEvents,
-      });
-
-      // LOADING ALL SIGNUPS OF THE CURRENT USER
-      const SignupsTable = new wx.BaaS.TableObject('signups');
-      let query = new wx.BaaS.Query();
-
-      console.log(that.data.userId)
-
-      query.compare('created_by', '=', that.data.userId)
-
-      SignupsTable.setQuery(query).find().then(res => {
-        // success
-        console.log(res.data.objects)
-
-        let participatedEvents = [];
-        
-        res.data.objects.forEach((e) => {
-          console.log(e);
-          let event_id = e.event_id.id
-          participatedEvents.push(event_id);
-        });
-
-        that.setData({
-            participatedEvents: participatedEvents
-        });
-        console.log(participatedEvents)
-
-        app.globalData.participatedEvents = participatedEvents
-        
-      }, err => {
-        // err
-      })      
+      });      
 
     });
 
@@ -106,13 +74,12 @@ Page({
   
   clickToShow: function (e) {
     var id = e.currentTarget.dataset.index;
-    // app.globalData.eventId = eventId;
     wx.navigateTo({
       url: `/pages/show/show?event_id=${id}`
     })
   },
 
-    /**
+  /**
    * Lifecycle function--Called when page hide
    */
   onHide: function () {

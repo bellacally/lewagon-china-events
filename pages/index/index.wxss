@@ -25,14 +25,23 @@ page {
 position:absolute;
 top:154rpx;
 left:130rpx;
-font-size:26rpx;
+font-size:33rpx;
 font-family: Circular Std Book;
+}
+
+.com-sItem {
+  font-size:33rpx;
+  font-family: Circular Std Book;
+}
+
+.com-sContent {
+  height:40px;
 }
 
 .city_name{
   margin-left: 30rpx;
   font-weight: bold;
-font-family: Circular Std Book;
+  font-family: Circular Std Book;
 
 }
 
@@ -42,8 +51,8 @@ font-family: Circular Std Book;
   width: 100%;
   height: 300rpx;
   margin-bottom: 50rpx;
-
 }
+
 .background{
   width: 90vw;
   position: relative;

@@ -4,6 +4,10 @@ Component({
   properties: {
     propArray: {
       type: Array,
+    },
+    city: {
+      type: String,
+      value: 'Shanghai',
     }
   },
   /**
@@ -11,7 +15,8 @@ Component({
    */
   data: {
     selectShow: false,//初始option不显示
-    animationData: {}//右边箭头的动画
+    animationData: {},
+    city: "Shanghai" //右边箭头的动画
   },
   
   /**
@@ -49,13 +54,11 @@ Component({
       var city = e.currentTarget.dataset.item;
       var nowData = this.properties.propArray;//当前option的数据是引入组件的页面传过来的，所以这里获取数据只有通过this.properties
       var nowIdx = e.target.dataset.index;//当前点击的索引
-      var nowText = nowData[nowIdx].text;//当前点击的内容
       //再次执行动画，注意这里一定，一定，一定是this.animation来使用动画
       this.animation.rotate(0).step();
       that.setData({
         city: city,
         selectShow: false,
-        nowText: nowText,
         animationData: this.animation.export()
       });
       wx.redirectTo({
