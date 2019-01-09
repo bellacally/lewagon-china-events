@@ -128,6 +128,20 @@ Page({
 
     console.log('tttttt', signUp);
     console.log('sjskksk', userId);
+    let tableID = 33633
+    let signUpQuery = new wx.BaaS.Query()
+    let userQuery = new wx.BaaS.Query()
+    let EventsTable = new wx.BaaS.TableObject(tableID);
+    signUpQuery.compare('signUp', '=',signUp )
+    userQuery.compare('userId', '=', userId)
+    const andQuery = wx.BaaS.Query.and(userQuery, signUpQuery);
+    EventsTable.setQuery(andQuery).find().then(res => {
+      // success
+      console.log("res11111", res)
+    
+    }, err => {
+      console.log(false)
+    })
 
     // CALL TO THE DATABASE TO CHECK IF THIS USER HAS SENT A FEEDBACK YET
 
