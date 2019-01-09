@@ -60,16 +60,24 @@ Page({
                     console.log("user joined an event this past week")
 
                     // For past events, check if there are no feedbacks
-
-                    let noFeedback = page.checkFeedbacks(signUp, userId);
+                    try{
+                      let noFeedback = page.checkFeedbacks(signUp, userId);
 
                       if (noFeedback) {
                         // redirect visitor to the feedback form
+                        console.log("the user didn't write anything")
+
                       }
                       else {
                         // do nothing
                       }
 
+
+                    }
+                    catch (e) {
+
+                    }
+                    
 
                   } else {
                     // verify is wrong, the user didn't join any past event
@@ -118,14 +126,15 @@ Page({
   },
   checkFeedbacks(signUp, userId) {
 
-    console.log(signUp);
-    console.log(userId);
+    console.log('tttttt', signUp);
+    console.log('sjskksk', userId);
 
     // CALL TO THE DATABASE TO CHECK IF THIS USER HAS SENT A FEEDBACK YET
 
     // RETURN TRUE OR FALSE
 
   },
+
   getUserInfo(data) {
     let page = this;
     wx.BaaS.handleUserInfo(data).then(res => {
