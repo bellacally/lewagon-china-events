@@ -19,8 +19,8 @@ Page({
       success(res) {
         console.log("res", res)
         if (!res.data || res.data.length === 0) {
-         
-         console.log("alert we have no user ID!");
+
+          console.log("alert we have no user ID!");
 
         } else {
 
@@ -31,14 +31,14 @@ Page({
           })
 
           // 2. Check if this user has signed up before
-          
+
           try {
             let signUps = wx.getStorageSync('signUps')
-            
+
             if (signUps.length === 0) {
               console.log("user has no sign ups")
               // no need to go to feedbacks
-              }
+            }
             else {
               console.log("user signed up to:", signUps)
               // User signed up, move on
@@ -46,12 +46,12 @@ Page({
               // Verify if this user has signed up to any event of the past week
               try {
                 let recentPastEventsId = wx.getStorageSync('recentPastEventsId')
-                
+
                 signUps.forEach((signUp) => {
 
                   console.log("signed up to:", signUp)
 
-                  let verify = recentPastEventsId.includes(signUp) 
+                  let verify = recentPastEventsId.includes(signUp)
 
                   if (verify) {
 
@@ -60,17 +60,23 @@ Page({
                     console.log("user joined an event this past week")
 
                     // For past events, check if there are no feedbacks
-                     
-                    let noFeedback = page.checkFeedbacks(signUp, userId);
+                    try {
+                      let noFeedback = page.checkFeedbacks(signUp, userId);
 
                       if (noFeedback) {
                         // redirect visitor to the feedback form
-                        console.log("the user didn't join write anything")
+                        console.log("the user didn't write anything")
 
                       }
                       else {
                         // do nothing
                       }
+
+
+                    }
+                    catch (e) {
+
+                    }
 
 
                   } else {
@@ -79,16 +85,16 @@ Page({
                     console.log("the user didn't join any past event")
 
                   }
-                  
-                
+
+
                 })
 
-              
+
 
               } catch (e) {
 
               }
-              
+
               // no sign ups
             }
           } catch (e) {
@@ -112,7 +118,7 @@ Page({
           //     }
           //   }
           // })
-          
+
         }
       }
     })
