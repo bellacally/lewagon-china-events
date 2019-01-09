@@ -9,7 +9,7 @@
     background: white;
     font-size: 16px;
     position: relative;
-    height: 50px;
+    height: 40px;
     line-height: 50px;
 }
 .com-sImg{
@@ -24,8 +24,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    padding:0 20px 0 6px;
-    font-size: 14px;
+    height: 40px;
+    line-height: 36px;    
+    padding:2px 20px 2px 6px;
+    font-size: 33rpx;
+    font-family: Circular Std Book;
 }
 .com-sList{
     background: white;
@@ -47,8 +50,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 13px;
+    font-size: 33rpx;
+    font-family: Circular Std Book;    
 }
+
 .com-sItem:first-child{
     border-top: none;
 }

@@ -1,6 +1,6 @@
 <view class='com-selectBox'>
     <view class='com-sContent' bindtap='selectToggle'>
-        <view class='com-sTxt'></view>
+        <view class='com-sTxt'>{{city}}</view>
         <image src='https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gbHQPe9R1zJCimA.png'  class='com-sImg'  animation="{{animationData}}"></image>
     </view>
     <view class='com-sList' wx:if="{{selectShow}}">
