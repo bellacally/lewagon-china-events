@@ -33,18 +33,20 @@ Page({
       event_id: e.event_id,
       userId: wx.getStorageSync('userId')
     })
-
+    var attended;
     let tableID = 60055
     let recordID = page.data.event_id
     let query = new wx.BaaS.Query()
     let EventsTable = new wx.BaaS.TableObject(tableID);
     query.compare('id', '=', recordID)
+    let SignupsTable = new wx.BaaS.TableObject(61887);
+    let signups_query = new wx.BaaS.Query();
+    signups_query.compare('user_id', '=', page.data.userId);
 
     EventsTable.setQuery(query).find().then(res => {
       // success
       console.log("res", res.data.objects[0])
       let event = res.data.objects[0]
-
       page.setData({
         event_image: event.image,
         event_name: event.name,
@@ -53,11 +55,23 @@ Page({
         event_description: event.description,
         event_city: event.city
       })
-
     }, err => {
       // err
     })
-
+    SignupsTable.setQuery(signups_query).find().then(res => {
+      console.log("signups", res.data.objects[0].event_id.id)
+      let signups = res.data.objects.map((s) => {
+        return s.event_id.id
+      })
+      attended = signups.includes(recordID);
+      console.log(recordID)
+      page.setData({
+        attended: attended
+      })
+      console.log(signups)
+    }, err => {
+      // err
+    })
     var that = this;
     var myAmapFun = new amapFile.AMapWX({ key: 'e9ae38eabebabeffed311424ddbbf395' });
     
