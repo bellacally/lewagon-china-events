@@ -24,41 +24,58 @@ Page({
     // LOADING UPCOMING EVENTS INTO THE PAGE
     var that = this;
     const EventsTable = new wx.BaaS.TableObject('events');
+    const SignupsTable = new wx.BaaS.TableObject('signups');
     let query = new wx.BaaS.Query();
     let city = options.city || 'Shanghai'
-    
+    let signups_query = new wx.BaaS.Query();
+    var signups = []
+    var upcomingEvents = [];
     query.contains('city', city);
-
+    let user_id = wx.getStorageSync('userId')
+    signups_query.compare('created_by', '=', user_id)
     EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       let results = res.data.objects
-      let upcomingEvents = [];
-
-      results.forEach((object) => {
-        let now = new Date();
-        let year = now.getFullYear()
-        let month = now.getMonth()
-        let day = now.getDate()
-        let todaymillisecs = new Date(year, month, day).getTime();
-        let eventmillisecs = new Date(object.date).getTime();
-        if (eventmillisecs >= todaymillisecs) {
-          upcomingEvents.push(object);
-        };
-        
-        upcomingEvents.forEach((upcomingEvent) => {
-          upcomingEvent.date = new Date(upcomingEvent.date).toString().toUpperCase().substr(3,8);
-          
+      SignupsTable.setQuery(signups_query).find().then(res => {
+        // console.log(res.data.objects[0].event_id.id)
+        signups = res.data.objects.map((s) => {
+          return s.event_id.id
         })
-        app.globalData.upcomingEvents = upcomingEvents
-       
+        console.log(signups)
+        results.forEach((object) => {
+          let now = new Date();
+          let year = now.getFullYear()
+          let month = now.getMonth()
+          let day = now.getDate()
+          let todaymillisecs = new Date(year, month, day).getTime();
+          let eventmillisecs = new Date(object.date).getTime();
+          if (eventmillisecs >= todaymillisecs) {
+            upcomingEvents.push(object);
+          };
+
+          upcomingEvents.forEach((upcomingEvent) => {
+            upcomingEvent.date = new Date(upcomingEvent.date).toString().toUpperCase().substr(3, 8);
+
+          })
+          app.globalData.upcomingEvents = upcomingEvents
+        })
+        upcomingEvents.forEach((u) => {
+          signups.forEach((s) => {
+            u['attended'] = s == u.id ? true : false
+          })
+        })
+        console.log(upcomingEvents)
+        that.setData({
+          userId: wx.getStorageSync('userId'),
+          SelectedCity: city,
+          upcomingEvents: upcomingEvents,
+          avatar: wx.getStorageSync('userAvatar')
+        });
+        console.log(wx.getStorageSync('userAvatar'))
+        }, err => {
+        console.log(err)
       })
       // SETTING EVENTS AND DATA IN LOCAL STORAGE
-      that.setData({
-        userId: wx.getStorageSync('userId'),
-        SelectedCity: city,
-        upcomingEvents: upcomingEvents,
-      });      
-
     });
   },
  
