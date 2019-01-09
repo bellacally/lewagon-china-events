@@ -89,26 +89,23 @@ Page({
     let tableID = 33633; // feedbacks table
     // let signUpQuery = new wx.BaaS.Query()
     let userQuery = new wx.BaaS.Query()
-    let EventsTable = new wx.BaaS.TableObject(tableID);
+    let FeedbacksTable = new wx.BaaS.TableObject(tableID);
     // signUpQuery.compare('event_id', '=',signUp )
-    // userQuery.compare('created_by', '=', user_id)
+    userQuery.compare('created_by', '=', user_id)
     // const andQuery = wx.BaaS.Query.and(userQuery, signUpQuery);
-    EventsTable.setQuery(userQuery).find().then(res => {
-      console.log('adsdsff, res')
+    FeedbacksTable.setQuery(userQuery).find().then(res => {
+      console.log('adsdsff', res)
       var feedbacks = res.data.objects;
       console.log(feedbacks)
       var no_feedback_events = [];
-      if (feedbacks.length === 0) {
-        console.log('no feedbacks')
-      } else {
-        feedbacks.forEach((f) => {
-          signUps.forEach((s) => {
-            if(s != f.event_id) {
-              no_feedback_events.push(f.event_id)
-            }
-          })
+      feedbacks.forEach((f) => {
+        signUps.forEach((s) => {
+          if (s != f.event_id) {
+            no_feedback_events.push(f.event_id)
+          }
         })
-      }
+      })
+      wx.setStorageSync('no_feedbacks', no_feedback_events)
       console.log(no_feedback_events)
     }, err => {
       console.log(err)
