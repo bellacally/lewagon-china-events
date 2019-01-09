@@ -59,7 +59,7 @@ Page({
       // err
     })
     SignupsTable.setQuery(signups_query).find().then(res => {
-      console.log("signups", res.data.objects[0].event_id.id)
+      console.log("signups", res.data.objects[0])
       let signups = res.data.objects.map((s) => {
         return s.event_id.id
       })
