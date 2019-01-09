@@ -18,7 +18,7 @@ Page({
     ],
     avatar: wx.getStorageSync('avatar')
   },
-
+ 
   onLoad(options) {
 
     // LOADING UPCOMING EVENTS INTO THE PAGE
@@ -26,6 +26,7 @@ Page({
     const EventsTable = new wx.BaaS.TableObject('events');
     let query = new wx.BaaS.Query();
     let city = options.city || 'Shanghai'
+    
     query.contains('city', city);
 
     EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
@@ -51,8 +52,6 @@ Page({
         app.globalData.upcomingEvents = upcomingEvents
        
       })
-
-
       // SETTING EVENTS AND DATA IN LOCAL STORAGE
       that.setData({
         userId: wx.getStorageSync('userId'),
@@ -61,8 +60,9 @@ Page({
       });      
 
     });
-
   },
+ 
+
 
   onShareAppMessage: function () {
     // SET UP THE SHARING BOX

@@ -1,9 +1,5 @@
 let app = getApp();
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
   },
 
@@ -34,7 +30,6 @@ Page({
 
           try {
             let signUps = wx.getStorageSync('signUps')
-
             if (signUps.length === 0) {
               console.log("user has no sign ups")
               // no need to go to feedbacks
@@ -42,83 +37,46 @@ Page({
             else {
               console.log("user signed up to:", signUps)
               // User signed up, move on
-
               // Verify if this user has signed up to any event of the past week
               try {
                 let recentPastEventsId = wx.getStorageSync('recentPastEventsId')
-
                 signUps.forEach((signUp) => {
 
                   console.log("signed up to:", signUp)
-
                   let verify = recentPastEventsId.includes(signUp)
 
                   if (verify) {
-
                     // if verify is true, then the user joined an event this past week
 
                     console.log("user joined an event this past week")
 
                     // For past events, check if there are no feedbacks
                     try {
-                      let noFeedback = page.checkFeedbacks(signUp, userId);
-
+                      let noFeedback = page.checkFeedbacks();
                       if (noFeedback) {
                         // redirect visitor to the feedback form
-                        console.log("the user didn't write anything")
-
+                       wx.redirectTo({
+                         url: `../feedback/feedback?event_id=${page.data.signUps[0].id}`,
+                       })
                       }
                       else {
                         // do nothing
                       }
-
-
                     }
                     catch (e) {
-
-                    }
-
-
+                   }
                   } else {
                     // verify is wrong, the user didn't join any past event
-
                     console.log("the user didn't join any past event")
-
                   }
-
-
                 })
-
-
-
               } catch (e) {
-
               }
-
               // no sign ups
             }
           } catch (e) {
             // Do something when catch error
           }
-
-          // wx.getStorage({
-          //   key: 'signUps',
-          //   success(signUps) {
-          //     if (signUps.length === 0) {
-          //       // no sign ups
-          //       console.log("user has no sign ups")
-          //     }
-          //     else {
-          //       console.log("user signed up to:", signUps)
-          //       // user signed up, move on
-          //       // Check if Sign Ups are past or future
-          //       // For past events, check if there are no feedbacks
-          //       // For past events, has to be within a week
-
-          //     }
-          //   }
-          // })
-
         }
       }
     })
@@ -128,16 +86,15 @@ Page({
     let signUps = wx.getStorageSync('signUps')
     console.log(signUps)
     let user_id = wx.getStorageSync('userId')
-    // console.log('tttttt', signUp);
-    console.log(user_id)
     let tableID = 33633; // feedbacks table
-    let signUpQuery = new wx.BaaS.Query()
+    // let signUpQuery = new wx.BaaS.Query()
     let userQuery = new wx.BaaS.Query()
     let EventsTable = new wx.BaaS.TableObject(tableID);
     // signUpQuery.compare('event_id', '=',signUp )
-    userQuery.compare('created_by', '=', user_id)
+    // userQuery.compare('created_by', '=', user_id)
     // const andQuery = wx.BaaS.Query.and(userQuery, signUpQuery);
     EventsTable.setQuery(userQuery).find().then(res => {
+      console.log('adsdsff, res')
       var feedbacks = res.data.objects;
       console.log(feedbacks)
       var no_feedback_events = [];
@@ -166,7 +123,6 @@ Page({
       wx.setStorageSync('userCity', res.province)
       wx.setStorageSync('userAvatar', res.avatarUrl)
       page.goToEvents();
-
     }, res => {
     })
   },
@@ -200,7 +156,6 @@ Page({
               wx.setStorage({
                 key: 'attendedEvents',
                 data: res.data
-
               })
               wx.redirectTo({
                 url: `../feedback/feedback?event_id=${page.data.event_id}`,
@@ -212,10 +167,6 @@ Page({
         })
       }
     })
-
-    // wx.redirectTo({
-    //   url: `../feedback/feedback?event_id=${page.data.attendedEvents[0].id}`,
-    // })
   },
 
   /**

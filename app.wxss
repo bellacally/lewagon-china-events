@@ -9,3 +9,9 @@
   font-size: 26rpx;
   font-family: Circular Std Book;
 } 
+
+.title{
+  margin-bottom: 200rpx;
+  font-size: 50rpx;
+  font-weight: bold;
+}

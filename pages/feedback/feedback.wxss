@@ -62,7 +62,7 @@ page {
   display: flex;
   flex-direction: row;
 }
-.title{
+.item{
   font-size: 25rpx;
   line-height: 2em;
   width:20%;
@@ -120,4 +120,10 @@ text{
 }
 .show{ 
  display: block;
+}
+
+.thankyou {
+  margin: 60rpx auto;
+  width: 80%;
+  text-align: center;
 }

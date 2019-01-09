@@ -8,7 +8,7 @@
 <!-- <image src='../images/landing.jpg'></image> -->
 
  
-    <view class="slogon">
+    <view class="title">
       <view class="line">Learn to code</view>
       <view class="line">Change your life</view>
       <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">Start your journey</button>

@@ -1,12 +1,10 @@
 <view class="wrapper">
-  <view class="form_container">
+       <view class="header"style="background-image:linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('{{event_image}}'); background-size:cover; width: 100vw; height: 300rpx"><view class ='name' >{{event_name}}</view>
+       </view>
+  <block wx:if="{{hideForm == false}}">
     <form bindsubmit="formSubmit" bindreset="formReset">
-       <view class="header"style="background-image:linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('{{event_image}}'); background-size:cover; width: 100vw; height: 300rpx">
-        <view class ='name' >{{event_name}}</view>
-    </view>
-
       <view class="section section_gap">
-         <view class="section_title">* How did you registered for the event?</view>
+         <view class="section_title">* How did you register for the event?</view>
           <picker bindchange="bindPickerChange" value="{{[channel_index]}}" range="{{array}}" name="channels">
             <view class="picker"> 
               <view class="channel">
@@ -24,7 +22,7 @@
         <view class="section_title">* In general, how did you like the event?</view>
         <view class="all">
             <view class="details row">
-            <view class="title" name="content_rating" >Content</view>
+            <view class="item" name="content_rating" >Content</view>
             <i-cell class="stars" title="自定义星星大小">
               <i-rate 
                 bind:change="onChange1" 
@@ -34,7 +32,7 @@
             </i-cell>
           </view>
           <view class="details row">
-            <view class="title" name="speaker_rating">Speaker</view>
+            <view class="item" name="speaker_rating">Speaker</view>
             <i-cell class="stars"title="自定义星星大小">
               <i-rate 
                 bind:change="onChange2" 
@@ -44,7 +42,7 @@
             </i-cell>
           </view>
           <view class="details row">
-            <view class="title" name="location_rating">Location</view>
+            <view class="item" name="location_rating">Location</view>
             <i-cell class="stars" title="自定义星星大小">
               <i-rate 
               bind:change="onChange3" 
@@ -59,66 +57,25 @@
 
       <view class="section section_gap">
         <view class="section_title">* How likely will you recommend our events?</view>
-        <slider class="details" min="1" max="5" name='recommend' bindchange="sliderchange" show-value/>
+        <slider class="details" min="1" max="5" name='recommend' bindchange="sliderChange" show-value/>
       </view>
 
       <view class="section section_gap">
         <view class="section_title">How do you think the event can be improved?</view>
-          <textarea class="message" placeholder='eg. I would love to hear more about ... ' name="areas_to_improve" > </textarea> 
+          <textarea class="message" placeholder='eg. I would love to hear more about ... ' name="areas_to_improve"> </textarea> 
       </view>
       <!-- <i-button type="primary" bind:click="handleClick"></i-button> -->
       <view class="btn-area">
         <button form-type="submit" data-feedback="{{event_id}}">Submit</button>
       </view>
     </form>
-    </view>
+    </block>
+    <block wx:if="{{hideForm == true}}">
+      <view class="thankyou">
+        <view class="title">Thank you for your feedbacks!</view>
+      </view>
+    </block>
   </view>
 
 
 
-
-
-
-<!-- different sorts of stars template -->
-<!-- <i-cell-group>
-    <i-cell title="基本用法">
-        <i-rate 
-            bind:change="onChange1" 
-            value="{{starIndex1}}">
-        </i-rate>
-    </i-cell>
-    <i-cell title="自定义星星个数">
-        <i-rate 
-            count="{{10}}"
-            value="{{starIndex5}}">
-        </i-rate>
-    </i-cell>
-    <i-cell title="自定义星星大小">
-        <i-rate 
-            bind:change="onChange2" 
-            value="{{starIndex2}}" 
-            size="32">
-        </i-rate>
-    </i-cell>
-    <i-cell title="自定义文字说明">
-        <i-rate 
-            bind:change="onChange2" 
-            value="{{starIndex2}}">
-            {{starIndex2}}星
-        </i-rate>
-    </i-cell>
-     <i-cell title="手势touch选择星">
-        <i-rate 
-            bind:change="onChange3" 
-            value="{{starIndex3}}">
-            {{starIndex3}}星
-        </i-rate>
-    </i-cell>
-    <i-cell title="禁用点击和手势选择星">
-        <i-rate 
-            disabled="{{true}}"
-            value="{{starIndex4}}">
-            {{starIndex4}}星
-        </i-rate>
-    </i-cell>
-</i-cell-group> -->

@@ -22,11 +22,6 @@ font-family: Circular Std Book;
   height: 800rpx;
   margin-bottom: 50rpx;
 }
-.slogon{
-margin-bottom: 200rpx;
-font-size: 50rpx;
-font-weight: bold;
-}
 
 button{
   background: #FC1015;
