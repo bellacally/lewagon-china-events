@@ -29,14 +29,18 @@ Page({
     query.contains('city', city);
 
     EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
-
+      console.log(res.data)
       let results = res.data.objects
       let upcomingEvents = [];
 
       results.forEach((object) => {
-        let todaymillisecs = new Date().getTime();
+        let now = new Date();
+        let year = now.getFullYear()
+        let month = now.getMonth()
+        let day = now.getDate()
+        let todaymillisecs = new Date(year, month, day).getTime();
         let eventmillisecs = new Date(object.date).getTime();
-        if (eventmillisecs > todaymillisecs) {
+        if (eventmillisecs >= todaymillisecs) {
           upcomingEvents.push(object);
         };
         
