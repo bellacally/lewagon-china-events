@@ -54,18 +54,18 @@ Page({
       'starIndex2': index,
     })
   },
-
   onChange3(e) {
     const index = e.detail.index;
     this.setData({
       'starIndex3': index
     })
   },
-
-  sliderchange: function(e){
-    recommend: e.detail.value
+  sliderChange: function(e){
+    const recommend = e.detail.value;
+    this.setData({
+      'recommend': recommend
+    })
   },
-
   showModal() {
     wx.showModal({
       content: "please fill out all the * fields",
@@ -73,6 +73,7 @@ Page({
       showConfirm:confirm
     })
   },
+
   formSubmit: function(e){ 
     if (this.oValidator) return
     let that = this;
@@ -133,11 +134,48 @@ Page({
     })
   },
 
+  checkSubmitStatus: function () {
+    let page = this
+    return new Promise(function (resolve, reject) {
+      let submit = false;
+      let tableID = 33633 // feedback table
+      let eventID = page.data.event_id
+      let userID = page.data.userId
+      let query = new wx.BaaS.Query()
+      let FeedbacksTable = new wx.BaaS.TableObject(tableID);
+      query.compare('event_id', '=', eventID)
+      query.compare('created_by', '=', userID)
+
+      FeedbacksTable.setQuery(query).find().then(res => {
+        console.log(res)
+        console.log(res.data.objects.length)
+        if (res.data.objects.length == 0)
+        {
+        // THIS USER NEVER SUBMITTED A FEEDBACK FOR THIS EVENT, RETURN FALSE
+          return false
+        }
+        else {
+        // THIS USER HAS ALREADY SUBMITTED A FEEDBACK, RETURN TRUE
+          return true
+        }      
+
+      }, err => {
+
+        // err
+      })
+    })
+  },
+
+
+
+
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+
     console.log(options)
+
     wx.BaaS = requirePlugin('sdkPlugin')
     wx.BaaS.wxExtend(wx.login);
     wx.BaaS.login(false).then(res => {
@@ -178,18 +216,29 @@ Page({
         // err
       })
 
-      // EventsTable.get(recordID).then(res => {
-      //   console.log("res", res)
-      // }, err => {
-      //   // err
-      //   console.log("no results")
-      // })
-
       page.setData({
         userId: wx.getStorageSync('userId'),
       })
 
     }
+
+    // CHECK IF USER ALREADY SENT A FEEDBACK, 
+    // IF YES, HIDE THE FORM AND DISPLAY A THANK YOU NOTE
+    
+    const check = page.checkSubmitStatus();
+    console.log(check);
+    if (check) {
+      page.setData({
+        hideForm: true,
+      })
+    }
+    else {
+      page.setData({
+        hideForm: false,
+      })
+    }
+    
+
 },
 
 

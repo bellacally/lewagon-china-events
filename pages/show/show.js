@@ -66,7 +66,8 @@ Page({
       attended = signups.includes(recordID);
       console.log(recordID)
       page.setData({
-        attended: attended
+        attended: attended,
+        // avatar: page.data.userAvatar
       })
       console.log(signups)
     }, err => {
