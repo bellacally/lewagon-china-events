@@ -60,24 +60,18 @@ Page({
                     console.log("user joined an event this past week")
 
                     // For past events, check if there are no feedbacks
-                    try{
-                      let noFeedback = page.checkFeedbacks(signUp, userId);
+                     
+                    let noFeedback = page.checkFeedbacks(signUp, userId);
 
                       if (noFeedback) {
                         // redirect visitor to the feedback form
-                        console.log("the user didn't write anything")
+                        console.log("the user didn't join write anything")
 
                       }
                       else {
                         // do nothing
                       }
 
-
-                    }
-                    catch (e) {
-
-                    }
-                    
 
                   } else {
                     // verify is wrong, the user didn't join any past event
