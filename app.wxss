@@ -3,7 +3,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
   font-size: 26rpx;
@@ -14,4 +14,20 @@
   margin-bottom: 200rpx;
   font-size: 50rpx;
   font-weight: bold;
+  justify-content: center;
+}
+.cta_primary{
+    background-color: #fd1015;
+    color: #fff;
+    -webkit-box-shadow: 0 2px 14px rgba(126,87,88,.1), 0 3px 6px rgba(0,0,0,.08);
+    box-shadow: 0 2px 14px rgba(126,87,88,.1), 0 3px 6px rgba(0,0,0.08);
+     width:700rpx;
+}
+
+.cta_secondary {
+    background-color: #fff;
+    color: #fd1015;
+    -webkit-box-shadow: 0 2px 14px rgba(126,87,88,.1), 0 3px 6px rgba(0,0,0,.08);
+    box-shadow: 0 2px 14px rgba(126,87,88,.1), 0 3px 6px rgba(0,0,0,.08);
+    width:700rpx;
 }

@@ -1,14 +1,6 @@
-<view class="wrapper">
-<view class="container">
-    <view class="header">
-      <view id="event_image" style="background-image:url('{{event_image}}'); background-size:cover;"></view>
-    </view>
 
-    <view class="share_icon"> 
-      <button id= "share_btn" open-type='share'>
-        <image id="share_img" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gbGF6Ul9YF5oYiX.png"/>
-      </button>
-    </view>
+<view class="container"> 
+  <image class="banner" src='{{event_image}}'></image>
   <view class="row_container">
     <view class="row">
       <image class="icon" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyabLlxUXtBUn.png"/>
@@ -19,26 +11,18 @@
       <image class="icon" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gZ6CjPj5mLjjf41.png"/>
       <view class ="info">{{event_address}}</view>
     </view>
+  
+    <view class="about_sec">
+      <view class="subtitle">About</view>
+      <view class="long_dec">{{event_description}}</view>
+    </view>
   </view>
-
-  <view class="about_sec">
-    <view class="subtitle">About</view>
-    <view class="long_dec">{{event_description}}</view>
-  </view>
-
     <!-- <view class="subtitle">Location</view>
       <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="16" markers="{{markers}}"></map> -->
-
-  <view class="cta">
-
-    <block wx:if="{{!attended}}">
-        <button class="btn attend" bindtap="signup">Attend</button> 
-    </block>
-      
-    <button class="btn" open-type='share'>Invite</button>
-  </view>
-
-</view>
+  <block wx:if="{{!attended}}">
+      <button class="cta_primary" bindtap="signup">Attend</button> 
+  </block>
+  <button class="cta_secondary" open-type='share'>Invite</button>
 </view>
 
  

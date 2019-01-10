@@ -212,14 +212,14 @@ Page({
       console.log('ccccc', check);
       if (check === true) {
         page.setData({
-          feedbackForm: false,
-          feedbackMessage: true,
+          feedbackForm: true,
+          feedbackMessage: false,
         })
       }
       else {
         page.setData({
-          feedbackForm: true,
-          feedbackMessage: false,
+          feedbackForm: false,
+          feedbackMessage: true,
         })
       }
     

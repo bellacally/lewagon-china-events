@@ -33,7 +33,15 @@ font-family: Circular Std Book;
 
 }
 
+.title{
+  margin: 0 auto;
+}
+.cta_primary{
+  margin-top:60rpx;
 
-.skip{
-  background:#0e0000;
+}
+
+.container{
+  font-size: 50rpx;
+  font-weight: bold;
 }

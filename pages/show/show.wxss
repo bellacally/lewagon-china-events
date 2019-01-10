@@ -9,9 +9,9 @@ page {
 
 }
 /* background_image */
-  #event_image{
+  .banner{
   width: 100%;
-  height: 460rpx;
+  height: 560rpx;
   }
 
   /* box: event time and event address */
@@ -61,48 +61,17 @@ page {
     padding-bottom:25rpx;
   }
 
-  #share_btn{
-    height: 150rpx;
-    background:transparent;
-    position: absolute;
-    right:20rpx;
-    top:370rpx;
-  }
-
-  #share_btn::after{
-    border:none;
-  }
-
-  #share_img{
-    width: 80rpx;
-    height: 80rpx;
-  }
-
-  .share_icon{
-    display: flex; 
-    height: 20rpx;
-  }
-
-  .cta{
-    /* bottom: 0; */
+.cta_primary{
+   position:absolute;
+   bottom:0;
+}
+  .cta_secondary{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-bottom: 40rpx;
-    margin-top:40rpx;
-  }
+    position:absolute;
+    bottom:0;
 
-  .btn{
-    background: #FC1015;
-    width: 155px;
-    height: 40px;
-    color: white;
-    font-size: 28rpx;
-    line-height:80rpx; 
-  }
-
-  .btn.attend{
-    background:#0e0000;
   }
 
   .info{
@@ -118,12 +87,12 @@ page {
     border-radius:8px;
   }
   .text_area{
-  position:relative;
-  width:90vw;
-  box-shadow:0 25rpx 40rpx rgba(126,87,88,.1);
-  background-color:white;
-  margin: 0 auto;
-  height:300rpx;
+    position:relative;
+    width:90vw;
+    box-shadow:0 25rpx 40rpx rgba(126,87,88,.1);
+    background-color:white;
+    margin: 0 auto;
+    height:300rpx;
   }
   .details{
     padding-top: 20rpx;
@@ -156,7 +125,7 @@ page {
     margin:0 auto;
     padding-top: 20rpx; 
   }
-  .row.button{
+  .row.btn{
   position:absolute;
   bottom:40rpx;
   }
@@ -178,13 +147,6 @@ page {
     box-shadow:-6 -10px 6px -6px #777;
 
   }
-
-  /* .hide{
-    display: -webkit-box;
-  }
-  .show{
-    display: block;
-  } */
   .arrow {
     position: absolute;
     width: 40rpx;

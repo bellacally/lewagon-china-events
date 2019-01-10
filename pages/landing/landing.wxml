@@ -6,12 +6,11 @@
 </view>
 
 <!-- <image src='../images/landing.jpg'></image> -->
-
  
-    <view class="title">
+    <view class="container">
       <view class="line">Learn to code</view>
       <view class="line">Change your life</view>
-      <button class='btn' open-type="getUserInfo" bindgetuserinfo="getUserInfo">Start your journey</button>
+      <button class='cta_primary' open-type="getUserInfo" bindgetuserinfo="getUserInfo">Start your journey</button>
     </view>
 </view>
 
