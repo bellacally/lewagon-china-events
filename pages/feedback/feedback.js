@@ -2,6 +2,7 @@ const WeValidator = require('../../utils/we-validator');
 const app = getApp();
 Page({
   data: {
+  
     starIndex1: 0,
     starIndex2: 0,
     starIndex3: 0,
@@ -32,6 +33,7 @@ Page({
         name: 'Others'
       }
     ],
+    hiddenForm: false,
   },
 
   bindPickerChange: function (e) {
@@ -137,7 +139,7 @@ Page({
   checkSubmitStatus: function () {
     let page = this
     return new Promise(function (resolve, reject) {
-      let submit = false;
+      // let hideForm = true;
       let tableID = 33633 // feedback table
       let eventID = page.data.event_id
       let userID = page.data.userId
@@ -147,9 +149,9 @@ Page({
       query.compare('created_by', '=', userID)
 
       FeedbacksTable.setQuery(query).find().then(res => {
-        console.log(res)
-        console.log(res.data.objects.length)
-        if (res.data.objects.length == 0)
+        console.log(res.data.objects)
+        console.log('yess',res.data.objects.length)
+        if (res.data.objects.length == 0 || res.data.objects === undefined)
         {
         // THIS USER NEVER SUBMITTED A FEEDBACK FOR THIS EVENT, RETURN FALSE
           return false
@@ -165,14 +167,13 @@ Page({
       })
     })
   },
-
-
-
-
+  
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+
+    console.log(options)
 
     wx.BaaS = requirePlugin('sdkPlugin')
     wx.BaaS.wxExtend(wx.login);
@@ -196,13 +197,14 @@ Page({
 
       let tableID = 60055
       let recordID = page.data.event_id
+      // console.log('tryyyy', recordID)
       let query = new wx.BaaS.Query()      
       let EventsTable = new wx.BaaS.TableObject(tableID);
       query.compare('id', '=', recordID)
 
       EventsTable.setQuery(query).find().then(res => {
         // success
-        console.log("res", res.data.objects[0])
+        console.log("resyyyyyy", res)
         let event = res.data.objects[0]
 
         page.setData({
@@ -218,30 +220,25 @@ Page({
         userId: wx.getStorageSync('userId'),
       })
 
-    }
+    };
 
     // CHECK IF USER ALREADY SENT A FEEDBACK, 
     // IF YES, HIDE THE FORM AND DISPLAY A THANK YOU NOTE
+    // const check = page.checkSubmitStatus();
+    //   console.log('ccccc', check);
+    //   if (check) {
+    //     page.setData({
+    //       hideForm: false,
+    //     })
+    //   }
+    //   else {
+    //     page.setData({
+    //       hideForm: true,
+    //     })
+    //   }
     
-    const check = page.checkSubmitStatus();
-    console.log(check);
-    if (check) {
-      page.setData({
-        hideForm: true,
-      })
-    }
-    else {
-      page.setData({
-        hideForm: false,
-      })
-    }
-    
+  },
 
-},
-
-
-
- 
   /**
    * Lifecycle function--Called when page is initially rendered
    */

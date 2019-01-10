@@ -11,7 +11,7 @@
     <view class="title">
       <view class="line">Learn to code</view>
       <view class="line">Change your life</view>
-      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">Start your journey</button>
+      <button class='btn' open-type="getUserInfo" bindgetuserinfo="getUserInfo">Start your journey</button>
     </view>
 </view>
 
