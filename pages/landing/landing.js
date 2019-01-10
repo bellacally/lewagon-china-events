@@ -35,39 +35,53 @@ Page({
               // no need to go to feedbacks
             }
             else {
-              console.log("user signed up to:", signUps)
+              console.log("user signed up to events:", signUps)
               // User signed up, move on
               // Verify if this user has signed up to any event of the past week
               try {
                 let recentPastEventsId = wx.getStorageSync('recentPastEventsId')
                 signUps.forEach((signUp) => {
 
-                  console.log("signed up to:", signUp)
+                  console.log("signed up to event:", signUp)
                   let verify = recentPastEventsId.includes(signUp)
 
                   if (verify) {
+                    console.log("user joined an event this past week:", signUp)
                     // if verify is true, then the user joined an event this past week
-
-                    console.log("user joined an event this past week")
-
                     // For past events, check if there are no feedbacks
                     try {
-                      let noFeedback = page.checkFeedbacks();
-                      if (noFeedback) {
-                        // redirect visitor to the feedback form
-                       wx.redirectTo({
-                         url: `../feedback/feedback?event_id=${page.data.signUps[0].id}`,
-                       })
-                      }
-                      else {
-                        // do nothing
-                      }
+                      
+                      // let lastEvent = recentPastEventsId[recentPastEventsId.length - 1]
+                      console.log(signUp)
+                      let tableID = 33633; // feedbacks table
+                      let userQuery = new wx.BaaS.Query()
+                      let FeedbacksTable = new wx.BaaS.TableObject(tableID);
+                      userQuery.compare('created_by', '=', userId) // check feedbacks for this user
+                      userQuery.compare('event_id', '=', signUp) // check feedbacks for this event
+                      FeedbacksTable.setQuery(userQuery).find().then(res => {
+                        var feedbacks = res.data.objects;
+                        console.log("Feedback written by this user:", feedbacks)
+                        if (feedbacks == false) {
+                          console.log("we need feedback from this user! REDIRECT!")
+                          // redirect visitor to the feedback form
+                          wx.redirectTo({
+                            url: `../feedback/feedback?event_id=${signUp}`,
+                          })
+                        }
+                        else {
+                          // do nothing, wait for user click to "start journey"
+                            console.log("there are no feedbacks waiting")
+                        }
+                      }, err => {
+                        console.log(err)
+                      }) // end of query 
+
                     }
                     catch (e) {
                    }
                   } else {
-                    // verify is wrong, the user didn't join any past event
-                    console.log("the user didn't join any past event")
+                    // verify is wrong, this sign up is old
+                    console.log("pass, this sign up is for an old event")
                   }
                 })
               } catch (e) {
@@ -79,36 +93,6 @@ Page({
           }
         }
       }
-    })
-    this.checkFeedbacks();
-  },
-  checkFeedbacks() {
-    let signUps = wx.getStorageSync('signUps')
-    console.log(signUps)
-    let user_id = wx.getStorageSync('userId')
-    let tableID = 33633; // feedbacks table
-    // let signUpQuery = new wx.BaaS.Query()
-    let userQuery = new wx.BaaS.Query()
-    let FeedbacksTable = new wx.BaaS.TableObject(tableID);
-    // signUpQuery.compare('event_id', '=',signUp )
-    userQuery.compare('created_by', '=', user_id)
-    // const andQuery = wx.BaaS.Query.and(userQuery, signUpQuery);
-    FeedbacksTable.setQuery(userQuery).find().then(res => {
-      console.log('adsdsff', res)
-      var feedbacks = res.data.objects;
-      console.log(feedbacks)
-      var no_feedback_events = [];
-      feedbacks.forEach((f) => {
-        signUps.forEach((s) => {
-          if (s != f.event_id) {
-            no_feedback_events.push(f.event_id)
-          }
-        })
-      })
-      wx.setStorageSync('no_feedbacks', no_feedback_events)
-      console.log(no_feedback_events)
-    }, err => {
-      console.log(err)
     })
   },
 
