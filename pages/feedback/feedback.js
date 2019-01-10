@@ -33,7 +33,8 @@ Page({
         name: 'Others'
       }
     ],
-    hiddenForm: false,
+    feedbackForm: true,
+    feedbackMessage: false,
   },
 
   bindPickerChange: function (e) {
@@ -77,7 +78,7 @@ Page({
   },
 
   formSubmit: function(e){ 
-    if (this.oValidator) return
+   
     let that = this;
     that.setData({
       channels: e.detail.value.channels,
@@ -116,31 +117,14 @@ Page({
       return false
     })
   },
-  initValidator() {
-    // 实例化
-    this.oValidator = new WeValidator({
-      rules: {
-        channels: {
-          required: true,
-        },
-        content_rating: {
-          required: true,
-        },
-        speaker_rating: {
-          required: true,
-        },
-        location_rating: {
-          required: true,
-        }
-      },
-    })
-  },
+ 
 
   checkSubmitStatus: function () {
     let page = this
     return new Promise(function (resolve, reject) {
-      // let hideForm = true;
-      let tableID = 33633 // feedback table
+      // let hiddenForm = true;
+      let tableID = 33633
+       // feedback table
       let eventID = page.data.event_id
       let userID = page.data.userId
       let query = new wx.BaaS.Query()
@@ -224,18 +208,20 @@ Page({
 
     // CHECK IF USER ALREADY SENT A FEEDBACK, 
     // IF YES, HIDE THE FORM AND DISPLAY A THANK YOU NOTE
-    // const check = page.checkSubmitStatus();
-    //   console.log('ccccc', check);
-    //   if (check) {
-    //     page.setData({
-    //       hideForm: false,
-    //     })
-    //   }
-    //   else {
-    //     page.setData({
-    //       hideForm: true,
-    //     })
-    //   }
+    const check = page.checkSubmitStatus();
+      console.log('ccccc', check);
+      if (check === true) {
+        page.setData({
+          feedbackForm: true,
+          feedbackMessage: false,
+        })
+      }
+      else {
+        page.setData({
+          feedbackForm: false,
+          feedbackMessage: true,
+        })
+      }
     
   },
 

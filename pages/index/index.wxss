@@ -5,12 +5,12 @@ page {
 
 .container{
   align-items: center;
-  background-color: #fcf5e8
+  background-color: #fcf5e8;
 }
-.icon{
+/* .icon{
   width: 50rpx;
   height: 50rpx;
-}
+} */
 .dropdown{
   padding-left: 20rpx;
 }
@@ -26,7 +26,9 @@ position:absolute;
 top:154rpx;
 left:130rpx;
 font-size:33rpx;
-font-family: Circular Std Book;
+font-family: 'Circular Std';
+font-weight: 300;
+font-style: normal;
 }
 
 .com-sItem {

@@ -1,7 +1,7 @@
 <view class="wrapper">
        <view class="header"style="background-image:linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('{{event_image}}'); background-size:cover; width: 100vw; height: 300rpx"><view class ='name' >{{event_name}}</view>
        </view>
-  <block wx:if="{{hideForm}}">
+  <block wx:if="{{feedbackForm}}">
     <form bindsubmit="formSubmit" bindreset="formReset">
       <view class="section section_gap">
          <view  class="section_title">* How did you register for the event?</view>
@@ -70,7 +70,7 @@
       </view>
     </form>
     </block>
-    <block wx:else="{{hideForm}}">
+    <block wx:else="{{feedbackMessage}}">
       <view class="thankyou">
         <view class="title">Thank you for your feedbacks!</view>
       </view>

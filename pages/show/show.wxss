@@ -1,8 +1,11 @@
 @import '../../libs/font.wxss';
+page {
+  background-color: #fcf5e8
+}
 .container{
   width: 100vw;
   margin:0 auto;
-  /* justify-content: center; */
+ background-color: #fcf5e8;
 
 }
 /* background_image */
@@ -172,6 +175,8 @@
     width:85%;
     margin:0 auto;
     border-radius:14rpx;
+    box-shadow:-6 -10px 6px -6px #777;
+
   }
 
   /* .hide{

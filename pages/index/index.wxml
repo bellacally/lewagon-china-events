@@ -1,37 +1,36 @@
 <view class="section" style="background-image: url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyahkSIPJy9b1.jpg'); background-size:cover; height:410rpx">
-  <view class="row icon">
-  </view>
+    <view class="row icon">
+    </view>
    <Select class="dropdown" prop-array='{{selectArray}}' city="{{SelectedCity}}"></Select>
  </view>
 
-<view class="container">
-  <block wx:for="{{upcomingEvents}}" wx:for-item="res" wx:key="key" wx:index="index">
-    <view class="background">
-     <view id= "{{res.id}}" bindtap="clickToShow" data-index="{{res.id}}">
-      <view id="event_image" style= "background-image: url('{{res.image}}'); background-size:cover;">
-      <!-- CHECK IF THE EVENT ID IS INCLUDED IN THE PARTICIPATED EVENTS ARRAY -->
+  <view class="container">
+    <block wx:for="{{upcomingEvents}}" wx:for-item="res" wx:key="key" wx:index="index">
+      <view class="background">
+      <view id= "{{res.id}}" bindtap="clickToShow" data-index="{{res.id}}">
+        <view id="event_image" style= "background-image: url('{{res.image}}'); background-size:cover;">
+        <!-- CHECK IF THE EVENT ID IS INCLUDED IN THE PARTICIPATED EVENTS ARRAY -->
         <block wx:if="{{res.attended}}">
           <image id="avatar" src='{{avatar}}'></image>
         </block>
-      </view>
+        </view>
    
-    <view class="footer">
-      <view class ="info date">{{res.date}}</view>
-      <view class="info name">{{res.name}}</view>
-      <!-- <view class ="info">{{res.month}}</view> -->
-        <!-- put share icon inside a button -->
-      <view class="share_icon"> 
-        <button id= "share_btn" open-type='share'>
-        <image id="share_img" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gbGF6Ul9YF5oYiX.png"></image>
-        </button>
-      </view> 
-    </view>
-    </view>
-  </view>  
- </block>
- </view>
+        <view class="footer">
+          <view class ="info date">{{res.date}}</view>
+          <view class="info name">{{res.name}}</view>
+          <!-- <view class ="info">{{res.month}}</view> -->
+            <!-- put share icon inside a button -->
+          <view class="share_icon"> 
+            <button id= "share_btn" open-type='share'>
+            <image id="share_img" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gbGF6Ul9YF5oYiX.png"></image>
+            </button>
+          </view> 
+        </view>
+       </view>
+     </view>  
+   </block>
+  </view>
 
- <!-- <web-view src="https://www.lewagon.com/events"></web-view> -->
 
  
   
