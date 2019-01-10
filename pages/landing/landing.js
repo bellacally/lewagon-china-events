@@ -50,8 +50,6 @@ Page({
                     // if verify is true, then the user joined an event this past week
                     // For past events, check if there are no feedbacks
                     try {
-                      
-                      // let lastEvent = recentPastEventsId[recentPastEventsId.length - 1]
                       console.log(signUp)
                       let tableID = 33633; // feedbacks table
                       let userQuery = new wx.BaaS.Query()

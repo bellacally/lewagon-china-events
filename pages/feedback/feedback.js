@@ -33,8 +33,8 @@ Page({
         name: 'Others'
       }
     ],
-    feedbackForm: true,
-    feedbackMessage: false,
+    // feedbackForm: true,
+    // feedbackMessage: false,
   },
 
   bindPickerChange: function (e) {
@@ -212,14 +212,14 @@ Page({
       console.log('ccccc', check);
       if (check === true) {
         page.setData({
-          feedbackForm: true,
-          feedbackMessage: false,
+          feedbackForm: false,
+          feedbackMessage: true,
         })
       }
       else {
         page.setData({
-          feedbackForm: false,
-          feedbackMessage: true,
+          feedbackForm: true,
+          feedbackMessage: false,
         })
       }
     
