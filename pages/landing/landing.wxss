@@ -23,22 +23,17 @@ font-family: Circular Std Book;
   margin-bottom: 50rpx;
 }
 
-.btn{
- background:#FC1015;
-  color:white;
-  font-size:27rpx;
-  line-height:85rpx;
-  margin-top:50rpx;
-  width:85%;
-
-}
-
 .title{
   margin: 0 auto;
 }
 .cta_primary{
   margin-top:60rpx;
 
+}
+.line{
+  font-family:Circular Std Book ;
+  font-size: 60rpx;
+  padding-bottom:20rpx;
 }
 
 .container{

@@ -1,11 +1,4 @@
 @import '../../libs/font.wxss';
-page {
-  /* background-color:#fcf5e8;   */
-  background:#fcf5e8;
-}
-.wrapper{
-   margin-bottom: 20rpx;
-}
 
 .header{
   color: white;
@@ -31,15 +24,21 @@ page {
 }
 
 .section{
-  padding: 20rpx;
+  padding: 25rpx;
+  font-family: Circular Std light;
 }
 .section_title{
   font-size:30rpx;
   padding-top: 15rpx;
   padding-bottom: 15rpx;
-  font-family: SF Pro Text;
+  font-family: Circular Std light;
   font-weight: bold;
-  margin-bottom:25rpx
+  margin-bottom:25rpx;
+  width:100%;
+  box-sizing:border-box;
+  height:60rpx;
+  padding-left:15rpx;
+
 }
 
 .details{
@@ -47,21 +46,17 @@ page {
   font-size: 28rpx; 
 }
 .all{
-  padding: 0 25rpx;
   background: white;
-  color: black;
-  box-shadow: 1px 4px 7px #c1c1c1;
+  box-shadow: 0 15px 35px rgba(126,87,88,.1), 0 5px 15px rgba(0,0,0,.07);
+  background-color: #fff;
   margin:0 auto;
-  justify-content: space-between;
-  align-items: center;
-  border-radius:5px;
-  width:90%;
+  width:90vw;
 }
 
 .details.row {
   display: flex;
-  flex-direction: row;
 }
+
 .item{
   font-size: 25rpx;
   line-height: 2em;
@@ -72,29 +67,18 @@ page {
 }
 
 textarea{
-  background-color: #fff;
   margin-top:8px;
   width: 90%;
-  box-shadow: 1px 4px 7px #c1c1c1;
+  box-shadow: 0 15px 35px rgba(126,87,88,.1), 0 5px 15px rgba(0,0,0,.07);
+  background-color: #fff;
   height: 300rpx;
   margin:0 auto;
-  font-family: SF Pro Text;
 }
 
 .message{
   padding:20rpx;
-  font-family: Circular Std Book;
+  font-family: Circular Std;
   font-size: 25rpx;
-}
-
-button{
-  background: #FC1015;
-  width: 155px;
-  height: 40px;
-  color: white;
-  font-size: 28rpx;
-  line-height:80rpx;
-  margin-top: 20rpx;
 }
 
 .channel {
@@ -102,13 +86,13 @@ button{
   padding: 0 25rpx;
   background: white;
   color: black;
-  box-shadow: 1px 4px 7px #c1c1c1;
+  box-shadow: 0 15px 35px rgba(126,87,88,.1), 0 5px 15px rgba(0,0,0,.07);
+  background-color: #fff;
   margin: 25rpx 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius:5px;
-  /* background:#eaeaea; */
+  /* border-radius:12rpx; */
 }
 
 text{
@@ -126,4 +110,20 @@ text{
   margin: 60rpx auto;
   width: 80%;
   text-align: center;
+  height:43vh;
+}
+
+.cta_primary{
+  margin-bottom:40rpx;
+  margin-top:43rpx;
+}
+.title{
+  margin-bottom:80rpx;
+  font-size:60rpx;
+  justify-content:center;
+  margin-top:80rpx;
+  font-family: Circular Std Book;
+}
+.subtitle{
+  font-family: Circular Std;
 }

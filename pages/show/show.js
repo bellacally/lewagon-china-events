@@ -47,14 +47,22 @@ Page({
       // success
       console.log("res", res.data.objects[0])
       let event = res.data.objects[0]
+      // event_date=new Date(event.date).toString().toUpperCase().substr(3, 8);
+      // event.month = new Date(event.date).toString().toUpperCase().substr(1, 3);
+      let date = new Date(event.date).toString().substr(4, 12); 
+      let event_date = new Date(event.date).toString().toUpperCase().substr(4, 7);
       page.setData({
         event_image: event.image,
         event_name: event.name,
-        event_date: event.date,
+        event_date: event_date,
+        date: date,
         event_address: event.address,
         event_description: event.description,
-        event_city: event.city
+        event_city: event.city,
+        start_time: event.start_time,
+        end_time: event.end_time
       })
+      
     }, err => {
       // err
     })

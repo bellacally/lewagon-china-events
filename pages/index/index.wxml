@@ -1,10 +1,8 @@
 
-<view class="section" style="background-image: url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyahkSIPJy9b1.jpg'); background-size:cover; height:410rpx">
-    <view class="row icon">
-    </view>
+<view class="section" style="background-image: url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1ghuswe4qqoySyGp.png'); background-size:cover; height:165px;">
    <Select class="dropdown" prop-array='{{selectArray}}' city="{{SelectedCity}}"></Select>
  </view>
-
+<!-- <image class="header_img" src='https://cloud-minapp-13908.cloud.ifanrusercontent.com/1ghqStXey9BCPYTN.png'></image> -->
   <view class="container">
     <block wx:for="{{upcomingEvents}}" wx:for-item="res" wx:key="key" wx:index="index">
       <view class="background">

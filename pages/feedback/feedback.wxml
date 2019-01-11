@@ -1,10 +1,13 @@
-<view class="wrapper">
-       <view class="header"style="background-image:linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('{{event_image}}'); background-size:cover; width: 100vw; height: 300rpx"><view class ='name' >{{event_name}}</view>
-       </view>
+
+<view class="header"style="background-image:linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('{{event_image}}'); background-size:cover; width: 100vw; height: 420rpx">
+<view class ='name' >{{event_name}}</view>
+</view>
+
+<view class="backgeround" style="background-image: url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1ghuIq9BFKnykhmV.png'); background-size:cover; width: 100vw; height: 100vh">
   <block wx:if="{{feedbackForm}}">
     <form bindsubmit="formSubmit" bindreset="formReset">
       <view class="section section_gap">
-         <view  class="section_title">* How did you register for the event?</view>
+        <view  class="section_title">* How did you register for the event?</view>
           <picker bindchange="bindPickerChange" value="{{[channel_index]}}" range="{{array}}" name="channels">
             <view class="picker"> 
               <view class="channel">
@@ -17,7 +20,7 @@
             </view>
         </picker>
       </view>
-  
+
       <view class="section section_gap">
         <view class="section_title">* In general, how did you like the event?</view>
         <view class="all">
@@ -65,17 +68,21 @@
           <textarea class="message" placeholder='eg. I would love to hear more about ... ' name="areas_to_improve"> </textarea> 
       </view>
       <!-- <i-button type="primary" bind:click="handleClick"></i-button> -->
-      <view class="btn-area">
-        <button form-type="submit" data-feedback="{{event_id}}">Submit</button>
-      </view>
     </form>
-    </block>
-    <block wx:else="{{feedbackMessage}}">
-      <view class="thankyou">
-        <view class="title">Thank you for your feedbacks!</view>
-      </view>
-    </block>
-  </view>
+     <!-- <view class="btn-area"> -->
+      <button class="cta_primary" form-type="submit" data-feedback="{{event_id}}">Submit</button>
+      <!-- </view> -->
+  </block>
+
+  <block wx:else="{{feedbackMessage}}">
+    <view class="thankyou">
+      <view class="title">Thank you for your feedback!</view>
+       <view class="subtitle">Check out our next event</view>
+    </view>
+      <button bindtap="clickToIndex" class="cta_primary">Go back</button>
+  </block>
+</view>
+
 
 
 

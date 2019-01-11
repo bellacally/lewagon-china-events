@@ -1,8 +1,9 @@
 .com-selectBox{
-    width:70vw;
-   margin:0 auto;
-   box-shadow: 2px 2px 5px #888888;
-
+   width: 85vw;
+   margin: 0 auto;
+   box-shadow: 0 15px 35px rgba(126,87,88,.1), 0 5px 15px rgba(0,0,0,.07);
+   background-color: #fff;
+   margin-top: 50rpx;
 }
 .com-sContent{
     border: 1px solid #e2e2e2;
@@ -10,7 +11,7 @@
     font-size: 16px;
     position: relative;
     height: 40px;
-    line-height: 50px;
+    line-height: 30px;
 }
 .com-sImg{
     position: absolute;
@@ -27,8 +28,8 @@
     height: 40px;
     line-height: 36px;    
     padding:2px 20px 2px 6px;
-    font-size: 33rpx;
-    font-family: Circular Std Book;
+    font-size: 30rpx;
+    font-family: Circular Std;
 }
 .com-sList{
     background: white;
@@ -50,8 +51,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 33rpx;
-    font-family: Circular Std Book;    
+    font-size: 30rpx;
+    font-family: Circular Std;    
 }
 
 .com-sItem:first-child{

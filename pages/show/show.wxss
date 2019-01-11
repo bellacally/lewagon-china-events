@@ -1,157 +1,146 @@
 @import '../../libs/font.wxss';
-page {
-  background-color: #fcf5e8
+.divLine{
+ background: #E0E3DA;
+ width: 100%;
+ height: 3rpx;
+ margin-bottom:20rpx;
 }
-.container{
+
+.date{
+  box-sizing: border-box;
+  width:100rpx;
+  height:120rpx;
+  background-color: #fcf5e8;
+  padding:20rpx;
+  font-weight: 500;
+  font-size:30rpx;
+  margin-left:15rpx;
+}
+.month{
+  font-weight: 300;
+  font-size:23rpx;
+}
+
+.name{
+  word-break:break-word;
+  width:70%;
+  padding-left:40rpx;
+  font-family: Circular Std Book; 
+}
+  /* box: event time and event address */
+.row{
+  display:flex;
+  flex-direction:row;
+  padding-left:20rpx;
+  padding-top:25rpx;
+  padding-bottom:25rpx; 
+}
+
+/* 
+.more{
+  padding-left: 20rpx;
+  color: #62ddf5;
+  height: 300rpx;
+  overflow: hidden;
+  } */
+/* .subtitle{
+  padding-left: 20rpx;
+  font-weight: bold;
+  font-size: 30rpx;
+  margin-top:25rpx;
+  padding-bottom:25rpx;
+} */
+
+/* map section */
+
+/* .img_box{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.img_box image{
+  width: 100%;
+  height: 100%;
+} */
+
+/* .map{
+  width: 90vw;
+  height: 400rpx;
+  margin-bottom: 140rpx;
+  margin:0 auto;
+  padding-top: 20rpx; 
+} */
+
+/* About section */
+ .container{
   width: 100vw;
   margin:0 auto;
- background-color: #fcf5e8;
-
 }
-/* background_image */
-  .banner{
-  width: 100%;
-  height: 560rpx;
-  }
 
-  /* box: event time and event address */
-  .row{
-    display: flex;
-    flex-direction: row;
-    padding-left: 20rpx;
-    height: 50rpx;
-    padding-top:25rpx;
-  }
-
-  .row_container{
-  padding-bottom:30rpx;
-  width:90vw;
-  border-radius:8px;
-  box-shadow: 0 10px 6px -6px #777;
-  background-color:white;
-  margin:0 auto;
-  position:absolute;
-  top:300rpx;
-  left:45rpx;
-  }
-
-  .avatar_sec{
-  position:absolute;
-  top:-10rpx;
-  right:10rpx;
-  }
-
-  image.icon{
-    width: 35rpx;
-    height: 35rpx;
-    padding-right:20rpx;
-  }
-
-  .more{
-    padding-left: 20rpx;
-    color: #62ddf5;
-    height: 300rpx;
-    overflow: hidden;
-  }
-  .subtitle{
-    padding-left: 20rpx;
-    font-weight: bold;
-    font-size: 30rpx;
-    margin-top:25rpx;
-    padding-bottom:25rpx;
-  }
-
-.cta_primary{
-   position:absolute;
-   bottom:0;
-}
-  .cta_secondary{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    position:absolute;
-    bottom:0;
-
-  }
-
-  .info{
-  padding-left: 20rpx;
+.long_dec{
+  padding:30rpx;
+  line-height:40rpx;
+  word-break:break-all;
   overflow:hidden;
-  font-family:SF Pro Text;
-  font-size:30rpx;
+  font-size:26rpx;
+  font-weight:200;
+  width:85%;
+  margin:0 auto;
+  font-family: Circular Std;
+}
+
+/* 
+the bottom date and location part */
+.row_container{
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  line-height:40rpx;
+  word-break:break-all;
+  overflow:hidden;
+  font-size:26rpx;
+  font-weight:200;
+  width:85%;
+  margin:0 auto;
+}
+.icon_container{
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.map_icon{
+  width: 60rpx;
+  height: 60rpx;
   }
 
-/* about section */
-  .about_section{
-    padding-left: 20rpx;
-    border-radius:8px;
-  }
-  .text_area{
-    position:relative;
-    width:90vw;
-    box-shadow:0 25rpx 40rpx rgba(126,87,88,.1);
-    background-color:white;
-    margin: 0 auto;
-    height:300rpx;
-  }
-  .details{
-    padding-top: 20rpx;
-    padding-left: 20rpx;
-    height:200rpx;
-  }
-  .short{
-  height: 400rpx;
-  }
-  .long{
-  height: 800rpx;
-  }
+.date_icon{
+width: 40rpx;
+height: 40rpx;
+margin-left:10rpx;
+}
 
-  .img_box{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-  .img_box image{
-    width: 100%;
-    height: 100%;
-  }
+.info{
+  width:70%;
+  margin-left:15rpx;
+  font-size: 30rpx;
+  font-family: Circular Std Book; 
+}
 
-  .map{
-    width: 90vw;
-    height: 400rpx;
-    margin-bottom: 140rpx;
-    margin:0 auto;
-    padding-top: 20rpx; 
-  }
-  .row.btn{
-  position:absolute;
-  bottom:40rpx;
-  }
-  /* About section */
-  .long_dec{
-    padding:30rpx;
-    display:-webkit-box;
-    line-height:40rpx;
-    word-break:break-all;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    font-family:SF Pro Text;
-    font-size:26rpx;
-    font-weight:200;
-    background:white;
-    width:85%;
-    margin:0 auto;
-    border-radius:14rpx;
-    box-shadow:-6 -10px 6px -6px #777;
+/* btn */
+.cta_secondary{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 40rpx;
+  margin-top:40rpx;
+}
 
-  }
-  .arrow {
-    position: absolute;
-    width: 40rpx;
-    height: 43rpx;
-    left: 50%;
-    transform: translate(-50%);
-  }
-
+.bottom_row{
+  display:flex;
+  flex-direction:row;
+}
+.btn_row{
+  display: flex;
+  flex-direction: column;
+}

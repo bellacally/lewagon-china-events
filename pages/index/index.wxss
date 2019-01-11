@@ -4,77 +4,47 @@ page {
 }
 
 .container{
-  align-items: center;
+  /* align-items: center; */
   background-color: #fcf5e8;
-}
-/* .icon{
-  width: 50rpx;
-  height: 50rpx;
-} */
-.dropdown{
-  padding-left: 20rpx;
-}
-.row{
- margin-left:20rpx;
- display:flex;
- flex-direction:row;
- padding-top:25rpx;
 }
 
 .nowText {
 position:absolute;
 top:154rpx;
-left:130rpx;
+left:170rpx;
 font-size:33rpx;
-font-family: 'Circular Std';
-font-weight: 300;
-font-style: normal;
-}
-
-.com-sItem {
-  font-size:33rpx;
-  font-family: Circular Std Book;
-}
-
-.com-sContent {
-  height:40px;
+font-family: Circular Std;
 }
 
 .city_name{
   margin-left: 30rpx;
-  font-weight: bold;
-  font-family: Circular Std Book;
-
+  font-family: Circular Std;
 }
 
-#cover_pic{
+/* #cover_pic{
   display: flex;
   justify-content: center;
   width: 100%;
   height: 300rpx;
   margin-bottom: 50rpx;
-}
+} */
 
+
+
+/* event card section */
 .background{
   width: 90vw;
   position: relative;
   border-radius:14rpx;
-  -webkit-box-shadow: 0 10px 6px -6px #777;
-  -moz-box-shadow: 0 10px 6px -6px #777;
-  box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 15px 35px rgba(126,87,88,.1), 0 5px 15px rgba(0,0,0,.07);
+  background-color: #fff;
 }
+#event_image{
+  width:100%;
+  height:420rpx;
+  }
 
-.footer{
-  height: 100rpx;
-  border: solid 1px #eaeaea;
-  margin-top: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: white;
-}
-
-#share_btn{
+  #share_btn{
   height: 150rpx;
   background:transparent;
 }
@@ -91,32 +61,36 @@ height:80rpx;
   display: flex;
   align-items: center;
 }
-#event_image{
-width:100%;
-height:420rpx;
-margin-top:40rpx;
-box-shadow: 0 60rpx 80rpx rgba(126,87,88,.1)
+
+.footer{
+  height: 100rpx;
+  margin-top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: white;
 }
 
 .info{
   font-size: 28rpx;
   margin-top: 20rpx;
-  font-weight: bold;
+  margin-bottom: 20rpx;
+  font-family: Circular Std Book;
 }
 .info.date{
- width: 20rpx;
+ width: 10vw;
  text-align: center;
- justify-content: center;
- padding-left: 20rpx;
+ /* justify-content: center; */
+ padding-left:42rpx;
  color: #fd1015;
+
 }
 
 .info.name{
-  width: 400rpx;
+ width: 60vw;
+ word-break:normal ;
  padding-left: 30rpx;
- /* text-align: center;
- justify-content: center; */
-
+ word-wrap:break-word;
 }
 
 #avatar{

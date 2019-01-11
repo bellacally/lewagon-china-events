@@ -151,7 +151,11 @@ Page({
       })
     })
   },
-  
+  clickToIndex: function(){
+    wx.redirectTo({
+      url: '../index/index',
+    })
+  },
   /**
    * Lifecycle function--Called when page load
    */
