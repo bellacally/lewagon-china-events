@@ -14,7 +14,7 @@
     font-style: normal;
 }
 
-@font-face {
+/* @font-face {
     font-family: 'Circular Std';
     src: url('CircularStd-Light.eot');
     font-weight: 300;
@@ -28,4 +28,4 @@
         url('CircularStd-Light.svg#CircularStd-Light') format('svg');
     font-weight: 300;
     font-style: normal;
-}
+} */

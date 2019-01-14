@@ -33,8 +33,8 @@ Page({
         name: 'Others'
       }
     ],
-    // feedbackForm: true,
-    // feedbackMessage: false,
+    feedbackForm: true,
+    feedbackMessage: false,
   },
 
   bindPickerChange: function (e) {
@@ -122,7 +122,7 @@ Page({
   checkSubmitStatus: function () {
     let page = this
     return new Promise(function (resolve, reject) {
-      // let hiddenForm = true;
+      
       let tableID = 33633
        // feedback table
       let eventID = page.data.event_id
@@ -138,11 +138,11 @@ Page({
         if (res.data.objects.length == 0 || res.data.objects === undefined)
         {
         // THIS USER NEVER SUBMITTED A FEEDBACK FOR THIS EVENT, RETURN FALSE
-          return false
+         resolve(true)
         }
         else {
         // THIS USER HAS ALREADY SUBMITTED A FEEDBACK, RETURN TRUE
-          return true
+          resolve(false)
         }      
 
       }, err => {
@@ -151,6 +151,7 @@ Page({
       })
     })
   },
+
   clickToIndex: function(){
     wx.redirectTo({
       url: '../index/index',
@@ -182,7 +183,6 @@ Page({
       page.setData({
         event_id: options.event_id,
       })
-
       let tableID = 60055
       let recordID = page.data.event_id
       // console.log('tryyyy', recordID)
@@ -212,21 +212,26 @@ Page({
 
     // CHECK IF USER ALREADY SENT A FEEDBACK, 
     // IF YES, HIDE THE FORM AND DISPLAY A THANK YOU NOTE
-    const check = page.checkSubmitStatus();
-      console.log('ccccc', check);
-      if (check === true) {
-        page.setData({
-          feedbackForm: true,
-          feedbackMessage: false,
-        })
-      }
-      else {
-        page.setData({
-          feedbackForm: false,
-          feedbackMessage: true,
-        })
-      }
-    
+    // page.checkSubmitStatus().then(function (value) {
+    //   console.log(value);    // => 'Async Hello world'
+    //   if (value) {
+    //     page.setData({
+    //       feedbackForm: true,
+    //       feedbackMessage: false,
+    //     })
+    //   }
+    //   else {
+    //     page.setData({
+    //       feedbackForm: false,
+    //       feedbackMessage: true,
+    //     })
+    //   }
+
+    // }).catch(function (error) {
+    //   console.log(error);
+      
+    // });
+
   },
 
   /**

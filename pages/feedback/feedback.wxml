@@ -3,7 +3,7 @@
 <view class ='name' >{{event_name}}</view>
 </view>
 
-<view class="backgeround" style="background-image: url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1ghuIq9BFKnykhmV.png'); background-size:cover; width: 100vw; height: 100vh">
+<view class="backgeround" style="background-image: url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1ghuIq9BFKnykhmV.png'); background-size:cover; width: 100vw; height: 62vh">
   <block wx:if="{{feedbackForm}}">
     <form bindsubmit="formSubmit" bindreset="formReset">
       <view class="section section_gap">

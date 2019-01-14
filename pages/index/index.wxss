@@ -38,6 +38,7 @@ font-family: Circular Std;
   border-radius:14rpx;
   box-shadow: 0 15px 35px rgba(126,87,88,.1), 0 5px 15px rgba(0,0,0,.07);
   background-color: #fff;
+  margin-bottom: 80rpx;
 }
 #event_image{
   width:100%;
@@ -72,10 +73,11 @@ height:80rpx;
 }
 
 .info{
-  font-size: 28rpx;
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
-  font-family: Circular Std Book;
+width:80%;
+margin-left:15rpx;
+font-size:28rpx;
+font-family:Circular Std Book;
+
 }
 .info.date{
  width: 10vw;
@@ -94,12 +96,12 @@ height:80rpx;
 }
 
 #avatar{
-width:80rpx;
-height:80rpx;
+width:100rpx;
+height:100rpx;
 border-radius:50%;
 position:absolute;
-top:20rpx;
-right:-6rpx;
+top:-30rpx;
+right:-8rpx;
 }
 
 

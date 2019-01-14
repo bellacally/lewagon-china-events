@@ -105,8 +105,8 @@ the bottom date and location part */
   margin:0 auto;
 }
 .icon_container{
-  width: 100rpx;
-  height: 100rpx;
+  width: 80rpx;
+  height: 60rpx;
 }
 
 .map_icon{
@@ -121,7 +121,7 @@ margin-left:10rpx;
 }
 
 .info{
-  width:70%;
+  width:76%;
   margin-left:15rpx;
   font-size: 30rpx;
   font-family: Circular Std Book; 
