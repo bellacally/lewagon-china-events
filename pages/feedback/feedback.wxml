@@ -68,9 +68,10 @@
           <textarea class="message" placeholder='eg. I would love to hear more about ... ' name="areas_to_improve"> </textarea> 
       </view>
       <!-- <i-button type="primary" bind:click="handleClick"></i-button> -->
+   <button class="cta_primary" form-type="submit" data-feedback="{{event_id}}">Submit</button>
     </form>
      <!-- <view class="btn-area"> -->
-      <button class="cta_primary" form-type="submit" data-feedback="{{event_id}}">Submit</button>
+      
       <!-- </view> -->
   </block>
 

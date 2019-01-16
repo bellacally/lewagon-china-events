@@ -121,7 +121,7 @@ margin-left:10rpx;
 }
 
 .info{
-  width:76%;
+  width:80%;
   margin-left:15rpx;
   font-size: 30rpx;
   font-family: Circular Std Book; 
