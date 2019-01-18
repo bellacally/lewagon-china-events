@@ -65,7 +65,7 @@ height:80rpx;
 
 .footer{
   height: 100rpx;
-  margin-top: 0;
+  margin-top: 30rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
