@@ -2,7 +2,13 @@ const WeValidator = require('../../utils/we-validator');
 const app = getApp();
 Page({
   data: {
-  
+    items: [
+      { name: '1', value: '1' },
+      { name: '2', value: '2', checked: 'true' },
+      { name: '3', value: '3' },
+      { name: '4', value: '4' },
+      { name: '5', value: '5' },
+    ],
     starIndex1: 0,
     starIndex2: 0,
     starIndex3: 0,
@@ -35,16 +41,49 @@ Page({
     ],
     feedbackForm: true,
     feedbackMessage: false,
+    
+    text: {
+      en: {
+        reg: '* How did you register for the event?',
+        like: '* In general, how did you like the event?',
+        rec: 'How likely will you recommend our event?(1 is the least likely and 5 is the most likely)',
+        content:'Content',
+        speaker: 'Speaker',
+        location: 'Location',
+        improve:'How do you think the event can be improved?'
+      },
+      zh: {
+        reg: '您是如何听说我们的活动呢？',
+        like: '总体来说您觉得我们的活动如何?',
+        rec:'您会愿意向其他人推荐我们的活动吗？',
+        content:'活动内容',
+        speaker:'演讲嘉宾',
+        location:'活动地点',
+        improve:'您觉得本次活动有哪些可以改善的地方呢?',
+      }
+    }
   },
 
   bindPickerChange: function (e) {
     let page = this
     console.log(page.data.array[e.detail.value])
     this.setData({
-      channel_index: e.detail.value,
+      channel_index: parseInt(e.detail.value),
       // channel_index: a
     });
   },
+  radioChange:function(e){
+    const recommend = e.detail.value;
+    console.log(recommend)
+    var items = this.data.items
+    console.log(items[recommend -1])
+    items[recommend -1]['checked'] = true
+    console.log(items[recommend -1])
+    this.setData({
+      items: items
+    })
+  },
+
   onChange1(e) {
     const index = e.detail.index;
     this.setData({
@@ -63,12 +102,7 @@ Page({
       'starIndex3': index
     })
   },
-  sliderChange: function(e){
-    const recommend = e.detail.value;
-    this.setData({
-      'recommend': recommend
-    })
-  },
+ 
   showModal() {
     wx.showModal({
       content: "please fill out all the * fields",
@@ -78,7 +112,7 @@ Page({
   },
 
   formSubmit: function(e){ 
-   
+   console.log(e.detail.value)
     let that = this;
     that.setData({
       channels: e.detail.value.channels,
@@ -87,11 +121,11 @@ Page({
     })
     let Feedback = new wx.BaaS.TableObject('feedbacks');
     let eventId = that.data.event_id;
-    
+    console.log(that.data)
     let feedback = Feedback.create()
     feedback.set({
       'channels': that.data.array[that.data.channel_index],
-      'recommend': that.data.recommend,
+      'recommend': parseInt(e.detail.value.recommend),
       'created_by': that.data.userId,
       'speaker_rating': that.data.starIndex1,
       'location_rating': that.data.starIndex2,
@@ -113,11 +147,11 @@ Page({
 
         })
     }, err => {
+      console.log(err)
       that.showModal()
       return false
     })
   },
- 
 
   checkSubmitStatus: function () {
     let page = this
@@ -161,20 +195,29 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    let page = this
+    var lan = app.globalData.language
+    var text = this.data.text[lan]
+    console.log(lan, text)
+    // var check_userinfo = wx.getStorage('userInfo')
+    // console.log(check_userinfo);
+    // console.log(wx.getStorageSync('texts').length)
     console.log(options)
-
+    this.setData({
+      userId: wx.getStorageSync('userId'),
+      text: text
+    })
     wx.BaaS = requirePlugin('sdkPlugin')
     wx.BaaS.wxExtend(wx.login);
     wx.BaaS.login(false).then(res => {
-      this.setData({
+      page.setData({
         userId: res.id
       })
     }, err => {
       // err
     })
 
-    let page = this
+    
 
     console.log(options.event_id)
 
@@ -202,10 +245,6 @@ Page({
 
       }, err => {
         // err
-      })
-
-      page.setData({
-        userId: wx.getStorageSync('userId'),
       })
 
     };

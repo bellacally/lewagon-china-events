@@ -7,7 +7,7 @@
   <block wx:if="{{feedbackForm}}">
     <form bindsubmit="formSubmit" bindreset="formReset">
       <view class="section section_gap">
-        <view  class="section_title">* How did you register for the event?</view>
+        <view  class="section_title">{{text.reg}}</view>
           <picker bindchange="bindPickerChange" value="{{[channel_index]}}" range="{{array}}" name="channels">
             <view class="picker"> 
               <view class="channel">
@@ -22,10 +22,10 @@
       </view>
 
       <view class="section section_gap">
-        <view class="section_title">* In general, how did you like the event?</view>
+        <view class="section_title">{{text.like}}</view>
         <view class="all">
             <view class="details row">
-            <view class="item" name="content_rating" >Content</view>
+            <view class="item" name="content_rating" >{{text.content}}</view>
             <i-cell class="stars" title="自定义星星大小">
               <i-rate 
                 bind:change="onChange1" 
@@ -35,7 +35,7 @@
             </i-cell>
           </view>
           <view class="details row">
-            <view class="item" name="speaker_rating">Speaker</view>
+            <view class="item" name="speaker_rating">{{text.speaker}}</view>
             <i-cell class="stars"title="自定义星星大小">
               <i-rate 
                 bind:change="onChange2" 
@@ -45,7 +45,7 @@
             </i-cell>
           </view>
           <view class="details row">
-            <view class="item" name="location_rating">Location</view>
+            <view class="item" name="location_rating">{{text.location}}</view>
             <i-cell class="stars" title="自定义星星大小">
               <i-rate 
               bind:change="onChange3" 
@@ -59,20 +59,23 @@
       </view>
 
       <view class="section section_gap">
-        <view class="section_title">* How likely will you recommend our events?</view>
-        <slider class="details" min="1" max="5" name='recommend' bindchange="sliderChange" show-value/>
+        <view class="section_title">{{text.rec}}</view>
+        <!-- <slider class="details" min="1" max="5" name='recommend' bindchange="sliderChange" show-value/> -->
+        <radio-group class="radio-group" name='recommend' bindchange="radioChange">
+      <view class="radio" wx:for="{{items}}">
+        <radio class="item" value="{{item.name}}" checked="{{item.checked}}" />
+        {{item.value}}
       </view>
+      </radio-group>
+  </view>
 
-      <view class="section section_gap">
-        <view class="section_title">How do you think the event can be improved?</view>
-          <textarea class="message" placeholder='eg. I would love to hear more about ... ' name="areas_to_improve"> </textarea> 
-      </view>
+  <view class="section section_gap">
+    <view class="section_title">{{text.improve}}</view>
+      <textarea class="message" placeholder='eg. I would love to hear more about ... ' name="areas_to_improve"></textarea> 
+  </view>
       <!-- <i-button type="primary" bind:click="handleClick"></i-button> -->
    <button class="cta_primary" form-type="submit" data-feedback="{{event_id}}">Submit</button>
     </form>
-     <!-- <view class="btn-area"> -->
-      
-      <!-- </view> -->
   </block>
 
   <block wx:else="{{feedbackMessage}}">

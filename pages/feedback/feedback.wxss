@@ -38,9 +38,11 @@
   box-sizing:border-box;
   height:60rpx;
   padding-left:15rpx;
-
 }
-
+.radio-group{
+  font-size: 22rpx;
+  font-family: Circular Std Book;
+}
 .details{
   padding: 10rpx;
   font-size: 28rpx; 
@@ -103,6 +105,10 @@ text{
 }
 .show{ 
  display: block;
+}
+.radio-group{
+  display: flex;
+  margin-top:50rpx;
 }
 
 .thankyou {
