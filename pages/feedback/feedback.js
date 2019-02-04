@@ -46,7 +46,8 @@ Page({
       en: {
         reg: '* How did you register for the event?',
         like: '* In general, how did you like the event?',
-        rec: 'How likely will you recommend our event?(1 is the least likely and 5 is the most likely)',
+        rec: 'How likely will you recommend this event?',
+        rec_small: "(1 is the least likely and 5 is the most likely)",
         content:'Content',
         speaker: 'Speaker',
         location: 'Location',
@@ -56,6 +57,7 @@ Page({
         reg: '您是如何听说我们的活动呢？',
         like: '总体来说您觉得我们的活动如何?',
         rec:'您会愿意向其他人推荐我们的活动吗？',
+        rec_small: '',
         content:'活动内容',
         speaker:'演讲嘉宾',
         location:'活动地点',
@@ -79,9 +81,6 @@ Page({
     console.log(items[recommend -1])
     items[recommend -1]['checked'] = true
     console.log(items[recommend -1])
-    this.setData({
-      items: items
-    })
   },
 
   onChange1(e) {
@@ -139,7 +138,7 @@ Page({
           duration: 1000,
           success: function () { 
             setTimeout(function () {
-              wx.navigateTo({
+              wx.redirectTo({
                 url: '/pages/index/index',
               })
             }, 1000);
@@ -195,6 +194,11 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    wx.loadFontFace({
+      family: 'Circular Black',
+      source: 'url("https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gqb9L1kfJbwLQAt.ttf")',
+      success: console.log
+    })
     let page = this
     var lan = app.globalData.language
     var text = this.data.text[lan]
@@ -237,10 +241,12 @@ Page({
         // success
         console.log("resyyyyyy", res)
         let event = res.data.objects[0]
+        let event_date = new Date(event.date).toString().toUpperCase().substr(4, 7);
 
         page.setData({
           event_image: event.image,
-          event_name: event.name
+          event_name: event.name,
+          event_date: event_date
         })
 
       }, err => {

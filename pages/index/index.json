@@ -1,6 +1,9 @@
 {
   "usingComponents": {
     "Select": "../../component/select/select"
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#FFF"
   }
-  }
+}
 

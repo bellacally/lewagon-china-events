@@ -1,12 +1,11 @@
 .com-selectBox{
-   width: 85vw;
-   margin: 0 auto;
+   width: 27vw;
+   margin: 0 0 0 5vw;
    box-shadow: 0 15px 35px rgba(126,87,88,.1), 0 5px 15px rgba(0,0,0,.07);
    background-color: #fff;
-   margin-top: 50rpx;
 }
 .com-sContent{
-    border: 1px solid #e2e2e2;
+    /* border: 1px solid #e2e2e2; */
     background: white;
     font-size: 16px;
     position: relative;
@@ -15,7 +14,7 @@
 }
 .com-sImg{
     position: absolute;
-    right: 10px;
+    right: 0px;
     top: 11px;
     width: 32px;
     height: 20px;
@@ -29,18 +28,19 @@
     line-height: 36px;    
     padding:2px 20px 2px 6px;
     font-size: 30rpx;
-    font-family: Circular Std;
+    font-family: Avenir, Arial, Helvetica, sans-serif;
 }
 .com-sList{
     background: white;
     width: inherit;
     position: absolute;
-    border: 1px solid #e2e2e2;
+    /* border: 1px solid #e2e2e2; */
     border-top: none;
     box-sizing: border-box;
     z-index: 3;
     max-height: 120px;
     overflow: auto;
+    box-shadow: 0 15px 35px rgba(126,87,88,.1), 0 5px 15px rgba(0,0,0,.07);
 }
 .com-sItem{
     height: 40px;
@@ -52,7 +52,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 30rpx;
-    font-family: Circular Std;    
+    font-family: Avenir, Arial, Helvetica, sans-serif;    
 }
 
 .com-sItem:first-child{

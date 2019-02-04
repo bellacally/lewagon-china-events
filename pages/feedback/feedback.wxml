@@ -1,13 +1,20 @@
-
-<view class="header"style="background-image:linear-gradient(225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 80%), url('{{event_image}}'); background-size:cover; width: 100vw; height: 420rpx">
-<view class ='name' >{{event_name}}</view>
+<view class="event_image" style= "background-image:linear-gradient(180deg,rgba(0,180,180,.1),rgba(0,0,0,.3) 70%), url('{{event_image}}'); background-size:cover; width: 100vw; height: 420rpx">
+  We'd love your feedbacks!
 </view>
 
-<view class="backgeround" style="background-image: url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1ghuIq9BFKnykhmV.png'); background-size:cover; width: 100vw; height: 62vh">
+<!-- time and name section below the background img -->
+ <view class="row">
+   <view class="date">{{event_date}}</view>
+   <view class="name">{{event_name}}</view>
+ </view>
+
+<view class="divLine"></view>
+
+<view>
   <block wx:if="{{feedbackForm}}">
     <form bindsubmit="formSubmit" bindreset="formReset">
       <view class="section section_gap">
-        <view  class="section_title">{{text.reg}}</view>
+        <view  class="section_title">{{text.en.reg}}</view>
           <picker bindchange="bindPickerChange" value="{{[channel_index]}}" range="{{array}}" name="channels">
             <view class="picker"> 
               <view class="channel">
@@ -22,10 +29,10 @@
       </view>
 
       <view class="section section_gap">
-        <view class="section_title">{{text.like}}</view>
+        <view class="section_title">{{text.en.like}}</view>
         <view class="all">
             <view class="details row">
-            <view class="item" name="content_rating" >{{text.content}}</view>
+            <view class="item" name="content_rating" >{{text.en.content}}</view>
             <i-cell class="stars" title="自定义星星大小">
               <i-rate 
                 bind:change="onChange1" 
@@ -35,7 +42,7 @@
             </i-cell>
           </view>
           <view class="details row">
-            <view class="item" name="speaker_rating">{{text.speaker}}</view>
+            <view class="item" name="speaker_rating">{{text.en.speaker}}</view>
             <i-cell class="stars"title="自定义星星大小">
               <i-rate 
                 bind:change="onChange2" 
@@ -45,7 +52,7 @@
             </i-cell>
           </view>
           <view class="details row">
-            <view class="item" name="location_rating">{{text.location}}</view>
+            <view class="item" name="location_rating">{{text.en.location}}</view>
             <i-cell class="stars" title="自定义星星大小">
               <i-rate 
               bind:change="onChange3" 
@@ -59,18 +66,19 @@
       </view>
 
       <view class="section section_gap">
-        <view class="section_title">{{text.rec}}</view>
+        <view class="section_title">{{text.en.rec}}</view>
+        <view class="section_desc">{{text.en.rec_small}}</view>
         <!-- <slider class="details" min="1" max="5" name='recommend' bindchange="sliderChange" show-value/> -->
         <radio-group class="radio-group" name='recommend' bindchange="radioChange">
-      <view class="radio" wx:for="{{items}}">
-        <radio class="item" value="{{item.name}}" checked="{{item.checked}}" />
-        {{item.value}}
-      </view>
+          <view class="radio" wx:for="{{items}}">
+            <radio class="item" value="{{item.name}}" checked="{{item.checked}}" />
+            {{item.value}}
+          </view>
       </radio-group>
   </view>
 
   <view class="section section_gap">
-    <view class="section_title">{{text.improve}}</view>
+    <view class="section_title">{{text.en.improve}}</view>
       <textarea class="message" placeholder='eg. I would love to hear more about ... ' name="areas_to_improve"></textarea> 
   </view>
       <!-- <i-button type="primary" bind:click="handleClick"></i-button> -->

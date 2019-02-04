@@ -7,15 +7,9 @@
   justify-content: space-between;
   box-sizing: border-box;
   font-size: 26rpx;
-  font-family: Circular Std;
+  font-family: 'Circular Black';
 } 
-/* 
-.title{
-  margin-bottom: 200rpx;
-  font-size: 50rpx;
-  font-weight: bold;
-  justify-content: center;
-} */
+
 .cta_primary{
     background-color: #fd1015;
     color: #fff;
@@ -30,4 +24,17 @@
     -webkit-box-shadow: 0 2px 14px rgba(126,87,88,.1), 0 3px 6px rgba(0,0,0,.08);
     box-shadow: 0 2px 14px rgba(126,87,88,.1), 0 3px 6px rgba(0,0,0,.08);
     width:700rpx;
+}
+
+.highlighted-red {
+    color: #fd1015;
+    background: rgba(253,16,21,.1);
+}
+
+.highlighted {
+    line-height: 1.1em;
+    display: inline-block;
+    padding: 0 15px 3px;
+    font-style: normal;
+    border-radius: 3px;
 }

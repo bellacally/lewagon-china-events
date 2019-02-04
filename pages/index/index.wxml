@@ -1,15 +1,15 @@
 
-<view class="section" style="background-image: url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1ghuswe4qqoySyGp.png'); background-size:cover; height:165px;">
+<view class="section" style="background-image: url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gqaQKJVRfwkIsR1.png'); background-size:100%; background-repeat: no-repeat;">
    <Select class="dropdown" prop-array='{{selectArray}}' city="{{SelectedCity}}"></Select>
  </view>
-<!-- <image class="header_img" src='https://cloud-minapp-13908.cloud.ifanrusercontent.com/1ghqStXey9BCPYTN.png'></image> -->
-  <view class="container">
+
+  <view class="index">
     <block wx:for="{{upcomingEvents}}" wx:for-item="res" wx:key="key" wx:index="index">
-      <view class="background">
+      <view class="card">
       <view id= "{{res.id}}" bindtap="clickToShow" data-index="{{res.id}}">
-        <view id="event_image" style= "background-image: url('{{res.image}}'); background-size:cover;">
+        <view id="event_image" style= "background-image: url('{{res.image}}'); background-size:100%;">
         <!-- CHECK IF THE EVENT ID IS INCLUDED IN THE PARTICIPATED EVENTS ARRAY -->
-        <block wx:if="{{res.attended}}">
+        <block wx:if="{{res.attending}}">
           <image id="avatar" src='{{avatar}}'></image>
         </block>
         </view>

@@ -8,6 +8,13 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+
+    wx.loadFontFace({
+      family: 'Circular Black',
+      source: 'url("https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gqb9L1kfJbwLQAt.ttf")',
+      success: console.log
+    })
+    
     let page = this;
 
     // 1. Getting UserID to begin with

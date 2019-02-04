@@ -8,8 +8,10 @@
 <!-- <image src='../images/landing.jpg'></image> -->
  
     <view class="container">
-      <view class="line">Learn to code</view>
-      <view class="line">Change your life</view>
+      <view class="line">Learn to 
+      <text class="highlighted highlighted-red"> code</text>,
+      </view>
+      <view class="line">Change your life.</view>
       <button class='cta_primary' open-type="getUserInfo" bindgetuserinfo="getUserInfo">Start your journey</button>
     </view>
 </view>
