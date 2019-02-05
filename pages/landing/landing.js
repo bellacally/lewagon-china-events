@@ -1,7 +1,8 @@
-
 let app = getApp();
+
 Page({
   data: {
+    show: false
   },
 
   /**
@@ -21,40 +22,37 @@ Page({
     wx.getStorage({
       key: 'userId',
       success(res) {
-        console.log("res", res)
+        console.log("// Do we have a userID?", res)
         if (!res.data || res.data.length === 0) {
-
-          console.log("alert we have no user ID!");
-
+          console.log("alert: we have no user ID!");
         } else {
-
           let userId = res.data
-
           page.setData({
             userId: userId
           })
+          console.log("yes, we have this:", userId);
 
           // 2. Check if this user has signed up before
 
           try {
             let signUps = wx.getStorageSync('signUps')
             if (signUps.length === 0) {
-              console.log("user has no sign ups")
+              console.log("this user has no event sign ups, no need for feedbacks")
               // no need to go to feedbacks
             }
             else {
-              console.log("user signed up to events:", signUps)
+              console.log("this user signed up to some events:", signUps)
               // User signed up, move on
               // Verify if this user has signed up to any event of the past week
               try {
                 let recentPastEventsId = wx.getStorageSync('recentPastEventsId')
                 signUps.forEach((signUp) => {
 
-                  console.log("signed up to event:", signUp)
+                  console.log("let's check this event:", signUp)
                   let verify = recentPastEventsId.includes(signUp)
 
                   if (verify) {
-                    console.log("user joined an event this past week:", signUp)
+                    console.log("yes, user joined this activity the past week:", signUp)
                     // if verify is true, then the user joined an event this past week
                     // For past events, check if there are no feedbacks
                     try {
@@ -76,7 +74,7 @@ Page({
                         }
                         else {
                           // do nothing, wait for user click to "start journey"
-                            console.log("there are no feedbacks waiting")
+                            console.log("fine, there are no feedbacks waiting")
                         }
                       }, err => {
                         console.log(err)
@@ -100,6 +98,26 @@ Page({
         }
       }
     })
+
+    // redirecting returning visitors straight to index
+
+    wx.getStorage({
+      key: 'userName',
+      success(res) {
+        console.log("res", res)
+        if (!res.data || res.data.length === 0) {
+          console.log("this user is not indentified yet! wait for button 'START YOUR JOURNEY'");
+
+        } else {
+          console.log("we know this user:", res.data);
+          console.log("SKIP LANDING and redirect to index page");
+          
+          page.goToEvents();
+
+        }
+      }
+    })
+
   },
 
   getUserInfo(data) {
@@ -159,14 +177,27 @@ Page({
   /**
    * Lifecycle function--Called when page is initially rendered
    */
-  onReady: function () {
 
+  onReady: function () {
+    var page = this
+    console.log("ready");
+    setTimeout(function () {
+      wx.hideLoading()
+      page.setData({
+        show: true
+      })
+    }, 2000)
   },
 
   /**
    * Lifecycle function--Called when page show
    */
+
   onShow: function () {
+    console.log("shown");
+    wx.showLoading({
+      title: '加载中',
+    })
 
   },
 

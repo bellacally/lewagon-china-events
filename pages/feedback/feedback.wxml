@@ -1,9 +1,13 @@
 <view class="event_image" style= "background-image:linear-gradient(180deg,rgba(0,180,180,.1),rgba(0,0,0,.3) 70%), url('{{event_image}}'); background-size:cover; width: 100vw; height: 420rpx">
-  We'd love your feedbacks!
+  <block wx:if="{{feedbackMessage}}">
+    Thank you for your feedbacks!
+  </block>
+  <block wx:if="{{feedbackForm}}">
+    We'd love your feedbacks!
+  </block>
 </view>
 
-<!-- time and name section below the background img -->
- <view class="row">
+ <view class="row" wx:if="{{feedbackForm}}">
    <view class="date">{{event_date}}</view>
    <view class="name">{{event_name}}</view>
  </view>
@@ -82,16 +86,13 @@
       <textarea class="message" placeholder='eg. I would love to hear more about ... ' name="areas_to_improve"></textarea> 
   </view>
       <!-- <i-button type="primary" bind:click="handleClick"></i-button> -->
-   <button class="cta_primary" form-type="submit" data-feedback="{{event_id}}">Submit</button>
+   <button class="cta_primary" form-type="submit" data-feedback="{{event_id}}">Send this feedback form</button>
+  <button class="cta_secondary" form-type="submit" data-feedback="{{event_id}}">Skip this form</button>
     </form>
   </block>
 
-  <block wx:else="{{feedbackMessage}}">
-    <view class="thankyou">
-      <view class="title">Thank you for your feedback!</view>
-       <view class="subtitle">Check out our next event</view>
-    </view>
-      <button bindtap="clickToIndex" class="cta_primary">Go back</button>
+  <block wx:if="{{feedbackMessage}}">
+    <button bindtap="clickToIndex" class="cta_primary">Join more events</button>
   </block>
 </view>
 

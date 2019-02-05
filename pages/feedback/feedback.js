@@ -44,14 +44,14 @@ Page({
     
     text: {
       en: {
-        reg: '* How did you register for the event?',
-        like: '* In general, how did you like the event?',
-        rec: 'How likely will you recommend this event?',
+        reg: '* How did you register for this event?',
+        like: '* In general, how did you like it?',
+        rec: 'How likely will you recommend it?',
         rec_small: "(1 is the least likely and 5 is the most likely)",
         content:'Content',
         speaker: 'Speaker',
         location: 'Location',
-        improve:'How do you think the event can be improved?'
+        improve:'How do you think this event can be improved?'
       },
       zh: {
         reg: '您是如何听说我们的活动呢？',
@@ -133,7 +133,7 @@ Page({
       'event_id': `${that.data.event_id}`
       }).save().then(res => {
       wx.showToast({
-          title: 'Submitted',
+          title: 'Got it!',
           icon: 'success',
           duration: 1000,
           success: function () { 
@@ -167,15 +167,15 @@ Page({
 
       FeedbacksTable.setQuery(query).find().then(res => {
         console.log(res.data.objects)
-        console.log('yess',res.data.objects.length)
+        console.log('Feedback already received? 1 = yes, 0 = no',res.data.objects.length)
         if (res.data.objects.length == 0 || res.data.objects === undefined)
         {
-        // THIS USER NEVER SUBMITTED A FEEDBACK FOR THIS EVENT, RETURN FALSE
-         resolve(true)
+        // THERE ARE NO FEEDBACKS
+         resolve(false)
         }
         else {
-        // THIS USER HAS ALREADY SUBMITTED A FEEDBACK, RETURN TRUE
-          resolve(false)
+        // THERE ARE FEEDBACKS
+          resolve(true)
         }      
 
       }, err => {
@@ -194,23 +194,21 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+
     wx.loadFontFace({
       family: 'Circular Black',
       source: 'url("https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gqb9L1kfJbwLQAt.ttf")',
       success: console.log
     })
+
     let page = this
-    var lan = app.globalData.language
-    var text = this.data.text[lan]
-    console.log(lan, text)
-    // var check_userinfo = wx.getStorage('userInfo')
-    // console.log(check_userinfo);
-    // console.log(wx.getStorageSync('texts').length)
-    console.log(options)
+
+    console.log("Loading details for:", options)
+
     this.setData({
-      userId: wx.getStorageSync('userId'),
-      text: text
+      userId: wx.getStorageSync('userId')
     })
+
     wx.BaaS = requirePlugin('sdkPlugin')
     wx.BaaS.wxExtend(wx.login);
     wx.BaaS.login(false).then(res => {
@@ -221,25 +219,22 @@ Page({
       // err
     })
 
-    
-
-    console.log(options.event_id)
-
     if (options.event_id) {
       
       page.setData({
         event_id: options.event_id,
       })
+
       let tableID = 60055
       let recordID = page.data.event_id
-      // console.log('tryyyy', recordID)
+
       let query = new wx.BaaS.Query()      
       let EventsTable = new wx.BaaS.TableObject(tableID);
       query.compare('id', '=', recordID)
 
       EventsTable.setQuery(query).find().then(res => {
         // success
-        console.log("resyyyyyy", res)
+        console.log("We found all info about this event:", res)
         let event = res.data.objects[0]
         let event_date = new Date(event.date).toString().toUpperCase().substr(4, 7);
 
@@ -248,6 +243,8 @@ Page({
           event_name: event.name,
           event_date: event_date
         })
+        console.log("Everything was set in the page, ready for display")
+
 
       }, err => {
         // err
@@ -257,25 +254,25 @@ Page({
 
     // CHECK IF USER ALREADY SENT A FEEDBACK, 
     // IF YES, HIDE THE FORM AND DISPLAY A THANK YOU NOTE
-    // page.checkSubmitStatus().then(function (value) {
-    //   console.log(value);    // => 'Async Hello world'
-    //   if (value) {
-    //     page.setData({
-    //       feedbackForm: true,
-    //       feedbackMessage: false,
-    //     })
-    //   }
-    //   else {
-    //     page.setData({
-    //       feedbackForm: false,
-    //       feedbackMessage: true,
-    //     })
-    //   }
+    page.checkSubmitStatus().then(function (value) {
+      console.log(value);    // => 'Async Hello world'
+      if (value) {
+        page.setData({
+          feedbackForm: false,
+          feedbackMessage: true,
+        })
+      }
+      else {
+        page.setData({
+          feedbackForm: true,
+          feedbackMessage: false,
+        })
+      }
 
-    // }).catch(function (error) {
-    //   console.log(error);
+    }).catch(function (error) {
+      console.log(error);
       
-    // });
+    });
 
   },
 

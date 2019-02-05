@@ -184,6 +184,12 @@ text{
   margin-top:45rpx;
   width: 90%;
 }
+
+.cta_secondary {
+  margin-bottom:40rpx;
+  margin-top:45rpx;
+  width: 90%;  
+}
 .title{
   margin-bottom:80rpx;
   font-size:60rpx;
