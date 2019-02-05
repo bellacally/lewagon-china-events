@@ -15,7 +15,7 @@
         </view>
    
         <view class="footer">
-          <view class ="info date">{{res.date}}</view>
+          <view class="info date">{{res.date}}</view>
           <view class="info name">{{res.name}}</view>
           <!-- <view class ="info">{{res.month}}</view> -->
             <!-- put share icon inside a button -->
@@ -27,6 +27,15 @@
         </view>
        </view>
      </view>  
+   </block>
+   <block wx:if="{{upcomingEvents.length == 0}}">
+   <view class="card">
+      <view id="event_image" style="background-image: url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gqtoOFDJZzjjHAO.jpg'); background-size:100%;">
+      </view>
+      <view class="footer">
+        Nothing planned just yet. Stay tuned!
+      </view>
+   </view>
    </block>
   </view>
 

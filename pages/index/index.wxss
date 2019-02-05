@@ -45,6 +45,7 @@ font-family: Circular Std;
 
 #share_btn{
   background:transparent;
+  line-height: 20rpx;
 }
 
 #share_btn::after{
@@ -55,24 +56,20 @@ font-family: Circular Std;
   width:80rpx;
   height:80rpx;
 }
-.share_icon{
-  display: flex;
-  align-items: center;
-}
 
 .footer{
-  height: 100rpx;
-  margin-top: 30rpx;
+  height: 130rpx;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: white;
+  align-items: center;
+  font-size:28rpx;  
 }
 
 .info{
   width:80%;
   margin-left:15rpx;
-  font-size:28rpx;
   font-family: Avenir, Arial;
 }
 

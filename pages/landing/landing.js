@@ -128,7 +128,10 @@ Page({
       wx.setStorageSync('userCity', res.province)
       wx.setStorageSync('userAvatar', res.avatarUrl)
       page.goToEvents();
-    }, res => {
+    }, err => {
+      console.log(err)
+      console.log("this user doesn't want to give away personal data (avatar, location), but we can still go ahead?")
+      page.goToEvents();
     })
   },
 
