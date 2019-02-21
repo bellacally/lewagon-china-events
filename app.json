@@ -4,14 +4,13 @@
     "pages/index/index",
     "pages/show/show",
     "pages/feedback/feedback",
-    "pages/map/map",
-    "libs/font/font"
+    "pages/map/map"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#FD1015",
-    "navigationBarTitleText": "Le Wagon",
-    "navigationBarTextStyle": "white"
+    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black"
   },
   "plugins": {
     "sdkPlugin": {

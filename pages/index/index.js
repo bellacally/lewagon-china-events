@@ -32,16 +32,21 @@ Page({
     var upcomingEvents = [];
     query.contains('city', city);
     let user_id = wx.getStorageSync('userId')
-    signups_query.compare('created_by', '=', user_id)
+    signups_query.compare('user_id', '=', user_id)
     EventsTable.setQuery(query).orderBy(['date']).find().then(res => {
-      // console.log(res.data)
+      
       let results = res.data.objects
+      // "results" contains the list of upcoming events
+
       SignupsTable.setQuery(signups_query).find().then(res => {
-        // console.log(res.data.objects[0].event_id.id)
+        
         signups = res.data.objects.map((s) => {
           return s.event_id.id
         })
+        
         console.log(signups)
+        // "signups" contains the list of future events this user has sign up for
+
         results.forEach((object) => {
           let now = new Date();
           let year = now.getFullYear()
@@ -57,21 +62,36 @@ Page({
             upcomingEvent.date = new Date(upcomingEvent.date).toString().toUpperCase().substr(3, 8);
 
           })
+
+          // "upcoming events" is a clean list of future events
+
           app.globalData.upcomingEvents = upcomingEvents
+
         })
-        upcomingEvents.forEach((u) => {
-          signups.forEach((s) => {
-            u['attended'] = s == u.id ? true : false
-          })
+
+        signups.forEach((u) => {
+          let attending = upcomingEvents.findIndex(x => x.id === u);
+          console.log(attending)
+          if (attending >= 0)
+          {
+            upcomingEvents[attending].attending = true
+          }
         })
+
+        // setting true if user has signed up for an upcoming event
+
         console.log(upcomingEvents)
+
         that.setData({
           userId: wx.getStorageSync('userId'),
           SelectedCity: city,
           upcomingEvents: upcomingEvents,
-          avatar: wx.getStorageSync('userAvatar')
+          avatar: wx.getStorageSync('userAvatar'),
+          signups: signups
         });
+
         console.log(wx.getStorageSync('userAvatar'))
+
         }, err => {
         console.log(err)
       })

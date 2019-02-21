@@ -1,4 +1,3 @@
-@import '../../libs/font.wxss';
 .container{
   align-items: center;
 }
@@ -8,13 +7,6 @@ width: 300rpx;
 height: 98rpx;
 }
 
-.content{
-display: flex;
-align-items: center;
-justify-content: center;
-text-align: center;
-font-family: Circular Std Book;
-}
 #cover_pic{
   display: flex;
   justify-content: center;
@@ -27,11 +19,11 @@ font-family: Circular Std Book;
   margin: 0 auto;
 }
 .cta_primary{
-  margin-top:60rpx;
+  margin-top:40rpx;
 
 }
 .line{
-  font-family:Circular Std Book ;
+  font-family: 'Circular Black';
   font-size: 60rpx;
   padding-bottom:20rpx;
 }

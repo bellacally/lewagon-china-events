@@ -198,11 +198,12 @@ Page({
    */
 
   onShareAppMessage: function () {
+    let page = this
     // SET UP THE SHARING BOX
     return {
       title: 'Le Wagon: Start your journey in tech!',
-      path: 'pages/show/show',
-      imageUrl: 'https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyahkSIPJy9b1.jpg'
+      path: `pages/show/show?event_id=${page.data.event_id}`,
+      imageUrl: `${page.data.event_image}`
     }
     wx.showShareMenu({
       withShareTicket: true
