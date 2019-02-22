@@ -137,7 +137,7 @@ Page({
           success: function () {
             setTimeout(function () {
               wx.reLaunch({
-                url: `/pages/index/index?city=${city}`,
+                url: `/pages/index/index?city=${city}&follow=true`,
               })
             }, 1000);
           }

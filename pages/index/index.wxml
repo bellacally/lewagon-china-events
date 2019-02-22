@@ -13,26 +13,32 @@
           <image id="avatar" src='{{avatar}}'></image>
         </block>
         </view>
-   
+
         <view class="footer">
           <view class ="info date">{{res.date}}</view>
           <view class="info name">{{res.name}}</view>
           <!-- <view class ="info">{{res.month}}</view> -->
             <!-- put share icon inside a button -->
-          <view class="share_icon"> 
+          <view class="share_icon">
             <button id= "share_btn" open-type='share'>
             <image id="share_img" src="https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gbGF6Ul9YF5oYiX.png"></image>
             </button>
-          </view> 
+          </view>
+
         </view>
        </view>
-     </view>  
-   </block>
+     </view>
+    </block>
+    <block wx:if="{{follow == 'true'}}">
+    <view style="width:100%;position:relative;height:168rpx;">
+      <official-account style="position:absolute;top:0;background-color:red;width:100%;height:168rpx;font-size:50rpx;"></official-account>
+    </view>
+    </block>
   </view>
 
 
- 
-  
+
+
 
 
 

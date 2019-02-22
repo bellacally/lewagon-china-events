@@ -20,9 +20,10 @@ Page({
   },
  
   onLoad(options) {
-
+    console.log(options)
     // LOADING UPCOMING EVENTS INTO THE PAGE
     var that = this;
+    let follow = options.follow // 'true'
     const EventsTable = new wx.BaaS.TableObject('events');
     const SignupsTable = new wx.BaaS.TableObject('signups');
     let query = new wx.BaaS.Query();
@@ -69,7 +70,8 @@ Page({
           userId: wx.getStorageSync('userId'),
           SelectedCity: city,
           upcomingEvents: upcomingEvents,
-          avatar: wx.getStorageSync('userAvatar')
+          avatar: wx.getStorageSync('userAvatar'),
+          follow: follow
         });
         console.log(wx.getStorageSync('userAvatar'))
         }, err => {
