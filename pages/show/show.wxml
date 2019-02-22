@@ -39,10 +39,10 @@
 
   <block wx:if="{{!attended}}">
       <view class='btn_row'>
-        <button class="cta_primary" bindtap="signup">Attend</button> 
+        <button class="cta_primary" bindtap="signup">Attend this event</button> 
       </view>
   </block>
-  <button class="cta_secondary" open-type='share'>Invite</button>
+  <button class="cta_secondary" open-type='share'>Invite your friends</button>
 </view>
 
  

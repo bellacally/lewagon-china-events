@@ -1,18 +1,53 @@
-@import '../../libs/font.wxss';
+page {
+  background: #fcf5e8;
+}
 
-.header{
+.event_image{
   color: white;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Circular Std Book;
+  font-family: "Circular Black";
 }
+.divLine{
+ background: #E0E3DA;
+ width: 100%;
+ height: 3rpx;
+ margin-bottom:20rpx;
+}
+
+.date{
+  box-sizing: border-box;
+  width:100rpx;
+  height:120rpx;
+  background-color: #fcf5e8;
+  padding:20rpx;
+  font-weight: 500;
+  font-size:30rpx;
+}
+.month{
+  font-weight: 300;
+  font-size:23rpx;
+}
+
 .name{
-  font-size: 40rpx;
-  font-weight: bold;
-  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  word-break:break-word;
+  width:70%;
+  padding-left:20rpx;
+  font-size: 15px;
 }
+  /* box: event time and event address */
+.row{
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-left:30rpx;
+  padding-top:25rpx;
+  padding-bottom:25rpx; 
+  background:white;
+}
+
 .details.radio{
   margin-top: 15rpx; 
 }
@@ -25,34 +60,50 @@
 
 .section{
   padding: 25rpx;
-  font-family: Circular Std;
+  font-family: "Circular Black";
+  display:flex;
+  flex-direction: column;
+  align-items:center;
 }
+
 .section_title{
   font-size:30rpx;
   padding-top: 15rpx;
-  padding-bottom: 15rpx;
-  font-family: Circular Std;
+  margin-bottom: 15rpx;
+  font-family: "Circular Black";
   font-weight: bold;
   margin-bottom:15rpx;
   width:100%;
   box-sizing:border-box;
   height:60rpx;
+  display: block;
   padding-left:15rpx;
+}
+.section_desc{
+  font-size:25rpx;
+  padding-top: 20rpx;
+  margin-bottom:15rpx;
+  width:100%;
+  box-sizing:border-box;
+  height:30rpx;
+  padding-left:15rpx;
+  font-family: Avenir, Arial, Helvetica, sans-serif;
 }
 .radio-group{
   font-size: 22rpx;
-  font-family: Circular Std Book;
+  font-family: Avenir, Arial, Helvetica, sans-serif;
 }
 .details{
   padding: 10rpx;
   font-size: 28rpx; 
+  width:90%;
 }
 .all{
   background: white;
   box-shadow: 0 15px 35px rgba(126,87,88,.1), 0 5px 15px rgba(0,0,0,.07);
   background-color: #fff;
   margin:0 auto;
-  width:90vw;
+  width: 95%;
 }
 
 .details.row {
@@ -63,24 +114,30 @@
   font-size: 25rpx;
   line-height: 2em;
   width:20%;
-  padding-left: 20rpx;
-  font-family: Circular Std Book;
-  padding-right:60rpx;
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+  padding-right:30rpx;
 }
 
 textarea{
-  margin-top:8px;
+  margin-top:10px;
   width: 90%;
   box-shadow: 0 15px 35px rgba(126,87,88,.1), 0 5px 15px rgba(0,0,0,.07);
   background-color: #fff;
   height: 300rpx;
   margin:0 auto;
+  display: block;
 }
 
 .message{
+  margin:10px;
   padding:20rpx;
   font-family: Circular Std;
   font-size: 25rpx;
+}
+
+picker {
+  width: 95%;
+  font-family: Avenir, Arial, Helvetica, sans-serif;
 }
 
 .channel {
@@ -111,6 +168,10 @@ text{
   margin-top:50rpx;
 }
 
+.radio {
+  width:60px;
+}
+
 .thankyou {
   margin: 60rpx auto;
   width: 80%;
@@ -120,7 +181,14 @@ text{
 
 .cta_primary{
   margin-bottom:40rpx;
-  margin-top:43rpx;
+  margin-top:45rpx;
+  width: 90%;
+}
+
+.cta_secondary {
+  margin-bottom:40rpx;
+  margin-top:45rpx;
+  width: 90%;  
 }
 .title{
   margin-bottom:80rpx;

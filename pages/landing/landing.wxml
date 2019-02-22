@@ -1,17 +1,17 @@
-<view class="container">
-  <view id="cover_pic" style="background-image: linear-gradient(#fff,rgba(1,100,180,0.2),rgba(0,0,0,0.2) 70%), url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyahkSIPJy9b1.jpg'); background-size:cover; ">
-  <view class="content">
-    <image id="logo" src='https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyaMzGf64SuU7.png'></image>
-  </view>
-</view>
-
-<!-- <image src='../images/landing.jpg'></image> -->
- 
-    <view class="container">
-      <view class="line">Learn to code</view>
-      <view class="line">Change your life</view>
-      <button class='cta_primary' open-type="getUserInfo" bindgetuserinfo="getUserInfo">Start your journey</button>
+<view wx:if="{{show}}">
+  <view id="cover_pic" style="background-image: linear-gradient(#fff,rgba(1,100,180,0.2),rgba(0,0,0,0.2) 70%), url('https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gqtoOFDJZzjjHAO.jpg'); background-size:cover; ">
+    <view class="content">
+      <image id="logo" src='https://cloud-minapp-13908.cloud.ifanrusercontent.com/1gYqyaMzGf64SuU7.png'></image>
     </view>
+  </view>
+
+  <view class="container">
+    <view class="line">Learn to 
+      <text class="highlighted highlighted-red"> code</text>,
+    </view>
+    <view class="line">Change your life.</view>
+    <button class='cta_primary' open-type="getUserInfo" bindgetuserinfo="getUserInfo">Start your journey</button>
+  </view>
 </view>
 
 

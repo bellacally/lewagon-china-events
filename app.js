@@ -6,17 +6,17 @@ App({
     wx.BaaS = requirePlugin('sdkPlugin')
     
     // LOGIN IN THE USER ON BACKEND TO CREATE A USER ID
-    wx.BaaS.wxExtend(wx.login,
-      wx.getUserInfo)
-      wx.BaaS.init('d06840973e93da8277d9');
-      wx.BaaS.login(false).then(res => {
-        console.log(res)    
-        wx.setStorageSync('userId', res.id)
-        this.getSignUps(res.id)
-        this.getRecentPastEvents()
-      }, err => {
-        console.log(err.code)
+    wx.BaaS.wxExtend(wx.login,wx.getUserInfo)
+    wx.BaaS.init('d06840973e93da8277d9');
+    wx.BaaS.login(false).then(res => {
+      console.log(res)    
+      wx.setStorageSync('userId', res.id)
+      this.getSignUps(res.id)
+      this.getRecentPastEvents()
+    }, err => {
+      console.log(err.code)
     })
+
   },
   getSignUps(id) {
     let that = this;
